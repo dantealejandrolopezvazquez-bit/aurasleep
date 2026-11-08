@@ -1,0 +1,483 @@
+<title>Modelo AuraSleep</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a night-to-dawn "bedroom stage" holds the model; a quiet spec panel beside it reads like a product data sheet. */
+:root{
+  --paper:#F1F1F3; --ink:#1B1C29; --ink-2:#55576A; --line:#D9D9E0; --card:#FFFFFF;
+  --dawn:#D9782F; --dawn-soft:#F6D9B8; --mint:#3F9877; --night:#161A2E; --night-2:#2A2E4B;
+  --f-display:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Manrope", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1120; --ink:#ECEBF2; --ink-2:#A3A5B8; --line:#2A2D45; --card:#171A2D;
+  --dawn:#F0A25E; --dawn-soft:#4A3626; --mint:#6CC7A3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1120; --ink:#ECEBF2; --ink-2:#A3A5B8; --line:#2A2D45; --card:#171A2D;
+  --dawn:#F0A25E; --dawn-soft:#4A3626; --mint:#6CC7A3; color-scheme:dark}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 40px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+h1 span{color:var(--dawn)}
+.kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}}
+.stage{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;min-height:340px;max-width:100%;
+  background:radial-gradient(120% 90% at 50% 0%, var(--sky-top, #2A2E4B) 0%, var(--sky-bot, #161A2E) 70%);transition:background .4s}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+.overlay{position:absolute;inset:0;pointer-events:none}
+.overlay svg{position:absolute;inset:0;width:100%;height:100%}
+.lbl{position:absolute;transform:translate(-50%,-50%);background:rgba(255,255,255,.94);color:#1B1C29;border-radius:6px;
+  padding:4px 8px;font:600 12px/1.25 var(--f-body);white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.lbl small{display:block;font:500 11px/1.3 var(--f-mono);color:#55576A}
+.lbl.dim{background:transparent;box-shadow:none;color:#F4E9DC;font:500 13px var(--f-mono);padding:0}
+.lbl.dim small{color:rgba(244,233,220,.7)}
+.tabs{position:absolute;left:12px;top:12px;right:12px;display:flex;flex-wrap:wrap;gap:6px;z-index:2}
+.tabs button,.sw button,.ctl button{font:600 13px var(--f-body);border:1px solid rgba(255,255,255,.18);background:rgba(16,18,34,.55);color:#EDEBF5;
+  border-radius:999px;padding:7px 13px;cursor:pointer;backdrop-filter:blur(6px)}
+.tabs button[aria-pressed="true"]{background:#F3E3CF;color:#1B1C29;border-color:#F3E3CF}
+.tabs button:focus-visible,.sw button:focus-visible,.ctl button:focus-visible,input:focus-visible{outline:2px solid var(--dawn);outline-offset:2px}
+.bar{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;z-index:2}
+.sw{display:flex;gap:6px;align-items:center}
+.sw button{display:flex;align-items:center;gap:7px;padding:6px 11px 6px 7px}
+.sw i{width:16px;height:16px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.25)}
+.sw button[aria-pressed="true"]{background:rgba(255,255,255,.92);color:#1B1C29}
+.ctl{display:flex;align-items:center;gap:10px;background:rgba(16,18,34,.55);border-radius:999px;padding:5px 12px 5px 5px;border:1px solid rgba(255,255,255,.18);color:#EDEBF5;backdrop-filter:blur(6px)}
+.ctl input{width:150px;accent-color:#F0A25E}
+.ctl output{font:500 12px var(--f-mono);min-width:92px}
+.hint{position:absolute;right:14px;top:58px;font:500 11px var(--f-mono);color:rgba(237,235,245,.6);z-index:1}
+aside{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px;min-width:0}
+aside h2{font-family:var(--f-display);font-weight:400;font-size:22px;line-height:1.2;margin:0;text-wrap:balance}
+aside p{margin:0;color:var(--ink-2)}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13.5px}
+dt{font:500 12px var(--f-mono);color:var(--ink-2);letter-spacing:.02em;padding-top:2px}
+dd{margin:0;font-variant-numeric:tabular-nums}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:13.5px}
+.legend li{display:flex;gap:9px;align-items:flex-start}
+.legend b{width:11px;height:11px;border-radius:3px;flex:none;margin-top:5px}
+.seq{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:6px}
+.seq h3{margin:0;font:600 12px var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2)}
+.track{position:relative;height:30px}
+.track .light{position:absolute;left:0;right:0;top:4px;height:8px;border-radius:4px;background:linear-gradient(90deg,#2A2E4B,#D9782F 70%,#FFD9A0)}
+.track .pip{position:absolute;top:16px;width:8px;height:8px;border-radius:50%;background:var(--mint);transform:translateX(-50%)}
+.ticks{display:flex;justify-content:space-between;font:500 11px var(--f-mono);color:var(--ink-2)}
+.note{font-size:12.5px;color:var(--ink-2)}
+@media (max-width:560px){.ctl input{width:100px}.hint{display:none}.tabs button{padding:6px 10px;font-size:12px}}
+@media (prefers-reduced-motion: reduce){.stage{transition:none}}
+/* shot mode for still renders */
+body.shot{padding:0;background:transparent}
+body.shot .wrap{max-width:none;display:block}
+body.shot header,body.shot aside,body.shot .tabs,body.shot .bar,body.shot .hint{display:none}
+body.shot .main{display:block}
+body.shot .stage{border-radius:0;aspect-ratio:auto;width:100vw;height:100vh}
+body.shot.nobg .stage{background:transparent}
+html:has(body.nobg){background:transparent}
+/* embed mode (?embed=1): no UI of its own, keeps animating, controlled from the parent page via postMessage */
+body.embed{padding:0;margin:0;background:#161A2E;overflow:hidden}
+html:has(body.embed){background:#161A2E}
+body.embed .wrap{max-width:none;display:block}
+body.embed header,body.embed aside,body.embed .tabs,body.embed .bar,body.embed .hint{display:none}
+body.embed .main{display:block}
+body.embed .stage{position:fixed;inset:0;border-radius:0;aspect-ratio:auto;min-height:0;width:auto;height:auto}
+body.embed .stage canvas{touch-action:pan-y}
+/* en pantallas angostas las etiquetas se enciman: solo quedan las cotas; el sitio muestra el pie de cada vista */
+@media (max-width:560px){body.embed .lbl:not(.dim),body.embed #leaders{display:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="kicker">AuraSleep · modelo digital 3D</div>
+      <h1>Despertar con <span>luz</span> y aroma</h1>
+    </div>
+    <div class="kicker">48 × 68 cm · perfil 13 / 10 cm · 0.9–1.1 kg</div>
+  </header>
+
+  <div class="main">
+    <div class="stage" id="stage">
+      <canvas id="gl" aria-label="Modelo 3D de la almohada AuraSleep. Arrastra para girar, rueda para acercar."></canvas>
+      <div class="overlay"><svg id="leaders"></svg><div id="labels"></div></div>
+      <div class="tabs" role="group" aria-label="Vistas">
+        <button id="v-perspectiva" data-v="perspectiva" aria-pressed="true">Perspectiva</button>
+        <button id="v-superior" data-v="superior" aria-pressed="false">Superior · fibra óptica</button>
+        <button id="v-lateral" data-v="lateral" aria-pressed="false">Lateral · difusor</button>
+        <button id="v-interna" data-v="interna" aria-pressed="false">Interna · electrónica</button>
+      </div>
+      <div class="hint">Arrastra para girar · rueda para acercar</div>
+      <div class="bar">
+        <div class="sw" role="group" aria-label="Color de la funda">
+          <button id="c-blanco" data-c="blanco" aria-pressed="true"><i style="background:#EDE8DF"></i>Blanco roto</button>
+          <button id="c-gris" data-c="gris" aria-pressed="false"><i style="background:#8F8B85"></i>Gris piedra</button>
+          <button id="c-beige" data-c="beige" aria-pressed="false"><i style="background:#D8C2A3"></i>Beige cálido</button>
+        </div>
+        <div class="ctl">
+          <button id="play" type="button">▶ Simular despertar</button>
+          <input id="time" type="range" min="-15" max="0" step="0.1" value="-15" aria-label="Minutos antes de la alarma">
+          <output id="tout">−15:00 min</output>
+        </div>
+      </div>
+    </div>
+
+    <aside id="panel" aria-live="polite"></aside>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+const Q = new URLSearchParams(location.search);
+const SHOT = Q.has('shot');
+if(SHOT){ document.body.classList.add('shot'); if(Q.get('bg')==='none') document.body.classList.add('nobg'); }
+// ?embed=1 o #embed (el hash sobrevive a redirecciones de servidores que quitan la consulta)
+const EMBED = !SHOT && (Q.has('embed') || location.hash === '#embed');
+if(EMBED) document.body.classList.add('embed');
+
+/* ---------- math ---------- */
+const V={sub:(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],add:(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]],sc:(a,s)=>[a[0]*s,a[1]*s,a[2]*s],
+  dot:(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],cr:(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],
+  n:(a)=>{const l=Math.hypot(a[0],a[1],a[2])||1;return [a[0]/l,a[1]/l,a[2]/l]},lerp:(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]};
+function persp(f,a,n,fa){const t=1/Math.tan(f/2),m=new Float32Array(16);m[0]=t/a;m[5]=t;m[10]=(fa+n)/(n-fa);m[11]=-1;m[14]=2*fa*n/(n-fa);return m}
+function lookAt(e,c,u){const z=V.n(V.sub(e,c)),x=V.n(V.cr(u,z)),y=V.cr(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-V.dot(x,e),-V.dot(y,e),-V.dot(z,e),1])}
+function mul(a,b){const o=new Float32Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s}return o}
+function xf(m,p){const x=p[0],y=p[1],z=p[2];const w=m[3]*x+m[7]*y+m[11]*z+m[15];return [(m[0]*x+m[4]*y+m[8]*z+m[12])/w,(m[1]*x+m[5]*y+m[9]*z+m[13])/w,w]}
+const hex=h=>[parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255];
+
+/* ---------- pillow shape (cm): 68 wide (x) × 48 deep (z), 13 cm center / ~10 cm near edges ---------- */
+const HW=34, HD=24;
+function f(x,z){const nx=Math.min(Math.abs(x)/HW,1),nz=Math.min(Math.abs(z)/HD,1);
+  const t=5.3+1.6*(1-nx*nx)*(1-nz*nz);
+  const p=Math.pow(Math.max(0,1-Math.pow(nx,4.5)),.38)*Math.pow(Math.max(0,1-Math.pow(nz,4.5)),.38);
+  return t*Math.max(p,.11)}
+function surfN(x,z){const h=.02;const dx=(f(x+h,z)-f(x-h,z))/(2*h),dz=(f(x,z+h)-f(x,z-h))/(2*h);return V.n([-dx,1,-dz])}
+
+/* ---------- geometry builders ---------- */
+function G(){return {p:[],n:[],i:[]}}
+function addV(g,p,n){g.p.push(p[0],p[1],p[2]);g.n.push(n[0],n[1],n[2]);return g.p.length/3-1}
+function pillowSurface(sign){const g=G(),NX=110,NZ=80;
+  const m=s=>Math.sin(s*Math.PI/2);
+  for(let j=0;j<=NZ;j++)for(let i=0;i<=NX;i++){const x=HW*m(-1+2*i/NX),z=HD*m(-1+2*j/NZ);
+    const y=sign>0?f(x,z):-Math.min(f(x,z),6.45);const nn=surfN(x,z);addV(g,[x,y,z],sign>0?nn:[nn[0],-nn[1],nn[2]])}
+  for(let j=0;j<NZ;j++)for(let i=0;i<NX;i++){const a=j*(NX+1)+i,b=a+1,c=a+NX+1,d=c+1;
+    if(sign>0)g.i.push(a,c,b,b,c,d);else g.i.push(a,b,c,b,d,c)}return g}
+function tube(pts,r,seg,closed){const g=G();seg=seg||8;const N=pts.length;
+  for(let k=0;k<N;k++){const a=pts[Math.max(0,k-1)],b=pts[Math.min(N-1,k+1)];
+    let t=closed?V.n(V.sub(pts[(k+1)%N],pts[(k-1+N)%N])):V.n(V.sub(b,a));
+    let up=Math.abs(t[1])>.9?[1,0,0]:[0,1,0];const u=V.n(V.cr(t,up)),w=V.cr(t,u);
+    for(let s=0;s<=seg;s++){const an=s/seg*Math.PI*2,nn=V.add(V.sc(u,Math.cos(an)),V.sc(w,Math.sin(an)));addV(g,V.add(pts[k],V.sc(nn,r)),nn)}}
+  const L=closed?N:N-1;for(let k=0;k<L;k++){const k2=(k+1)%N;for(let s=0;s<seg;s++){const a=k*(seg+1)+s,b=a+1,c=k2*(seg+1)+s,d=c+1;g.i.push(a,c,b,b,c,d)}}return g}
+function box(c,s){const g=G(),h=V.sc(s,.5);const F=[[[1,0,0],[0,1,0],[0,0,1]],[[-1,0,0],[0,1,0],[0,0,-1]],[[0,1,0],[0,0,1],[1,0,0]],[[0,-1,0],[0,0,-1],[1,0,0]],[[0,0,1],[1,0,0],[0,1,0]],[[0,0,-1],[-1,0,0],[0,1,0]]];
+  for(const [n,u,v] of F){const b=g.p.length/3;for(const [a,bb] of [[-1,-1],[1,-1],[1,1],[-1,1]]){const p=[0,1,2].map(k=>c[k]+n[k]*h[k]+u[k]*a*h[k]+v[k]*bb*h[k]);addV(g,p,n)}
+    // orient: ensure ccw from outside
+    const p0=g.p.slice(b*3,b*3+3),p1=g.p.slice(b*3+3,b*3+6),p2=g.p.slice(b*3+6,b*3+9);const cn=V.cr(V.sub(p1,p0),V.sub(p2,p0));
+    if(V.dot(cn,n)>0)g.i.push(b,b+1,b+2,b,b+2,b+3);else g.i.push(b,b+2,b+1,b,b+3,b+2)}return g}
+function cyl(c,axis,r,h,seg){const g=G();seg=seg||28;const a=V.n(axis);let up=Math.abs(a[1])>.9?[1,0,0]:[0,1,0];const u=V.n(V.cr(a,up)),w=V.cr(a,u);
+  const top=V.add(c,V.sc(a,h/2)),bot=V.sub(c,V.sc(a,h/2));
+  for(let s=0;s<=seg;s++){const an=s/seg*Math.PI*2,d=V.add(V.sc(u,Math.cos(an)),V.sc(w,Math.sin(an)));addV(g,V.add(bot,V.sc(d,r)),d);addV(g,V.add(top,V.sc(d,r)),d)}
+  for(let s=0;s<seg;s++){const k=s*2;g.i.push(k,k+2,k+1,k+1,k+2,k+3)}
+  for(const [cc,nn] of [[top,a],[bot,V.sc(a,-1)]]){const ci=addV(g,cc,nn),b0=g.p.length/3;for(let s=0;s<=seg;s++){const an=s/seg*Math.PI*2,d=V.add(V.sc(u,Math.cos(an)),V.sc(w,Math.sin(an)));addV(g,V.add(cc,V.sc(d,r)),nn)}
+    for(let s=0;s<seg;s++){if(nn===a)g.i.push(ci,b0+s,b0+s+1);else g.i.push(ci,b0+s+1,b0+s)}}return g}
+function sphere(r){const g=G(),S=14;for(let j=0;j<=S;j++)for(let i=0;i<=S*2;i++){const th=j/S*Math.PI,ph=i/(S*2)*Math.PI*2;const n=[Math.sin(th)*Math.cos(ph),Math.cos(th),Math.sin(th)*Math.sin(ph)];addV(g,V.sc(n,r),n)}
+  for(let j=0;j<S;j++)for(let i=0;i<S*2;i++){const a=j*(S*2+1)+i,b=a+1,c=a+S*2+1,d=c+1;g.i.push(a,b,c,b,d,c)}return g}
+function torus(c,R,r){const pts=[];for(let k=0;k<48;k++){const a=k/48*Math.PI*2;pts.push([c[0]+R*Math.cos(a),c[1],c[2]+R*Math.sin(a)])}return tube(pts,r,8,true)}
+function merge(list){const g=G();for(const s of list){const o=g.p.length/3;g.p.push(...s.p);g.n.push(...s.n);for(const k of s.i)g.i.push(k+o)}return g}
+function strip(x0,x1,z0,z1,lift,nx,nz){const g=G();for(let j=0;j<=nz;j++)for(let i=0;i<=nx;i++){const x=x0+(x1-x0)*i/nx,z=z0+(z1-z0)*j/nz;const n=surfN(x,z);addV(g,V.add([x,f(x,z),z],V.sc(n,lift)),n)}
+  for(let j=0;j<nz;j++)for(let i=0;i<nx;i++){const a=j*(nx+1)+i,b=a+1,c=a+nx+1,d=c+1;g.i.push(a,c,b,b,c,d)}return g}
+function onSurf(x,z,lift){return V.add([x,f(x,z),z],V.sc(surfN(x,z),lift||0))}
+function lines(segs){return {p:segs.flat(),lines:true}}
+
+/* ---------- scene parts ---------- */
+const COLORS={blanco:'#EDE8DF',gris:'#8F8B85',beige:'#D8C2A3'};
+const PIPE={blanco:'#D9D2C6',gris:'#77736E',beige:'#C3AA88'};
+let cur=COLORS[Q.get('color')]?Q.get('color'):'blanco';
+
+const parts=[]; // {g, mat, tag}
+function part(g,mat,tag){parts.push({g,mat:Object.assign({col:'#888888',em:'#000000',op:1,fab:0,shin:24,spec:.08,mode:0},mat),tag});return parts[parts.length-1]}
+
+// cover (top + bottom)
+const P_TOP=part(pillowSurface(1),{fab:1,shin:8,spec:.02},'cover');
+const P_BOT=part(pillowSurface(-1),{fab:1,shin:8,spec:.02},'cover');
+// piping seam
+const per=[];const cr=1.2;
+for(let k=0;k<=40;k++){const x=-HW+cr+(2*HW-2*cr)*k/40;per.push([x,0,HD-0.15])}
+for(let k=1;k<=12;k++){const a=Math.PI/2*k/12;per.push([HW-cr+cr*Math.sin(a)-0.15*Math.sin(a),0,HD-cr+cr*Math.cos(a)-0.15*Math.cos(a)])}
+for(let k=1;k<=30;k++){const z=HD-cr-(2*HD-2*cr)*k/30;per.push([HW-0.15,0,z])}
+for(let k=1;k<=12;k++){const a=Math.PI/2*k/12;per.push([HW-cr+cr*Math.cos(a)-0.15*Math.cos(a),0,-HD+cr-cr*Math.sin(a)+0.15*Math.sin(a)])}
+for(let k=1;k<=40;k++){const x=HW-cr-(2*HW-2*cr)*k/40;per.push([x,0,-HD+0.15])}
+for(let k=1;k<=12;k++){const a=Math.PI/2*k/12;per.push([-HW+cr-cr*Math.sin(a)+0.15*Math.sin(a),0,-HD+cr-cr*Math.cos(a)+0.15*Math.cos(a)])}
+for(let k=1;k<30;k++){const z=-HD+cr+(2*HD-2*cr)*k/30;per.push([-HW+0.15,0,z])}
+for(let k=1;k<12;k++){const a=Math.PI/2*k/12;per.push([-HW+cr-cr*Math.cos(a)+0.15*Math.cos(a),0,HD-cr+cr*Math.sin(a)-0.15*Math.sin(a)])}
+const P_PIPE=part(tube(per,0.62,8,true),{fab:1,shin:10,spec:.03},'pipe');
+
+// fiber-optic textile band on the top (head) edge: 60 cm long, 3.5 cm wide
+const BZ0=-21.2,BZ1=-17.7;
+const P_BAND=part(strip(-30,30,BZ0,BZ1,0.07,90,4),{col:'#BDB3A3',shin:30,spec:.05},'band');
+const fib=[];for(let r=0;r<7;r++){const z=BZ0+0.35+r*(BZ1-BZ0-0.7)/6;let prev=null;for(let k=0;k<=60;k++){const x=-30+k;const p=onSurf(x,z,0.12);if(prev)fib.push(prev,p);prev=p}}
+const P_FIB=part(lines(fib),{col:'#FFFFFF',op:.25,mode:1},'fibers');
+
+// LED module feeding the band (inside the cover, end of band)
+const ledY=f(-31.5,-19.4)-1.6;
+const P_LED=part(merge([box([-31.6,ledY,-19.4],[2.4,1.0,1.8]),box([-31.6,ledY-0.75,-19.4],[2.6,0.25,2.0])]),{col:'#B8B4AC',shin:60,spec:.4},'internal');
+const P_LEDCHIP=part(box([-30.3,ledY,-19.4],[0.3,0.6,0.8]),{col:'#FFC27A',em:'#000000'},'internal');
+
+// aroma diffuser on the lateral edge (x+), coin-sized, breathable mesh
+const DX=30.6,DZ=0.0;const dPos=onSurf(DX,DZ,0.05),dN=surfN(DX,DZ);
+const P_DIF=part(merge([cyl(V.add(dPos,V.sc(dN,.05)),dN,1.3,0.22,32)]),{col:'#7B766F',shin:20,spec:.1},'diffuser');
+const P_DIFR=part(tube((()=>{const a=dN;const up=[0,1,0];const u=V.n(V.cr(a,up)),w=V.cr(a,u);const p=[];for(let k=0;k<40;k++){const an=k/40*Math.PI*2;p.push(V.add(V.add(dPos,V.sc(dN,.16)),V.add(V.sc(u,1.42*Math.cos(an)),V.sc(w,1.42*Math.sin(an)))))}return p})(),0.13,6,true),{col:'#5E5953',shin:30,spec:.2},'diffuser');
+const holes=[];{const up=[0,1,0];const u=V.n(V.cr(dN,up)),w=V.cr(dN,u);for(let r=0.35;r<1.1;r+=0.35)for(let k=0;k<Math.round(r*14);k++){const an=k/Math.round(r*14)*Math.PI*2;holes.push(sphere(0.12))
+  const h=holes[holes.length-1];const c=V.add(V.add(dPos,V.sc(dN,.17)),V.add(V.sc(u,r*Math.cos(an)),V.sc(w,r*Math.sin(an))));for(let q=0;q<h.p.length;q+=3){h.p[q]+=c[0];h.p[q+1]+=c[1];h.p[q+2]+=c[2]}}}
+part(merge(holes),{col:'#3A3733',shin:10},'diffuser');
+
+// hidden capacitive button (marked, under textile)
+const bPos=[-22,0,19.5];const P_BTN=part(cyl(onSurf(bPos[0],bPos[2],0.03),surfN(bPos[0],bPos[2]),1.7,0.05,32),{fab:1,shin:8,spec:.02},'button');
+
+// pressure sensor sheet (center)
+const sY=f(0,0)-2.2;part(box([0,sY,0],[22,0.12,15]),{col:'#E3A33B',op:.85,shin:40,spec:.2},'internal');
+// electronics pouch (padded mesh) in front-left corner
+const pc=[-24.5,0.1,15.5];part(box(pc,[13,3.2,9]),{col:'#C9CCD6',op:.32,shin:10,spec:.05},'pouchT');
+const mesh=[];for(let k=0;k<=13;k++){const x=pc[0]-6.5+k;mesh.push([x,pc[1]+1.62,pc[2]-4.5],[x,pc[1]+1.62,pc[2]+4.5])}for(let k=0;k<=9;k++){const z=pc[2]-4.5+k;mesh.push([pc[0]-6.5,pc[1]+1.62,z],[pc[0]+6.5,pc[1]+1.62,z])}
+part(lines(mesh),{col:'#E8EAF2',op:.35,mode:1},'internal');
+part(box([-27.2,0.25,14.6],[6.8,1.1,5.6]),{col:'#3D5A80',shin:50,spec:.3},'internal'); // battery
+part(box([-27.2,0.82,14.6],[6.82,0.04,1.2]),{col:'#F0A25E',shin:20},'internal');
+part(box([-20.6,-0.15,16.6],[4.6,0.18,3.8]),{col:'#2F6B4F',shin:60,spec:.3},'internal'); // PCB
+part(merge([box([-21.4,0.05,16.2],[1.3,0.3,1.3]),box([-19.6,0.03,17.4],[0.9,0.24,0.7]),box([-19.7,0.03,15.6],[0.8,0.2,0.6])]),{col:'#1B1C22',shin:60,spec:.3},'internal');
+// induction coil (receiver) near bottom of pouch
+const coilY=-Math.min(f(-24.5,15.5),6.45)+1.0;
+const coil=[];for(let r=1.2;r<=2.8;r+=0.4)coil.push(torus([-24.5,coilY,15.5],r,0.13));
+part(merge(coil),{col:'#C77B3F',shin:70,spec:.45},'internal');
+// aroma cartridge + micropump
+part(cyl([23.5,-0.2,5.5],[0,1,0],1.5,4.6,32),{col:'#8FD6B5',op:.78,shin:80,spec:.5},'cart');
+part(cyl([23.5,2.25,5.5],[0,1,0],1.6,0.5,32),{col:'#F4F2EE',shin:40,spec:.2},'internal');
+part(merge([box([25.6,0.6,-2.0],[2.4,1.7,1.8]),cyl([24.0,0.6,-2.0],[1,0,0],0.75,1.4,20)]),{col:'#3B3E4A',shin:50,spec:.3},'internal');
+// tubing + wires
+const tubePts=[[23.5,2.5,5.5],[24.6,2.7,3.0],[25.6,1.5,-1.0]];
+part(tube([[23.5,2.6,5.5],[24.4,2.9,2.6],[25.4,1.6,-1.0]],0.22,8),{col:'#E9F3EE',op:.85,shin:60,spec:.4},'internal');
+part(tube([[26.8,0.9,-2.0],[28.6,1.5,-1.2],[29.6,dPos[1]-0.6,-0.3],V.sub(dPos,V.sc(dN,0.4))],0.22,8),{col:'#E9F3EE',op:.85,shin:60,spec:.4},'internal');
+const W='#D4A72C';
+part(tube([[-18.4,0.2,16.6],[-10,0.8,8],[0,1.0,-2],[14,0.9,-3.0],[24.5,0.7,-2.0]],0.13,6),{col:W,shin:40,spec:.3},'internal');
+part(tube([[-22,0.6,11],[-28,1.2,0],[-31,1.6,-12],[-31.6,ledY,-18.3]],0.13,6),{col:W,shin:40,spec:.3},'internal');
+part(tube([[-18.6,0.0,14.8],[-12,sY,7.4],[-11,sY,6.5]],0.13,6),{col:W,shin:40,spec:.3},'internal');
+
+// charging base (induction pad) peeking out under the front-left corner
+const FLOOR=-6.6;
+part(box([-33,FLOOR+0.6,17],[26,1.2,17]),{col:'#2E3140',shin:40,spec:.2},'base');
+part(box([-33,FLOOR+1.22,17],[24,0.05,15]),{col:'#3A3E50',shin:20,spec:.1},'base');
+const P_BLED=part(box([-45.4,FLOOR+0.65,21],[0.12,0.3,0.6]),{col:'#7CF0C4',em:'#000000'},'base');
+
+// x-ray contour lines of the cover
+const cont=[];for(const z of [-16,-8,0,8,16]){let pr=null,pb=null;for(let k=0;k<=68;k++){const x=-HW+k;const a=[x,f(x,z),z],b=[x,-Math.min(f(x,z),6.45),z];if(pr){cont.push(pr,a,pb,b)}pr=a;pb=b}}
+for(const x of [-24,-12,0,12,24]){let pr=null;for(let k=0;k<=48;k++){const z=-HD+k;const a=[x,f(x,z),z];if(pr)cont.push(pr,a);pr=a}}
+const P_CONT=part(lines(cont),{col:'#F3E3CF',op:0,mode:1},'contour');
+
+// dimension lines
+const dimTop=[[-34,0.5,28.5],[34,0.5,28.5],[-34,0.5,27.3],[-34,0.5,29.7],[34,0.5,27.3],[34,0.5,29.7],[38.5,0.5,-24],[38.5,0.5,24],[37.3,0.5,-24],[39.7,0.5,-24],[37.3,0.5,24],[39.7,0.5,24]];
+const P_DIMT=part(lines(dimTop),{col:'#F4E9DC',op:0,mode:1},'dimtop');
+const sxp=35.2;const t10=f(0,19);
+const dimSide=[[sxp,-6.45,-29.5],[sxp,6.5,-29.5],[sxp,6.5,0],[sxp,6.5,-31],[sxp,-6.45,0],[sxp,-6.45,-31],[sxp,-t10,29.5],[sxp,t10,29.5],[sxp,t10,19],[sxp,t10,31],[sxp,-t10,19],[sxp,-t10,31]];
+const P_DIMS=part(lines(dimSide),{col:'#F4E9DC',op:0,mode:1},'dimside');
+
+// shadow catcher
+const P_SH=part({p:[-70,FLOOR,-55,70,FLOOR,-55,70,FLOOR,55,-70,FLOOR,55],n:[0,1,0,0,1,0,0,1,0,0,1,0],i:[0,2,1,0,3,2]},{mode:2,op:.55},'shadow');
+// aroma puff sprite mesh
+const PUFF=part(sphere(1),{col:'#D8F7EA',op:0,shin:4,spec:0,mode:3},'puff');
+
+/* ---------- WebGL ---------- */
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl',{antialias:true,alpha:true,premultipliedAlpha:false,preserveDrawingBuffer:true});
+if(!gl){document.getElementById('labels').innerHTML='<div class="lbl" style="left:50%;top:50%">Tu navegador no tiene WebGL activado.</div>';return}
+const VS=`attribute vec3 aP;attribute vec3 aN;uniform mat4 uVP;uniform vec3 uOff;uniform float uScl;varying vec3 vW;varying vec3 vN;
+void main(){vec3 w=aP*uScl+uOff;vW=w;vN=aN;gl_Position=uVP*vec4(w,1.);}`;
+const FS=`precision highp float;varying vec3 vW;varying vec3 vN;
+uniform vec3 uCol,uEm,uEye,uDawnPos,uDawnCol;uniform float uOp,uFab,uShin,uSpec,uDawn,uMode;
+void main(){
+ if(uMode>1.5&&uMode<2.5){vec2 q=abs(vW.xz-vec2(-1.,0.))-vec2(31.,20.);float d=length(max(q,0.))+min(max(q.x,q.y),0.);float a=1.-smoothstep(-9.,12.,d);gl_FragColor=vec4(0.03,0.03,0.06,a*a*uOp);return;}
+ if(uMode>0.5&&uMode<1.5){gl_FragColor=vec4(uCol,uOp);return;}
+ vec3 n=normalize(vN);if(!gl_FrontFacing)n=-n;
+ if(uMode>2.5){float a=pow(max(dot(n,normalize(uEye-vW)),0.),2.5);gl_FragColor=vec4(uCol,uOp*a);return;}
+ if(uFab>0.5){float k=9.;vec3 p=vW*k;n=normalize(n+vec3(cos(p.x)*sin(p.z*.71),0.,sin(p.z)*cos(p.x*.71))*0.03+vec3(sin(p.x*3.1+p.z*3.1),0.,cos(p.z*3.1-p.x*3.1))*0.012);}
+ vec3 v=normalize(uEye-vW);
+ vec3 L1=normalize(vec3(0.55,0.75,0.35));float d1=max(dot(n,L1),0.);
+ vec3 L2=normalize(vec3(-0.7,0.3,0.6));float d2=max(dot(n,L2),0.);
+ float hemi=0.5+0.5*n.y;vec3 amb=mix(vec3(0.10,0.10,0.13),vec3(0.36,0.38,0.46),hemi);
+ vec3 base=pow(uCol,vec3(2.2));
+ float ao=uFab>0.5?mix(0.62,1.,smoothstep(0.4,5.5,abs(vW.y))):1.;vec3 c=base*ao*(amb*0.9+vec3(1.0,0.95,0.88)*d1*1.15+vec3(0.50,0.56,0.75)*d2*0.36);
+ vec3 h=normalize(L1+v);c+=vec3(uSpec)*pow(max(dot(n,h),0.),uShin)*d1;
+ float fr=pow(1.-max(dot(n,v),0.),3.);c+=base*fr*uFab*0.22+vec3(0.6,0.65,0.8)*fr*0.05;
+ vec3 dl=uDawnPos-vW;float dd=length(dl);float fall=uDawn/(1.+dd*dd/90.);
+ c+=base*pow(uDawnCol,vec3(2.2))*(0.35+0.65*max(dot(n,dl/dd),0.))*fall*2.2;
+ c+=pow(uEm,vec3(2.2));
+ c=1.-exp(-c*1.25);
+ gl_FragColor=vec4(pow(c,vec3(1./2.2)),uOp);}`;
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(o));return o}
+const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);gl.useProgram(pr);
+const A={P:gl.getAttribLocation(pr,'aP'),N:gl.getAttribLocation(pr,'aN')};const U={};
+['uVP','uOff','uScl','uCol','uEm','uEye','uDawnPos','uDawnCol','uOp','uFab','uShin','uSpec','uDawn','uMode'].forEach(k=>U[k]=gl.getUniformLocation(pr,k));
+const ext=gl.getExtension('OES_element_index_uint');
+for(const p of parts){const g=p.g;p.vb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,p.vb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(g.p),gl.STATIC_DRAW);
+  if(g.lines){p.count=g.p.length/3;continue}
+  p.nb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,p.nb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(g.n),gl.STATIC_DRAW);
+  p.ib=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,p.ib);const big=g.p.length/3>65535;p.it=big?gl.UNSIGNED_INT:gl.UNSIGNED_SHORT;
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,big?new Uint32Array(g.i):new Uint16Array(g.i),gl.STATIC_DRAW);p.count=g.i.length;
+  let cx=0,cy=0,cz=0,N=g.p.length/3;for(let k=0;k<g.p.length;k+=3){cx+=g.p[k];cy+=g.p[k+1];cz+=g.p[k+2]}p.c=[cx/N,cy/N,cz/N]}
+gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+
+/* ---------- views ---------- */
+const VIEWS={
+ perspectiva:{th:.62,ph:1.12,r:122,t:[-2,-1,0],fov:35},
+ superior:{th:0,ph:.0015,r:405,t:[1,0,1],fov:14},
+ lateral:{th:Math.PI/2,ph:1.52,r:295,t:[4,-.5,0],fov:12},
+ interna:{th:-.62,ph:.93,r:112,t:[-1,-1,3],fov:35}};
+let view=VIEWS[Q.get('view')]?Q.get('view'):(VIEWS[location.hash.slice(1)]?location.hash.slice(1):'perspectiva');
+const cam=Object.assign({},VIEWS[view],{t:VIEWS[view].t.slice()});let tw=null;let xray=view==='interna'?1:0,xrayT=xray;
+function go(v,instant){view=v;const to=VIEWS[v];xrayT=v==='interna'?1:0;
+  if(instant){Object.assign(cam,to,{t:to.t.slice()});xray=xrayT}else{tw={from:{th:cam.th,ph:cam.ph,r:cam.r,fov:cam.fov,t:cam.t.slice()},to,s:performance.now()}}
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v));renderPanel();
+  if(!SHOT&&!EMBED&&location.hash!=='#'+v)history.replaceState(null,'','#'+v)}
+
+/* ---------- dawn timeline ---------- */
+let T=Q.has('t')?parseFloat(Q.get('t')):-15;let playing=false,pt0=0;
+const PULSES=[-9,-6,-3,0];
+const light=m=>{const s=Math.min(Math.max((m+15)/15,0),1);return Math.pow(s*s*(3-2*s),1.4)};
+const aroma=m=>{let a=0;for(const p of PULSES){const d=m-p;if(d>=-0.05&&d<1.4)a=Math.max(a,1-d/1.4)}return a};
+let puffs=[];let lastPulse=null;
+function spawnPuffs(n){for(let k=0;k<n;k++)puffs.push({b:performance.now()+k*90,j:[(Math.random()-.5)*.8,Math.random()*.6,(Math.random()-.5)*.8]})}
+
+/* ---------- labels ---------- */
+const topY=(x,z)=>f(x,z);
+const LBL=[
+ {v:['perspectiva'],p:[-8,topY(-8,-19.4)+.2,-19.4],t:'Cinta de fibra óptica',s:'borde superior · luz de amanecer',dx:-150,dy:-62},
+ {v:['perspectiva'],p:dPos,t:'Difusor de aroma',s:'tamaño moneda · lateral',dx:96,dy:-70},
+ {v:['perspectiva'],p:[bPos[0],topY(bPos[0],bPos[2]),bPos[2]],t:'Botón táctil oculto',s:'bajo el textil',dx:-120,dy:58},
+ {v:['perspectiva'],p:[-40,FLOOR+1.2,22],t:'Base de carga por inducción',s:'sin cables expuestos',dx:-40,dy:74},
+ {v:['perspectiva'],p:[10,topY(10,8),8],t:'Funda algodón / bambú',s:'lavable · núcleo viscoelástico',dx:150,dy:20},
+ {v:['superior'],p:[-12,topY(-12,-19.4)+.2,-19.4],t:'Cinta de fibra óptica PMMA',s:'Ø 0.25 mm · 60–80 cm lineales · 3–4 cm de ancho',dx:0,dy:-58},
+ {v:['superior'],p:[-31.4,topY(-31,-19.4),-19.4],t:'LED cálido',s:'alimenta la cinta',dx:-70,dy:52},
+ {v:['superior'],p:dPos,t:'Difusor',s:'lateral derecho',dx:70,dy:56},
+ {v:['superior'],p:[bPos[0],topY(bPos[0],bPos[2]),bPos[2]],t:'Botón táctil',s:'oculto',dx:-70,dy:40},
+ {v:['superior'],p:[0,1,30.5],t:'68 cm',dim:1,dx:0,dy:14},
+ {v:['superior'],p:[40.5,1,0],t:'48 cm',dim:1,dx:28,dy:0},
+ {v:['lateral'],p:dPos,t:'Difusor con microbomba',s:'ráfagas dirigidas a la nariz',dx:-170,dy:-60},
+ {v:['lateral'],p:[30,topY(30,-19.4),-19.4],t:'Cinta de fibra óptica',s:'visible como costura mate',dx:-120,dy:-50},
+ {v:['lateral'],p:[sxp,0,-29.5],t:'13 cm',s:'centro',dim:1,dx:44,dy:0},
+ {v:['lateral'],p:[sxp,0,29.5],t:'≈10 cm',s:'cerca del borde',dim:1,dx:-62,dy:0},
+ {v:['interna'],p:[-27.2,0.8,14.6],t:'Batería 4 V · 1300 mAh',s:'varios despertares por carga',dx:-200,dy:24},
+ {v:['interna'],p:[-20.6,0,16.6],t:'Placa BLE + driver',s:'control desde la app',dx:40,dy:96},
+ {v:['interna'],p:[-24.5,coilY,15.5],t:'Bobina de inducción',s:'receptora',dx:-130,dy:58},
+ {v:['interna'],p:[4,sY,-3],t:'Sensor de presión',s:'sin cabeza = sin activación',dx:30,dy:-110},
+ {v:['interna'],p:[23.5,0.5,5.5],t:'Cartucho de aroma',s:'10–15 mL · reemplazable',dx:110,dy:70},
+ {v:['interna'],p:[25.6,1.4,-2.0],t:'Microbomba de diafragma',s:'< 100 mW · silenciosa',dx:120,dy:-34},
+ {v:['interna'],p:[-31.6,ledY,-19.4],t:'Módulo LED reemplazable',s:'con disipador pasivo',dx:-60,dy:-70},
+ {v:['interna'],p:[-24.5,1.8,11],t:'Bolsita de malla acolchada',s:'esquina · electrónica protegida',dx:-40,dy:-110}];
+const showLabels=!SHOT||Q.get('labels')!=='0';
+const labEl=document.getElementById('labels'),svg=document.getElementById('leaders');
+let labNodes=[];
+function buildLabels(){labEl.innerHTML='';svg.innerHTML='';labNodes=[];if(!showLabels)return;
+  for(const L of LBL){if(!L.v.includes(view))continue;const d=document.createElement('div');d.className='lbl'+(L.dim?' dim':'');d.innerHTML=L.t+(L.s?'<small>'+L.s+'</small>':'');labEl.appendChild(d);
+    let ln=null,dot=null;if(!L.dim){ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('stroke','rgba(255,255,255,.85)');ln.setAttribute('stroke-width','1.2');svg.appendChild(ln);
+      dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('r','3.5');dot.setAttribute('fill','#F3E3CF');dot.setAttribute('stroke','#1B1C29');dot.setAttribute('stroke-width','1');svg.appendChild(dot)}
+    labNodes.push({L,d,ln,dot})}}
+
+/* ---------- panel ---------- */
+const PANEL={
+ perspectiva:`<h2>Una almohada que te despierta sin sonido</h2><p>Quince minutos antes de tu hora, una luz cálida sube despacio desde el borde superior y un difusor libera ráfagas de menta o cítrico hacia la nariz. Sin pantallas ni altavoces.</p>
+ <dl><dt>Medidas</dt><dd>48 × 68 cm</dd><dt>Perfil</dt><dd>13 cm centro · ≈10 cm bordes</dd><dt>Peso</dt><dd>0.9 – 1.1 kg</dd><dt>Funda</dt><dd>Algodón peinado o mezcla con bambú, lavable</dd><dt>Núcleo</dt><dd>Espuma viscoelástica de densidad media</dd><dt>Control</dt><dd>App por Bluetooth de bajo consumo + botón táctil</dd></dl>`,
+ superior:`<h2>Vista superior: la fibra óptica</h2><p>La luz viaja por una cinta textil de fibras PMMA cosida en el borde superior. Apagada se siente como una costura mate; encendida atraviesa los párpados cerrados y le indica al cerebro que baje la melatonina.</p>
+ <dl><dt>Fibra</dt><dd>PMMA tratada, Ø 0.25 mm</dd><dt>Longitud</dt><dd>60 – 80 cm lineales</dd><dt>Costura</dt><dd>3 – 4 cm de ancho</dd><dt>Fuente</dt><dd>LED de tono cálido, módulo reemplazable</dd><dt>Rampa</dt><dd>15 min hasta brillo tenue</dd></dl>`,
+ lateral:`<h2>Vista lateral: el difusor de aroma</h2><p>Del tamaño de una moneda y oculto tras textil transpirable. Una microbomba silenciosa dispara ráfagas cortas y dirigidas, así el aroma llega a la nariz sin llenar la habitación.</p>
+ <dl><dt>Bomba</dt><dd>Diafragma miniatura, &lt; 100 mW</dd><dt>Aromas</dt><dd>Menta o cítrico</dd><dt>Cartucho</dt><dd>10 – 15 mL de aceite grado cosmético</dd><dt>Recarga</dt><dd>Trimestral · 9 – 14 USD</dd></dl>`,
+ interna:`<h2>Vista interna: la electrónica</h2><p>Todo vive protegido dentro del núcleo. Si no hay una cabeza apoyada, el sensor de presión mantiene el sistema apagado para ahorrar batería.</p>
+ <ul class="legend"><li><b style="background:#3D5A80"></b>Batería 4 V · 1200–1500 mAh</li><li><b style="background:#2F6B4F"></b>Placa de control BLE y driver</li><li><b style="background:#C77B3F"></b>Bobina receptora de carga por inducción</li><li><b style="background:#E3A33B"></b>Sensor de presión en la espuma</li><li><b style="background:#8FD6B5"></b>Cartucho de aroma reemplazable</li><li><b style="background:#3B3E4A"></b>Microbomba de diafragma</li><li><b style="background:#B8B4AC"></b>Módulo LED con disipador pasivo</li><li><b style="background:#D4A72C"></b>Cableado interno</li></ul>`};
+const SEQ=`<div class="seq"><h3>Secuencia de despertar</h3><div class="track"><div class="light"></div>${PULSES.map(p=>`<span class="pip" style="left:${(p+15)/15*100}%"></span>`).join('')}</div>
+ <div class="ticks"><span>−15 min</span><span>−9</span><span>−6</span><span>−3</span><span>Hora</span></div>
+ <p class="note">La barra es la luz subiendo de intensidad; los puntos son las ráfagas de aroma. Usa “Simular despertar” para verla en el modelo.</p></div>`;
+function renderPanel(){document.getElementById('panel').innerHTML=PANEL[view]+SEQ;buildLabels()}
+
+/* ---------- controls ---------- */
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+document.querySelectorAll('.sw button').forEach(b=>b.onclick=()=>{cur=b.dataset.c;document.querySelectorAll('.sw button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+document.querySelectorAll('.sw button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.c===cur));
+const tin=document.getElementById('time'),tout=document.getElementById('tout'),pb=document.getElementById('play');
+function fmt(m){if(m>=-0.05)return 'Hora de despertar';const s=Math.round(-m*60);return '−'+Math.floor(s/60)+':'+String(s%60).padStart(2,'0')+' min'}
+tin.value=T;tout.textContent=fmt(T);
+tin.oninput=()=>{T=parseFloat(tin.value);playing=false;pb.textContent='▶ Simular despertar';tout.textContent=fmt(T)};
+pb.onclick=()=>{if(playing){playing=false;pb.textContent='▶ Simular despertar';return}if(T>=-0.05)T=-15;playing=true;pt0=performance.now()-(T+15)/15*14000;pb.textContent='❚❚ Pausar'};
+let drag=null;
+cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId);tw=null});
+cv.addEventListener('pointermove',e=>{if(!drag)return;cam.th-=(e.clientX-drag.x)*0.008;cam.ph=Math.min(1.56,Math.max(0.0015,cam.ph-(e.clientY-drag.y)*0.006));drag={x:e.clientX,y:e.clientY}});
+cv.addEventListener('pointerup',()=>drag=null);
+cv.addEventListener('wheel',e=>{if(EMBED&&!(e.ctrlKey||e.metaKey))return;e.preventDefault();cam.r=Math.min(1200,Math.max(40,cam.r*(1+Math.sign(e.deltaY)*0.08)))},{passive:false});
+window.addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(VIEWS[h]&&h!==view)go(h)});
+/* embed: the parent page sends {aurasleep:true, view?, color?, t?, play?} */
+if(EMBED)window.addEventListener('message',e=>{const d=e.data;if(!d||d.aurasleep!==true)return;
+  if(d.view&&VIEWS[d.view]&&d.view!==view)go(d.view);
+  if(d.color&&COLORS[d.color])cur=d.color;
+  if(typeof d.t==='number'&&isFinite(d.t)){T=Math.min(0,Math.max(-15,d.t));playing=false;tin.value=T;tout.textContent=fmt(T)}
+  if(d.play===true){if(T>=-0.05)T=-15;playing=true;pt0=performance.now()-(T+15)/15*14000}});
+
+/* ---------- render ---------- */
+const stage=document.getElementById('stage');
+function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);const w=cv.clientWidth,h=cv.clientHeight;if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}}
+function setU3(k,v){gl.uniform3fv(U[k],v)}
+let frames=0;
+function frame(now){
+ resize();
+ if(tw){const k=Math.min((now-tw.s)/750,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+   let dth=tw.to.th-tw.from.th;while(dth>Math.PI)dth-=2*Math.PI;while(dth<-Math.PI)dth+=2*Math.PI;
+   cam.th=tw.from.th+dth*e;cam.ph=tw.from.ph+(tw.to.ph-tw.from.ph)*e;const tf=Math.tan((tw.from.fov+(tw.to.fov-tw.from.fov)*e)*Math.PI/360);cam.fov=tw.from.fov+(tw.to.fov-tw.from.fov)*e;const span=tw.from.r*Math.tan(tw.from.fov*Math.PI/360)+(tw.to.r*Math.tan(tw.to.fov*Math.PI/360)-tw.from.r*Math.tan(tw.from.fov*Math.PI/360))*e;cam.r=span/tf;cam.t=V.lerp(tw.from.t,tw.to.t,e);if(k>=1)tw=null}
+ xray+=(xrayT-xray)*0.12;if(Math.abs(xrayT-xray)<.002)xray=xrayT;
+ if(playing){T=-15+(now-pt0)/14000*15;if(T>=0){T=0;playing=false;pb.textContent='▶ Simular despertar'}tin.value=T;tout.textContent=fmt(T)}
+ const Lg=light(T),Ar=aroma(T);
+ const pulseIdx=PULSES.findIndex(p=>T>=p&&T<p+0.25);if(pulseIdx>=0&&pulseIdx!==lastPulse){lastPulse=pulseIdx;spawnPuffs(SHOT?0:9)}if(pulseIdx<0&&T<-9)lastPulse=null;
+ // stage sky follows the light
+ const sky=V.lerp(hex('#2A2E4B'),hex('#7A4A3C'),Lg*.9),skyB=V.lerp(hex('#161A2E'),hex('#33243A'),Lg*.8);
+ stage.style.setProperty('--sky-top','rgb('+sky.map(c=>Math.round(c*255))+')');stage.style.setProperty('--sky-bot','rgb('+skyB.map(c=>Math.round(c*255))+')');
+
+ const asp=cv.width/cv.height;const fov=cam.fov*Math.PI/180;
+ let r=cam.r;if(asp<1.25)r*=1.25/asp; // keep model framed on narrow screens
+ const eye=V.add(cam.t,[r*Math.sin(cam.ph)*Math.sin(cam.th),r*Math.cos(cam.ph),r*Math.sin(cam.ph)*Math.cos(cam.th)]);
+ const VP=mul(persp(fov,asp,1,800),lookAt(eye,cam.t,[0,1,0]));
+ gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ gl.uniformMatrix4fv(U.uVP,false,VP);setU3('uEye',eye);setU3('uDawnPos',[0,9,-16]);setU3('uDawnCol',hex('#FFB36B'));gl.uniform1f(U.uDawn,Lg);
+ // live materials
+ const fab=COLORS[cur];P_TOP.mat.col=P_BOT.mat.col=P_BTN.mat.col=fab;P_PIPE.mat.col=PIPE[cur];
+ P_BTN.mat.col='#'+hex(fab).map(c=>Math.round(c*0.93*255).toString(16).padStart(2,'0')).join('');
+ const coverOp=1-xray*0.86;P_TOP.mat.op=P_BOT.mat.op=coverOp;P_PIPE.mat.op=1-xray*0.7;P_BTN.mat.op=coverOp;P_BAND.mat.op=1-xray*0.6;
+ const bandEm=Lg>0.001?V.sc(hex('#FFA24A'),0.12+Lg*1.15):[0,0,0];P_BAND.mat.em=bandEm;P_BAND.mat.col=Lg>0.001?'#F6D2A6':'#BDB3A3';
+ P_FIB.mat.op=(0.18+Lg*0.8)*(1-xray*0.5);P_FIB.mat.col=Lg>0.05?'#FFE2B8':'#FFFFFF';
+ P_LEDCHIP.mat.em=V.sc(hex('#FFB060'),Lg*1.5);P_BLED.mat.em=V.sc(hex('#7CF0C4'),0.8);
+ P_CONT.mat.op=xray*0.28;P_DIMT.mat.op=view==='superior'&&!tw?0.9:0;P_DIMS.mat.op=view==='lateral'&&!tw?0.9:0;
+ const list=[];for(const p of parts){if(p===PUFF)continue;if(p.mat.op<=0.001)continue;list.push(p)}
+ const opaque=list.filter(p=>p.mat.op>=0.999&&p.mat.mode===0),trans=list.filter(p=>!(p.mat.op>=0.999&&p.mat.mode===0)&&p.mat.mode!==2);
+ const d2=p=>p.c?(p.c[0]-eye[0])**2+(p.c[1]-eye[1])**2+(p.c[2]-eye[2])**2:0;trans.sort((a,b)=>d2(b)-d2(a));
+ gl.depthMask(false);draw(P_SH);gl.depthMask(true);
+ for(const p of opaque)draw(p);
+ gl.depthMask(false);for(const p of trans)draw(p);
+ // aroma puffs
+ const shotAroma=SHOT&&Q.get('aroma')==='1';
+ if(puffs.length||shotAroma){const pl=shotAroma?Array.from({length:10},(_,k)=>({age:0.15+k*0.085,j:[Math.sin(k*2.3)*.5,(k%3)*.25,Math.cos(k*1.7)*.5]})):puffs.map(q=>({age:(now-q.b)/2600,j:q.j}));
+   for(const q of pl){if(q.age<0||q.age>1)continue;const dirn=V.n(V.add(dN,[0.2,0.45,0.35]));const pos=V.add(V.add(dPos,V.sc(dirn,1.2+q.age*16)),V.sc(q.j,4*q.age));
+     PUFF.mat.op=0.42*(1-q.age)*Math.min(1,q.age*6);draw(PUFF,pos,1.0+q.age*3.4)}
+   puffs=puffs.filter(q=>(now-q.b)<2600)}
+ gl.depthMask(true);
+ // labels
+ if(labNodes.length){const W=cv.clientWidth,H=cv.clientHeight;const hide=!!tw;
+   for(const n of labNodes){const s=xf(VP,n.L.p);const x=(s[0]*.5+.5)*W,y=(1-(s[1]*.5+.5))*H;const lx=Math.min(Math.max(x+n.L.dx,70),W-70),ly=Math.min(Math.max(y+n.L.dy,52),H-48);
+     n.d.style.left=lx+'px';n.d.style.top=ly+'px';n.d.style.opacity=hide?0:1;
+     if(n.ln){n.ln.setAttribute('x1',x);n.ln.setAttribute('y1',y);n.ln.setAttribute('x2',lx);n.ln.setAttribute('y2',ly);n.ln.style.opacity=hide?0:1;n.dot.setAttribute('cx',x);n.dot.setAttribute('cy',y);n.dot.style.opacity=hide?0:1}}}
+ frames++;if(frames===4)window.__ready=true;
+ if(SHOT&&frames>20)return;
+ requestAnimationFrame(frame)}
+function draw(p,off,scl){const m=p.mat;gl.uniform3fv(U.uOff,off||[0,0,0]);gl.uniform1f(U.uScl,scl||1);
+ gl.uniform3fv(U.uCol,hex(m.col));gl.uniform3fv(U.uEm,typeof m.em==='string'?hex(m.em):m.em);gl.uniform1f(U.uOp,m.op);gl.uniform1f(U.uFab,m.fab);gl.uniform1f(U.uShin,m.shin);gl.uniform1f(U.uSpec,m.spec);gl.uniform1f(U.uMode,m.mode);
+ gl.bindBuffer(gl.ARRAY_BUFFER,p.vb);gl.enableVertexAttribArray(A.P);gl.vertexAttribPointer(A.P,3,gl.FLOAT,false,0,0);
+ if(p.g.lines){gl.disableVertexAttribArray(A.N);gl.vertexAttrib3f(A.N,0,1,0);gl.drawArrays(gl.LINES,0,p.count);return}
+ gl.bindBuffer(gl.ARRAY_BUFFER,p.nb);gl.enableVertexAttribArray(A.N);gl.vertexAttribPointer(A.N,3,gl.FLOAT,false,0,0);
+ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,p.ib);gl.drawElements(gl.TRIANGLES,p.count,p.it,0)}
+go(view,true);requestAnimationFrame(frame);
+})();
+</script>

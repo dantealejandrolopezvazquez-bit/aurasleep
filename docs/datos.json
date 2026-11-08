@@ -1,0 +1,74 @@
+{
+  "producto": {
+    "nombre": "AuraSleep",
+    "eslogan": "Despierta con luz y aroma, no con ruido.",
+    "tipo_innovacion": "Innova lo existente",
+    "nota_legal": "Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta."
+  },
+  "colores_producto": [
+    { "id": "blanco", "nombre": "Blanco roto", "hex": "#EDE8DF", "vivo": "#D9D2C6", "imagen": "public/img/hero_blanco.webp" },
+    { "id": "gris", "nombre": "Gris piedra", "hex": "#8F8B85", "vivo": "#77736E", "imagen": "public/img/hero_gris.webp" },
+    { "id": "beige", "nombre": "Beige cálido", "hex": "#D8C2A3", "vivo": "#C3AA88", "imagen": "public/img/hero_beige.webp" }
+  ],
+  "colores_interfaz": {
+    "night": "#161A2E", "night2": "#2A2E4B", "dawn": "#D9782F", "dawnSoft": "#F6D9B8",
+    "cream": "#F3E3CF", "ink": "#1B1C29", "ink2": "#55576A", "line": "#D9D9E0",
+    "paper": "#F6F4F1", "card": "#FFFFFF", "mint": "#3F9877"
+  },
+  "tipografia": { "titulos": "Young Serif", "texto": "Manrope", "datos": "IBM Plex Mono" },
+  "especificaciones": {
+    "medidas_cm": { "largo": 68, "ancho": 48, "alto_centro": 13, "alto_bordes": 10 },
+    "peso_kg": [0.9, 1.1],
+    "funda": "Algodón peinado o mezcla con bambú, lavable",
+    "nucleo": "Espuma viscoelástica de densidad media",
+    "luz": { "fibra": "PMMA 0.25 mm", "cinta_cm_lineales": [60, 80], "ancho_cinta_cm": [3, 4], "fuente": "LED cálido con disipador pasivo" },
+    "aroma": { "difusor": "Tamaño moneda, microbomba de diafragma < 100 mW", "cartucho_ml": [10, 15], "aromas": ["Menta", "Cítrico"] },
+    "control": ["App por Bluetooth de bajo consumo", "Botón táctil capacitivo oculto"],
+    "sensor": "Presión en la espuma: solo se activa con la cabeza apoyada",
+    "bateria": { "voltaje_v": 4, "capacidad_mah": [1200, 1500], "carga": "Inducción" },
+    "sin": ["Pantallas", "Altavoces", "Cables expuestos"]
+  },
+  "secuencia_despertar": [
+    { "minuto": -15, "luz": "Empieza a encenderse, muy tenue", "aroma": null },
+    { "minuto": "-10 a -5", "luz": "Sube de intensidad de forma gradual", "aroma": "Primeras ráfagas cortas de menta o cítrico" },
+    { "minuto": "-5 a 0", "luz": "Brillo tenue tipo amanecer", "aroma": "Ráfagas más frecuentes" },
+    { "minuto": 0, "luz": "Luz estable", "aroma": "Última ráfaga; el usuario despierta" }
+  ],
+  "costos_usd": {
+    "componentes": [
+      { "componente": "Núcleo de espuma viscoelástica", "rango": [8, 12] },
+      { "componente": "Funda externa", "rango": [6, 9] },
+      { "componente": "Tejido de fibra óptica", "rango": [7, 10] },
+      { "componente": "Módulo LED + disipador pasivo", "rango": [3, 5] },
+      { "componente": "Microbomba eléctrica + driver", "rango": [12, 18] },
+      { "componente": "Cartucho de aroma (primer llenado)", "rango": [2, 4] },
+      { "componente": "Electrónica de control", "rango": [8, 12] },
+      { "componente": "Batería 4 V / 1300 mAh", "rango": [6, 9] },
+      { "componente": "Base de carga por inducción", "rango": [4, 6] },
+      { "componente": "Empaque, manual y logística inversa", "rango": [5, 8] }
+    ],
+    "costo_directo": [61, 93],
+    "costo_total": [75, 100]
+  },
+  "precio_usd": { "lanzamiento": [149, 179], "referencia_web": 164 },
+  "margenes": [
+    { "escenario": "Pesimista", "costo": 100, "precio": 149, "margen_pct": 32.9 },
+    { "escenario": "Medio", "costo": 87.5, "precio": 164, "margen_pct": 46.6 },
+    { "escenario": "Medio (solo costo directo)", "costo": 77, "precio": 164, "margen_pct": 53.0 },
+    { "escenario": "Optimista", "costo": 75, "precio": 179, "margen_pct": 58.1 }
+  ],
+  "cartuchos": { "frecuencia_meses": 3, "precio_usd": [9, 14], "costo_usd": [2, 4], "ingreso_cliente_anual_usd": [36, 56], "margen_pct": [56, 86] },
+  "escenario_ventas": {
+    "nota": "Escenario ilustrativo, no pronóstico. Precio 164, costo 87.5, cartucho 11.5 (costo 3), 70 % compra recargas.",
+    "anios": [
+      { "anio": 1, "almohadas": 300, "cartuchos": 420, "ingreso_almohadas": 49200, "ingreso_cartuchos": 4830, "ingreso_total": 54030, "utilidad_bruta": 26520 },
+      { "anio": 2, "almohadas": 1200, "cartuchos": 2520, "ingreso_almohadas": 196800, "ingreso_cartuchos": 28980, "ingreso_total": 225780, "utilidad_bruta": 113220 },
+      { "anio": 3, "almohadas": 3000, "cartuchos": 8400, "ingreso_almohadas": 492000, "ingreso_cartuchos": 96600, "ingreso_total": 588600, "utilidad_bruta": 300900 }
+    ]
+  },
+  "mercado": [
+    "Technavio: +941.7 millones USD entre 2024 y 2029, 21.1 % anual",
+    "Research and Markets: 591.5 millones USD en 2025 a 1,900 millones en 2032, 18 % anual",
+    "Precio de almohadas inteligentes en EE. UU.: 200–600 USD (Market Intelo); media ~420 USD en las de monitoreo (Intel Market Research)"
+  ]
+}

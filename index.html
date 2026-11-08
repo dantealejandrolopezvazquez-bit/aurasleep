@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AuraSleep · Despierta con luz y aroma, no con ruido</title>
+<meta name="description" content="AuraSleep es una almohada que te despierta poco a poco con una luz de amanecer y un aroma suave, 15 minutos antes de tu hora. Proyecto escolar de Emprendimiento.">
+<meta name="theme-color" content="#12152A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="public/img/hero_noche.webp">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="barra" id="barra">
+  <div class="barra__in">
+    <a class="marca" href="#inicio" aria-label="AuraSleep, inicio">AuraSleep</a>
+    <nav aria-label="Secciones">
+      <ul class="barra__nav">
+        <li><a href="#como-funciona">Cómo funciona</a></li>
+        <li><a href="#producto">Producto</a></li>
+        <li><a href="#precio">Precio</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <span class="reloj" id="reloj" aria-hidden="true"><span class="reloj__punto"></span><span id="reloj-txt">−15:00</span></span>
+    <a class="btn btn--chico" href="#lista">Lista de espera</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- 1. HERO -->
+<section class="hero noche" id="inicio" aria-labelledby="hero-titulo">
+  <div class="envoltura hero__texto">
+    <h1 id="hero-titulo">Despierta con luz y aroma, <span>no con ruido.</span></h1>
+    <p class="hero__sub">AuraSleep es la almohada que te despierta poco a poco, con una luz de amanecer y un aroma suave de menta o cítrico, 15 minutos antes de tu hora.</p>
+    <div class="hero__acciones">
+      <a class="btn" href="#como-funciona">Ver cómo funciona</a>
+      <a class="btn btn--linea" href="#producto">Explorar el modelo 3D</a>
+    </div>
+    <p class="dato">Proyecto de Emprendimiento: un objeto cotidiano, la almohada<br>Preventa (demostrativa) desde 149 USD<a href="#nota-precios" class="ref" aria-label="Ver nota sobre precios hipotéticos">*</a></p>
+  </div>
+  <figure class="hero__img">
+    <img class="hero__capa" src="public/img/hero_noche.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto sobre fondo nocturno, con su base de carga por inducción.">
+    <img class="hero__capa hero__capa--luz" src="public/img/hero_amanecer.webp" width="1800" height="1127" alt="" aria-hidden="true">
+  </figure>
+</section>
+
+<!-- 2. PROBLEMA -->
+<section class="seccion noche" id="problema" aria-labelledby="problema-titulo">
+  <div class="envoltura">
+    <h2 id="problema-titulo">La alarma corta el sueño de golpe.</h2>
+    <p class="intro">La mayoría de las personas se despierta con una alarma sonora. El sonido interrumpe el sueño aunque estemos en una fase profunda, y el cuerpo responde como ante un sobresalto: cansancio, irritabilidad y una “cabeza pesada” que puede durar varios minutos.</p>
+
+    <ol class="efectos">
+      <li>
+        <span class="efectos__n">01</span>
+        <h3>Despertar abrupto</h3>
+        <p>El sonido interrumpe el sueño sin transición. Despertar desde el sueño profundo deja más torpeza y confusión, lo que se conoce como <em>inercia del sueño</em>; en su forma más marcada se llama despertar confusional.</p>
+      </li>
+      <li>
+        <span class="efectos__n">02</span>
+        <h3>Pico de estrés</h3>
+        <p>El sobresalto activa la respuesta de estrés justo al iniciar el día.</p>
+      </li>
+      <li>
+        <span class="efectos__n">03</span>
+        <h3>Despierta a quien no lo necesita</h3>
+        <p>En parejas o cuartos compartidos, la alarma de una persona interrumpe el sueño de la otra.</p>
+      </li>
+    </ol>
+
+    <div class="evidencia">
+      <h3 class="kicker">Hay una alternativa mejor</h3>
+      <ul>
+        <li><strong>Luz que simula el amanecer.</strong> Philips reporta que el 92&nbsp;% de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas). <a class="ref" href="#fuente-6">[6]</a><a class="ref" href="#fuente-7">[7]</a></li>
+        <li><strong>Aroma al despertar.</strong> En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99&nbsp;% de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos. <a class="ref" href="#fuente-8">[8]</a><a class="ref" href="#fuente-9">[9]</a></li>
+        <li><strong>Menta y estrés.</strong> Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta. <a class="ref" href="#fuente-10">[10]</a></li>
+      </ul>
+      <p class="letra-chica">La hipótesis de que luz + aroma juntos funcionan mejor que cada uno por separado debe comprobarse con pruebas en personas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CÓMO FUNCIONA -->
+<section class="seccion noche" id="como-funciona" aria-labelledby="como-titulo">
+  <div class="envoltura">
+    <h2 id="como-titulo">Un despertar de 15 minutos, en dos sentidos.</h2>
+    <p class="intro">AuraSleep sustituye la alarma sonora por un despertar secuencial y multisensorial. Trabaja de forma no invasiva sobre la <strong>vía visual indirecta</strong> (luz que atraviesa los párpados cerrados) y la <strong>vía olfativa</strong> (aroma dirigido a la nariz).</p>
+
+    <div class="linea" id="linea">
+      <div class="linea__escena" aria-hidden="true">
+        <img src="public/img/hero_noche.webp" width="1800" height="1127" alt="" loading="lazy">
+        <img class="linea__luz" id="linea-luz" src="public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
+        <div class="aroma" id="aroma">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+
+      <div class="linea__control">
+        <div class="linea__lectura">
+          <output id="linea-min" class="linea__min" for="linea-rango">−15:00</output>
+          <span class="linea__unidad" id="linea-unidad">min para tu hora</span>
+        </div>
+        <label class="sr" for="linea-rango">Minutos antes de tu hora de despertar</label>
+        <input type="range" id="linea-rango" min="-15" max="0" step="0.25" value="-15">
+        <div class="linea__marcas" aria-hidden="true"><span>−15</span><span>−10</span><span>−5</span><span>Hora</span></div>
+        <button class="btn btn--linea btn--chico" type="button" id="linea-play" aria-pressed="false">Reproducir el despertar</button>
+      </div>
+
+      <ol class="secuencia" id="secuencia">
+        <li data-desde="-15" data-hasta="-10"><span class="secuencia__t">−15</span><span><b>Luz:</b> empieza a encenderse, muy tenue.</span><span class="secuencia__aroma"><b>Aroma:</b> —</span></li>
+        <li data-desde="-10" data-hasta="-5"><span class="secuencia__t">−10 a −5</span><span><b>Luz:</b> sube de intensidad de forma gradual.</span><span class="secuencia__aroma"><b>Aroma:</b> primeras ráfagas cortas de menta o cítrico.</span></li>
+        <li data-desde="-5" data-hasta="-0.01"><span class="secuencia__t">−5 a 0</span><span><b>Luz:</b> brillo tenue tipo amanecer.</span><span class="secuencia__aroma"><b>Aroma:</b> ráfagas más frecuentes.</span></li>
+        <li data-desde="-0.01" data-hasta="1"><span class="secuencia__t">Hora</span><span><b>Luz:</b> luz estable.</span><span class="secuencia__aroma"><b>Aroma:</b> última ráfaga; despiertas.</span></li>
+      </ol>
+      <p class="letra-chica">La calibración exacta (cuánta luz, cuánto aroma y cada cuánto) se ajusta según el perfil de cada persona.</p>
+    </div>
+
+    <ul class="piezas">
+      <li><h3><span class="punto punto--ambar"></span>Luz</h3><p>Una cinta textil con fibras ópticas de 0.25&nbsp;mm en el borde superior, con un LED de tono cálido. La luz sube despacio hasta un brillo tenue que atraviesa los párpados. No es una lámpara que te apunta a la cara.</p></li>
+      <li><h3><span class="punto punto--menta"></span>Aroma</h3><p>En un lateral, a la altura de la nariz, un difusor del tamaño de una moneda con una microbomba silenciosa libera ráfagas cortas, sin llenar la habitación.</p></li>
+      <li><h3>Control</h3><p>Programas la hora en una app por Bluetooth de bajo consumo, o con un botón táctil oculto bajo el textil.</p></li>
+      <li><h3>Ahorro de energía</h3><p>Un sensor de presión en la espuma solo activa el sistema si hay una cabeza apoyada.</p></li>
+      <li><h3>Energía</h3><p>Batería de 4&nbsp;V y 1200–1500&nbsp;mAh para varios despertares por carga, recargada por inducción: sin cables ni conectores expuestos.</p></li>
+      <li><h3>Mantenimiento</h3><p>Funda lavable; el cartucho de aroma y el módulo LED se reemplazan sin cambiar la almohada. Sin pantallas ni altavoces.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. PRODUCTO -->
+<section class="seccion noche" id="producto" aria-labelledby="producto-titulo">
+  <div class="envoltura">
+    <h2 id="producto-titulo">Por fuera, una almohada. Por dentro, un amanecer.</h2>
+    <p class="intro">48 × 68&nbsp;cm, perfil ergonómico de 13&nbsp;cm al centro y 10&nbsp;cm en los bordes. Las fibras ópticas van en una costura del borde superior y, apagadas, se sienten como una cinta textil mate. El difusor queda escondido en el lateral y la electrónica en una bolsita interna acolchada.</p>
+
+    <div class="visor">
+      <div class="visor__marco" id="visor-marco">
+        <img class="visor__poster" id="visor-poster" src="public/img/hero_blanco.webp" width="1800" height="1127" alt="Vista en perspectiva de la almohada AuraSleep color Blanco roto." loading="lazy">
+        <button class="visor__activar btn btn--chico" type="button" id="visor-activar">Cargar modelo 3D interactivo</button>
+        <p class="visor__ayuda" id="visor-ayuda" hidden>Arrastra para girar · Ctrl + rueda para acercar</p>
+      </div>
+
+      <div class="visor__controles">
+        <div class="grupo" role="group" aria-labelledby="vistas-et">
+          <span class="grupo__et" id="vistas-et">Vista</span>
+          <div class="pildoras">
+            <button type="button" data-vista="perspectiva" aria-pressed="true">Perspectiva</button>
+            <button type="button" data-vista="superior" aria-pressed="false">Superior</button>
+            <button type="button" data-vista="lateral" aria-pressed="false">Lateral</button>
+            <button type="button" data-vista="interna" aria-pressed="false">Interna</button>
+          </div>
+        </div>
+        <div class="grupo" role="group" aria-labelledby="colores-et">
+          <span class="grupo__et" id="colores-et">Color de la funda</span>
+          <div class="muestras">
+            <button type="button" data-color="blanco" aria-pressed="true"><i style="background:#EDE8DF"></i>Blanco roto</button>
+            <button type="button" data-color="gris" aria-pressed="false"><i style="background:#8F8B85"></i>Gris piedra</button>
+            <button type="button" data-color="beige" aria-pressed="false"><i style="background:#D8C2A3"></i>Beige cálido</button>
+          </div>
+        </div>
+        <p class="visor__pie" id="visor-pie" aria-live="polite">Perspectiva: la almohada con su base de carga por inducción, el botón táctil oculto y el difusor en el lateral.</p>
+      </div>
+    </div>
+
+    <div class="ficha">
+      <div>
+        <h3 class="kicker">Ficha técnica</h3>
+        <dl class="ficha__lista">
+          <div><dt>Medidas y peso</dt><dd>48 × 68 cm · perfil de 13 cm al centro y 10 cm en los bordes · 0.9 a 1.1 kg</dd></div>
+          <div><dt>Funda</dt><dd>Algodón peinado o mezcla con bambú, lavable</dd></div>
+          <div><dt>Núcleo</dt><dd>Espuma viscoelástica de densidad media con la electrónica protegida</dd></div>
+          <div><dt>Luz</dt><dd>Cinta textil de fibra óptica PMMA de 0.25 mm + LED cálido con disipador pasivo</dd></div>
+          <div><dt>Aroma</dt><dd>Microbomba de diafragma de menos de 100 mW + cartucho de 10–15 mL de aceite de grado cosmético</dd></div>
+          <div><dt>Electrónica</dt><dd>Bluetooth de bajo consumo, sensor de presión, gestión de batería, botón táctil capacitivo oculto</dd></div>
+          <div><dt>Energía</dt><dd>Batería de 4 V y 1200–1500 mAh · carga por inducción</dd></div>
+          <div><dt>Sin</dt><dd>Pantallas, altavoces ni cables expuestos</dd></div>
+        </dl>
+      </div>
+      <div class="caja">
+        <h3 class="kicker">Qué incluye la caja</h3>
+        <ul>
+          <li>Almohada AuraSleep con funda lavable</li>
+          <li>Base de carga por inducción</li>
+          <li>Primer cartucho de aroma (menta o cítrico)</li>
+          <li>Manual</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. VENTAJA -->
+<section class="seccion noche" id="ventaja" aria-labelledby="ventaja-titulo">
+  <div class="envoltura">
+    <h2 id="ventaja-titulo">Las piezas ya existen. La unión, no.</h2>
+    <p class="intro">Lo innovador de AuraSleep es la unión híbrida: un sistema que despierta con luz y aroma en una secuencia calibrada, dentro de la propia almohada. La innovación está en la experiencia de despertar.</p>
+
+    <div class="tabla-envoltura">
+      <table class="comparativa">
+        <caption class="sr">Comparación de AuraSleep con soluciones actuales</caption>
+        <thead>
+          <tr><th scope="col">Solución actual</th><th scope="col">Qué hace</th><th scope="col">Qué le falta</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Lámparas de amanecer <small>Philips Wake-up Light, desde 2006</small></th><td data-et="Qué hace">Simulan el amanecer con luz</td><td data-et="Qué le falta">Solo luz; ocupan la mesita de noche</td></tr>
+          <tr><th scope="row">Despertadores de aroma <small>SensorWake, 2014</small></th><td data-et="Qué hace">Liberan un aroma a la hora de la alarma</td><td data-et="Qué le falta">Solo aroma; es un aparato aparte</td></tr>
+          <tr><th scope="row">Almohadas inteligentes actuales</th><td data-et="Qué hace">Monitorean el sueño, reducen ronquidos o ajustan la altura</td><td data-et="Qué le falta">No se encargan del despertar</td></tr>
+          <tr class="comparativa__aura"><th scope="row">AuraSleep</th><td data-et="Qué hace">Luz de amanecer + aroma focalizado en la misma secuencia, dentro de la almohada</td><td data-et="Qué le falta">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="argumentos">
+      <li><h3>Difícil de copiar</h3><p>La ventaja no está en comprar las piezas, sino en calibrar la secuencia (intensidad de luz, cantidad de aroma, frecuencia y distancia al rostro) según cada perfil. Eso exige pruebas con personas y datos acumulados.</p></li>
+      <li><h3>Ingresos recurrentes</h3><p>Los cartuchos de aroma generan ventas cada trimestre, no solo la venta única de la almohada.</p></li>
+      <li><h3>Integración</h3><p>No compras ni acomodas otro aparato; solo programas la hora.</p></li>
+    </ul>
+    <p class="letra-chica">En nuestra búsqueda no encontramos un producto comercial que combine luz de amanecer y aroma focalizado dentro de la almohada. Antes de lanzar habría que hacer una búsqueda formal de patentes.</p>
+  </div>
+</section>
+
+<!-- 6. PARA QUIÉN -->
+<section class="seccion noche noche--alba" id="para-quien" aria-labelledby="quien-titulo">
+  <div class="envoltura">
+    <h2 id="quien-titulo">Para quien quiere empezar el día con calma.</h2>
+    <ul class="tarjetas">
+      <li class="tarjeta">
+        <p class="tarjeta__capa">Usuario principal</p>
+        <h3>Adultos de 22 a 45 años con vida urbana</h3>
+        <p>Con trabajo o estudios exigentes, que ya invierten en bienestar; también parejas que comparten habitación.</p>
+        <p class="tarjeta__por"><span>Por qué les sirve</span>Su rendimiento por la mañana depende de cómo despiertan, y la alarma silenciosa no despierta a la pareja.</p>
+      </li>
+      <li class="tarjeta">
+        <p class="tarjeta__capa">Segundo grupo</p>
+        <h3>Personas con estrés o cansancio al despertar</h3>
+        <p>Incluye a quienes tienen despertar confusional y a quienes ya usan lámparas de amanecer.</p>
+        <p class="tarjeta__por"><span>Por qué les sirve</span>No exige disciplina ni cambios de rutina: solo programar la hora. Integra la luz en la cama, sin ocupar la mesita.</p>
+      </li>
+      <li class="tarjeta">
+        <p class="tarjeta__capa">Canales a mediano plazo</p>
+        <h3>Hoteles boutique, clínicas del sueño y coworkings</h3>
+        <p>También programas de bienestar corporativo.</p>
+        <p class="tarjeta__por"><span>Por qué les sirve</span>Una experiencia diferenciadora para huéspedes, pacientes y empleados; compras por volumen.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Horizonte: aquí amanece -->
+<div class="horizonte" aria-hidden="true">
+  <span class="horizonte__sol"></span>
+  <span class="horizonte__et">0:00 · Hora de despertar</span>
+</div>
+
+<!-- 7. PRECIO -->
+<section class="seccion dia" id="precio" aria-labelledby="precio-titulo">
+  <div class="envoltura">
+    <h2 id="precio-titulo">Premium, pero accesible.</h2>
+    <p class="intro">Por encima de una almohada ergonómica convencional y por debajo de las almohadas inteligentes de gama alta.</p>
+
+    <div class="precios">
+      <article class="precio precio--principal">
+        <h3 class="kicker">Almohada AuraSleep</h3>
+        <p class="precio__cifra"><span>164</span> USD</p>
+        <p class="precio__det">Precio de referencia · lanzamiento entre 149 y 179 USD</p>
+        <ul>
+          <li>Funda lavable en Blanco roto, Gris piedra o Beige cálido</li>
+          <li>Base de carga por inducción</li>
+          <li>Primer cartucho de aroma incluido</li>
+        </ul>
+        <a class="btn" href="#lista">Unirme a la lista de espera</a>
+      </article>
+      <article class="precio">
+        <h3 class="kicker"><span class="punto punto--menta"></span>Cartuchos de aroma</h3>
+        <p class="precio__cifra"><span>9–14</span> USD</p>
+        <p class="precio__det">Uno cada tres meses, de menta o cítrico · 36–56 USD al año</p>
+        <div class="suscripcion">
+          <p><strong>Suscripción de cartuchos</strong> <span class="etiqueta">Demostrativo</span></p>
+          <p>4 al año, se envían a tu casa.</p>
+        </div>
+      </article>
+    </div>
+    <p class="letra-chica nota-legal" id="nota-precios">* Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta.</p>
+  </div>
+</section>
+
+<!-- 8. PREGUNTAS -->
+<section class="seccion dia" id="preguntas" aria-labelledby="preguntas-titulo">
+  <div class="envoltura envoltura--angosta">
+    <h2 id="preguntas-titulo">Lo que suelen preguntar.</h2>
+    <div class="acordeon">
+      <details><summary>¿Me va a despertar si tengo el sueño muy pesado?</summary><p>Está pensada para un despertar gradual; la calibración de luz y aroma se ajusta a cada persona. Como es un concepto, esto debe probarse con usuarios.</p></details>
+      <details><summary>¿El aroma llena el cuarto?</summary><p>No. Son ráfagas cortas dirigidas a la nariz, desde un difusor del tamaño de una moneda.</p></details>
+      <details><summary>¿Se puede lavar?</summary><p>La funda exterior sí. La electrónica va en una bolsita interna protegida.</p></details>
+      <details><summary>¿Tiene cables?</summary><p>No. Se carga por inducción en su base.</p></details>
+      <details><summary>¿Despierta a mi pareja?</summary><p>No hace ruido, y la luz y el aroma se dirigen a quien está apoyado en la almohada.</p></details>
+      <details><summary>¿Qué pasa si no hay nadie acostado?</summary><p>El sensor de presión no activa el sistema, así ahorra batería.</p></details>
+      <details><summary>¿Puedo usarla sin celular?</summary><p>Sí, con el botón táctil oculto bajo el textil.</p></details>
+      <details><summary>¿Y si soy sensible a los aromas?</summary><p>Es un riesgo que el equipo identificó: los aromas cerca del rostro requieren pruebas de seguridad y alergias antes de lanzar.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CIERRE -->
+<section class="seccion dia cierre" id="lista" aria-labelledby="cierre-titulo">
+  <div class="envoltura">
+    <div class="cierre__grid">
+      <div>
+        <h2 id="cierre-titulo">Lo único que cambia es cómo empieza tu día.</h2>
+        <p class="intro">AuraSleep usa componentes que ya existen, cuesta menos de lo que se vende y suma un ingreso recurrente con los cartuchos.</p>
+      </div>
+
+      <form class="lista" id="form-lista" novalidate>
+        <h3>Lista de espera <span class="etiqueta">Demostrativa</span></h3>
+        <p class="lista__aviso">Este formulario es solo una demostración: no se envía ni se guarda nada.</p>
+        <label for="f-nombre">Nombre <span class="opcional">(opcional)</span></label>
+        <input id="f-nombre" name="nombre" type="text" autocomplete="name">
+        <label for="f-correo">Correo electrónico</label>
+        <input id="f-correo" name="correo" type="email" autocomplete="email" required aria-describedby="f-correo-error">
+        <p class="lista__error" id="f-correo-error" hidden>Escribe un correo válido, por ejemplo nombre@dominio.com.</p>
+        <fieldset>
+          <legend>Aroma preferido</legend>
+          <label class="opcion"><input type="radio" name="aroma" value="menta" checked> Menta</label>
+          <label class="opcion"><input type="radio" name="aroma" value="citrico"> Cítrico</label>
+        </fieldset>
+        <button class="btn" type="submit">Unirme a la lista de espera</button>
+        <p class="lista__ok" id="form-ok" role="status" hidden></p>
+      </form>
+    </div>
+
+    <ul class="enlaces">
+      <li><a href="https://www.canva.com/d/j9qwZuL53XPk6Mr" target="_blank" rel="noopener">Presentación en Canva <span aria-hidden="true">↗</span><span class="sr"> (se abre en otra pestaña)</span></a></li>
+      <li><a href="docs/AuraSleep_Investigacion.pdf" download>Descargar investigación (PDF) <span aria-hidden="true">↓</span></a></li>
+      <li><a href="modelo-3d/aurasleep-3d.html" target="_blank" rel="noopener">Modelo 3D completo <span aria-hidden="true">↗</span><span class="sr"> (se abre en otra pestaña)</span></a></li>
+      <li><a href="https://canva.link/6ft9ee37o2s9264" target="_blank" rel="noopener">Póster <span aria-hidden="true">↗</span><span class="sr"> (se abre en otra pestaña)</span></a></li>
+      <li><a href="https://canva.link/9veuyxvglmjzjgs" target="_blank" rel="noopener">Volante <span aria-hidden="true">↗</span><span class="sr"> (se abre en otra pestaña)</span></a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie dia">
+  <div class="envoltura pie__grid">
+    <div>
+      <p class="marca">AuraSleep</p>
+      <p class="pie__eslogan">Despierta con luz y aroma, no con ruido.</p>
+    </div>
+    <div>
+      <h2 class="kicker">Equipo AuraSleep</h2>
+      <ul class="pie__equipo">
+        <li>Dante Lopez</li>
+        <li>Sebastian Saavedra</li>
+        <li>Carlos Prol</li>
+        <li>Sebastian Lavariega</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="kicker">Proyecto</h2>
+      <ul class="pie__equipo">
+        <li>Materia de Emprendimiento · 2026</li>
+        <li><a class="pie__correo" href="mailto:dantealejandrolopezvazquez@gmail.com">dantealejandrolopezvazquez@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="envoltura">
+    <details class="fuentes">
+      <summary>Fuentes</summary>
+      <ol>
+        <li>Hispanopedia. “Almohada”. <a href="https://es.hispanopedia.com/wiki/Almohada" rel="noopener">es.hispanopedia.com</a></li>
+        <li>EcuRed. “Almohada”. <a href="https://www.ecured.cu/Almohada" rel="noopener">ecured.cu</a></li>
+        <li>NASA Tech Briefs. “Forty-Year-Old Foam Springs Back With New Benefits”. <a href="https://www.techbriefs.com/component/content/article/1560-forty-year-old-foam-springs-back-with-new-benefits" rel="noopener">techbriefs.com</a></li>
+        <li>Furniture Today (2015). “Hall of Fame adds memory foam pioneer Yost”. <a href="https://www.furnituretoday.com/business-news/hall-fame-adds-memory-foam-pioneer-yost" rel="noopener">furnituretoday.com</a></li>
+        <li>ISPF. Historia de la espuma viscoelástica. <a href="https://ispf.co.in/?p=6063" rel="noopener">ispf.co.in</a></li>
+        <li id="fuente-6">New Atlas (2008). “Wake up to the (artificial) sun”. <a href="https://newatlas.com/philips-wake-up-light-2nd-gen/9892/" rel="noopener">newatlas.com</a></li>
+        <li id="fuente-7">Philips. Ficha técnica Wake-up Light HF3521. <a href="https://www.documents.philips.com/assets/20211005/2b1411a818bf4508a820adb800e4816b.pdf" rel="noopener">documents.philips.com</a></li>
+        <li id="fuente-8">CNBC (2015). “Teen entrepreneur kickstarts first aromatic alarm clock”. <a href="https://www.cnbc.com/2015/05/27/teen-entrepreneur-kickstarts-first-aromatic-alarm-clock.html" rel="noopener">cnbc.com</a></li>
+        <li id="fuente-9">ScienceAlert. SensorWake. <a href="https://www.sciencealert.com/?p=29564" rel="noopener">sciencealert.com</a></li>
+        <li id="fuente-10">Gavin Publishers. Aroma de menta y bienestar (Toda y Morimoto). <a href="https://www.gavinpublishers.com/article/view/a-scent-sational-approach-to-patient-and-staff--well-being" rel="noopener">gavinpublishers.com</a></li>
+        <li>Technavio (2025). Smart Pillows Market Analysis 2025–2029. <a href="https://labs.technavio.com/report/smart-pillows-market-analysis" rel="noopener">technavio.com</a></li>
+        <li>Research and Markets. Smart Pillows – Global Strategic Business Report. <a href="https://www.researchandmarkets.com/reports/6009518/smart-pillows-global-strategic-business-report" rel="noopener">researchandmarkets.com</a></li>
+        <li>Intel Market Research. Smart Sleep Tracking Pillow Market. <a href="https://www.intelmarketresearch.com/smart-sleep-tracking-pillow-market-59948" rel="noopener">intelmarketresearch.com</a></li>
+        <li>Market Intelo. Smart Pillow Market Research Report 2034. <a href="https://marketintelo.com/report/smart-pillow-market" rel="noopener">marketintelo.com</a></li>
+      </ol>
+    </details>
+    <p class="letra-chica">Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta. AuraSleep es un concepto: no se vende ni se cobra nada en este sitio.</p>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

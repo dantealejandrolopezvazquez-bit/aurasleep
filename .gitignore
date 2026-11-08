@@ -1,0 +1,16 @@
+# Capturas de las revisiones con Playwright
+.playwright-mcp/
+
+# Renders PNG a resolución completa (18 MB); el sitio usa los .webp de public/img
+assets/originales/
+
+# Configuración local de herramientas (skills, detector de diseño)
+.claude/
+.impeccable/
+
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Trae la liga de edición de Canva (solo para el equipo)
+docs/enlaces.md
