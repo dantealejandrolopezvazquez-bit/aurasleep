@@ -177,12 +177,12 @@ Letra pequeña obligatoria: *Proyecto escolar. Precios y costos hipotéticos, su
 3. NASA Tech Briefs. "Forty-Year-Old Foam Springs Back With New Benefits". https://www.techbriefs.com/component/content/article/1560-forty-year-old-foam-springs-back-with-new-benefits
 4. Furniture Today (2015). "Hall of Fame adds memory foam pioneer Yost". https://www.furnituretoday.com/business-news/hall-fame-adds-memory-foam-pioneer-yost
 5. ISPF. Historia de la espuma viscoelástica. https://ispf.co.in/?p=6063
-6. New Atlas (2008). "Wake up to the (artificial) sun". https://newatlas.com/philips-wake-up-light-2nd-gen/9892/
+6. New Atlas (2008). "Wake up to the (artificial) sun". https://newatlas.com/philips-wake-up-light-2nd-gen/9892/ (la página original ya no existe; copia: https://web.archive.org/web/20251117123743/https://newatlas.com/philips-wake-up-light-2nd-gen/9892/)
 7. Philips. Ficha técnica Wake-up Light HF3521. https://www.documents.philips.com/assets/20211005/2b1411a818bf4508a820adb800e4816b.pdf
 8. CNBC (2015). "Teen entrepreneur kickstarts first aromatic alarm clock". https://www.cnbc.com/2015/05/27/teen-entrepreneur-kickstarts-first-aromatic-alarm-clock.html
 9. ScienceAlert. SensorWake. https://www.sciencealert.com/?p=29564
 10. Gavin Publishers. Aroma de menta y bienestar (Toda y Morimoto). https://www.gavinpublishers.com/article/view/a-scent-sational-approach-to-patient-and-staff--well-being
-11. Technavio (2025). Smart Pillows Market Analysis 2025–2029. https://labs.technavio.com/report/smart-pillows-market-analysis
+11. Technavio (2025). Smart Pillows Market Analysis 2025–2029. https://www.technavio.com/report/smart-pillows-market-analysis
 12. Research and Markets. Smart Pillows – Global Strategic Business Report. https://www.researchandmarkets.com/reports/6009518/smart-pillows-global-strategic-business-report
 13. Intel Market Research. Smart Sleep Tracking Pillow Market. https://www.intelmarketresearch.com/smart-sleep-tracking-pillow-market-59948
 14. Market Intelo. Smart Pillow Market Research Report 2034. https://marketintelo.com/report/smart-pillow-market
