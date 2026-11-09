@@ -83,4 +83,4 @@ Integrantes del equipo (usar tal cual en los créditos):
 
 Correo de contacto: dantealejandrolopezvazquez@gmail.com. Escuela, profesor(a) y grupo **no se muestran** en el sitio (decisión del usuario, 2026-11-08); no los inventes.
 
-Publicación: GitHub Pages desde la rama `main`. `docs/enlaces.md` está en `.gitignore` porque trae la liga de edición de Canva.
+Publicación: GitHub Pages desde la rama `main` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/). Al cambiar `css/estilos.css` o `js/main.js`, sube el número `?v=` con que los carga `index.html`: Pages guarda caché 10 minutos y el navegador usaría la versión vieja. `docs/enlaces.md` está en `.gitignore` porque trae la liga de edición de Canva.
