@@ -84,7 +84,7 @@ input,textarea{caret-color:var(--pino)}
 /* ---------- 1. primera toma ---------- */
 .toma{position:relative;min-height:max(100svh, 680px);overflow:hidden;color:var(--tinta-clara);background:#1E2730}
 /* la pintura de Velasco, recortada en planos que se quedan atrás a distinto ritmo */
-.lienzo{position:absolute;left:50%;bottom:0;width:max(100%, calc(max(100svh, 680px) * 1.457));aspect-ratio:1600/1098;transform:translateX(-50%)}
+.lienzo{position:absolute;left:50%;bottom:0;width:max(100%, calc(var(--alto-toma, 100svh) * 1.3334));aspect-ratio:1800/1350;transform:translateX(-50%)}
 .capa{position:absolute;left:0;width:100%;height:auto;will-change:transform}
 /* velo de la noche: se disipa conforme bajas */
 .toma__noche{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,22,34,.74) 0%,rgba(18,28,42,.5) 30%,rgba(22,30,40,.3) 52%,rgba(16,18,22,.18) 78%,rgba(12,12,14,.3) 100%),linear-gradient(270deg,rgba(14,22,34,.55) 0%,rgba(14,22,34,.3) 38%,transparent 62%)}
@@ -99,13 +99,12 @@ input,textarea{caret-color:var(--pino)}
 .toma .tab--linea:hover{background:rgba(244,241,232,.12)}
 .toma__dato{margin-top:22px;font-size:.95rem;color:var(--tinta-clara);line-height:1.5;text-shadow:0 1px 8px rgba(20,28,34,.55)}
 .toma__pie{position:absolute;z-index:2;right:var(--gutter);bottom:18px;text-align:right;font-size:.82rem;font-style:italic;color:rgba(244,241,232,.82);max-width:40ch}
+.toma__pie a,.interludio figcaption a{white-space:nowrap}
 .ref{font-size:.7em;vertical-align:super;line-height:0;margin-left:2px;text-decoration:none;color:inherit}
 .ref:hover{text-decoration:underline}
 @media (max-width:760px){
   .toma{min-height:max(100svh, 760px)}
-  .toma__cel{padding-top:min(88vw, 340px)}
-  .lienzo{top:0;bottom:auto;width:300%;transform:translateX(-22%)}
-  .toma__noche{background:linear-gradient(180deg,rgba(14,22,34,.35) 0%,rgba(14,22,34,.2) 26%,rgba(18,26,36,.62) 40%,rgba(18,26,36,.7) 70%,rgba(12,12,14,.4) 100%)}
+  .toma__cel{padding-top:104px}
   .toma__almohada{width:96vw;left:auto;right:-14vw;bottom:-3%}
   .toma__cel{padding-bottom:min(62vw, 250px)}
   .toma__cel{padding-left:var(--gutter)}
@@ -168,10 +167,9 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 /* los mismos planos de Velasco: el cielo se ilumina primero, las rocas al final; al aparecer el aroma, el fondo se desenfoca */
 .mesa__lienzo{position:absolute;inset:0}
 .mesa__capa{position:absolute;left:0;width:100%;height:auto;transition:filter .3s linear}
-.mesa__capa--cielo{filter:brightness(calc(.22 + min(1, var(--l)*1.5)*.78)) saturate(calc(.4 + var(--l)*.6)) blur(calc(var(--foco, 0) * 2.5px))}
-.mesa__capa--valle{filter:brightness(calc(.2 + min(1, var(--l)*1.25)*.8)) saturate(calc(.4 + var(--l)*.6)) blur(calc(var(--foco, 0) * 2px))}
-.mesa__capa--arboles{filter:brightness(calc(.18 + var(--l)*.82)) saturate(calc(.4 + var(--l)*.6)) blur(calc(var(--foco, 0) * 1.2px))}
-.mesa__capa--rocas{filter:brightness(calc(.16 + max(0, var(--l)*1.25 - .25)*.84)) saturate(calc(.4 + var(--l)*.6))}
+.mesa__capa--cielo{filter:brightness(calc(.3 + min(1, var(--l)*1.5)*1)) saturate(calc(.55 + var(--l)*.65)) blur(calc(var(--foco, 0) * 1.4px))}
+.mesa__capa--volcanes{filter:brightness(calc(.28 + min(1, var(--l)*1.25)*.95)) saturate(calc(.55 + var(--l)*.6)) blur(calc(var(--foco, 0) * .9px))}
+.mesa__capa--arboles{filter:brightness(calc(.25 + max(0, var(--l)*1.25 - .25)*.9)) saturate(calc(.6 + var(--l)*.5))}
 .mesa__almohada{position:absolute;left:16%;bottom:-18%;width:80%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.45));transition:filter .3s linear}
 .mesa__almohada:not(.mesa__almohada--luz){filter:brightness(calc(.42 + var(--l)*.5)) saturate(calc(.55 + var(--l)*.45))}
 .mesa__almohada--luz{opacity:var(--l)}
@@ -318,7 +316,7 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
   --ignorar:0;
   --c-cielo-a:#7FA3B9; --c-cielo-b:#B7CAD1; --c-cielo-c:#EDD3A2;
   --c-volcan:#8AA1AF; --c-nieve:#F6F5F0; --c-cerro:#6C8A82; --c-ciudad:#4C6662}
-.interludio img{width:100%;height:clamp(220px, 34vw, 440px);object-fit:cover;object-position:50% 40%}
+.interludio img{width:100%;height:clamp(220px, 34vw, 440px);object-fit:cover;object-position:50% 45%}
 .interludio figcaption{max-width:var(--ancho);margin:0 auto;padding:10px var(--gutter) 0;font-size:.85rem;font-style:italic;color:var(--tinta-2);text-align:right}
 
 /* ---------- 7. precio ---------- */

@@ -40,7 +40,10 @@
     barra.classList.toggle("sobre-noche", !!(bajo && bajo.closest(".cel--noche, .escenario, .toma")));
   }
   window.addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(alDesplazar); } }, { passive: true });
-  window.addEventListener("resize", alDesplazar);
+  // el lienzo cubre la toma completa, también cuando la toma es más alta que la pantalla (celular)
+  const medirToma = () => toma.style.setProperty("--alto-toma", toma.offsetHeight + "px");
+  medirToma();
+  window.addEventListener("resize", () => { medirToma(); alDesplazar(); });
   quieto.addEventListener?.("change", () => { if (quieto.matches) { capas.forEach((c) => (c.el.style.transform = "")); noche.style.opacity = ""; } alDesplazar(); });
   alDesplazar();
 

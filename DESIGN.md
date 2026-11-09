@@ -140,14 +140,14 @@ Alcance: este sistema describe solo el mundo v2 (`v2/`, publicado en /aurasleep/
 
 **Creative North Star: "La toma multiplano de una mañana"**
 
-La página es una cámara multiplano que baja por los planos pintados del Valle de México de José María Velasco (cielo, valle con el Iztaccíhuatl y el Popocatépetl, árboles, rocas) mientras un velo de noche se levanta. Cada sección de contenido es una celda de papel mate apoyada sobre esos planos, y el fondo de las celdas avanza en orden de la noche al día: pizarra nocturna, cuarto en umbra, bruma, niebla, mañana y, en los créditos, día pleno. El amanecer no se ilustra: ocurre con el desplazamiento.
+La página es una cámara multiplano que baja por los planos de una fotografía del Iztaccíhuatl y el Popocatépetl antes del amanecer (cielo, volcanes, árboles) mientras un velo de noche se levanta. Cada sección de contenido es una celda de papel mate apoyada sobre esos planos, y el fondo de las celdas avanza en orden de la noche al día: pizarra nocturna, cuarto en umbra, bruma, niebla, mañana y, en los créditos, día pleno. El amanecer no se ilustra: ocurre con el desplazamiento.
 
-El tono es tranquilo, legible desde el fondo de un salón y honesto. Dos serifas sostienen todo (una de cartela para títulos y cifras, otra de libro para leer); no hay sans ni monoespaciada. Los controles son pestañas de celda opacas con un filo encendido en ámbar, nunca vidrio. La única calidez del sistema es la luz de AuraSleep (ámbar lámpara) y el único color frío saturado es el aroma (menta). Todo lo demás son pigmentos de la pintura: pino, musgo, bruma, umbra.
+El tono es tranquilo, legible desde el fondo de un salón y honesto. Dos serifas sostienen todo (una de cartela para títulos y cifras, otra de libro para leer); no hay sans ni monoespaciada. Los controles son pestañas de celda opacas con un filo encendido en ámbar, nunca vidrio. La única calidez del sistema es la luz de AuraSleep (ámbar lámpara) y el único color frío saturado es el aroma (menta). Todo lo demás sale de la madrugada: pino, musgo, bruma, umbra.
 
 El usuario rechazó el aspecto del primer sitio (azul marino oscuro con naranja, Instrument Sans + DM Mono) como "sin personalidad, muy IA"; ese aspecto es antirreferencia.
 
 **Key Characteristics:**
-- Planos pintados de Velasco (dominio público) como única fuente de imagen de ambiente, cada raster con su archivo de procedencia `.json` al lado.
+- Fotografías con licencia libre de Wikimedia Commons (Lanjoe9, CC BY 3.0; Luis Alvaz, CC BY-SA 4.0), acreditadas en la página, como única fuente de imagen de ambiente, cada raster con su archivo de procedencia `.json` al lado.
 - Celdas de contenido con grano de papel y fondos que siguen el orden noche → día.
 - Young Serif para cartelas y cifras; Literata para todo lo que se lee.
 - Un acento cálido (luz) y un acento menta (aroma), con significado fijo.
@@ -267,7 +267,7 @@ Pestaña de papel que se toca y cede, con su filo encendido.
 Marca "AuraSleep" en Young Serif 1.45rem; enlaces Literata 1rem al 86 % de opacidad, subrayados al pasar. La barra es transparente sobre la pintura, se vuelve `rgba(20,26,32,.9)` al desplazarse, `manana` con texto `tinta` sobre celdas claras y vuelve a oscura sobre noche o umbra. Bajo 1080px los enlaces y la pestaña se cambian por un `details` "Menú" con chevrón CSS y un panel `manana` con borde de 1.5px y entradas de 44px.
 
 ### Mesa del despertar (signature)
-Los mismos cuatro planos de Velasco en un cuarto 16:10 de umbra, controlados por un deslizador de −15 a 0 minutos (`--l` de 0 a 1). El cielo se ilumina primero y las rocas al final (factores 1.5, 1.25, 1 y retardado), la almohada pasa de apagada a encendida por opacidad, y al empezar el aroma los planos lejanos se desenfocan (2.5px, 2px, 1.2px; las rocas nunca) mientras suben tres ráfagas de menta. Riel de 8px en `#4A4038` rellenado de ámbar, pulgar `tinta-clara` con aro ámbar de 4px. La lectura del minuto va en voz de cifra.
+Los mismos tres planos de la foto de madrugada en un cuarto 16:10 de umbra, controlados por un deslizador de −15 a 0 minutos (`--l` de 0 a 1). El cielo se ilumina primero y las rocas al final (factores 1.5, 1.25 y retardado), la almohada pasa de apagada a encendida por opacidad, y al empezar el aroma los planos lejanos se desenfocan (1.4px el cielo, 0.9px los volcanes; los árboles nunca) mientras suben tres ráfagas de menta. Riel de 8px en `#4A4038` rellenado de ámbar, pulgar `tinta-clara` con aro ámbar de 4px. La lectura del minuto va en voz de cifra.
 
 ### Hoja de exposición y comparativa
 Tablas de filetes sin fondo; encabezados en voz de etiqueta. La fila en curso de la secuencia se tiñe de ámbar al 16 % con punto de luz; la fila de AuraSleep en la comparativa es un bloque `pino` con su nombre en Young Serif 1.45rem. Bajo 860/820px cada fila se vuelve tarjeta con rótulos por celda.
@@ -278,7 +278,7 @@ El visor va en un marco de umbra de 12px (8px en celular) con pernos de registro
 ## Do's and Don'ts
 
 ### Do:
-- **Do** usar como imagen de ambiente solo planos de las pinturas de Velasco en dominio público, cada `.webp` con su `.webp.json` de procedencia al lado.
+- **Do** usar como imagen de ambiente solo fotografías con licencia libre y crédito visible (CC BY / CC BY-SA), cada `.webp` con su `.webp.json` de procedencia al lado.
 - **Do** reservar `lampara` para luz, foco y progreso, y la menta para el aroma.
 - **Do** dar a cada sección nueva el fondo que le toca en el orden noche → día (`cel-noche`, `umbra`, `bruma`, `niebla`, `manana`, `dia`).
 - **Do** titular en Young Serif 400 y escribir en Literata, con el cuerpo a 1.18rem/1.62 y medidas de 58–68ch.
