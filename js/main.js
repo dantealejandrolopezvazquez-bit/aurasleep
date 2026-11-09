@@ -107,6 +107,7 @@
     superior: "Vista superior: la cinta de fibra óptica en el borde superior (60–80 cm lineales, 3–4 cm de ancho) y las medidas de 68 × 48 cm.",
     lateral: "Vista lateral: el difusor de aroma tamaño moneda y el perfil ergonómico de 13 cm al centro y unos 10 cm cerca de los bordes.",
     interna: "Vista interna (rayos X): batería, placa BLE, bobina de inducción, sensor de presión, cartucho, microbomba y módulo LED dentro de una bolsita de malla acolchada.",
+    uso: "En uso: con la cabeza apoyada, la luz de la cinta llega a los párpados cerrados y el difusor dirige ráfagas de aroma hacia la nariz, sin sonido. La figura es genérica, solo de referencia.",
   };
   const NOMBRES = { blanco: "Blanco roto", gris: "Gris piedra", beige: "Beige cálido" };
 
@@ -116,7 +117,7 @@
       poster.alt = "Vista en perspectiva de la almohada AuraSleep color " + NOMBRES[estado.color] + ".";
       poster.classList.remove("es-vista");
     } else {
-      poster.src = "public/img/vista_" + estado.vista + ".webp";
+      poster.src = "public/img/vista_" + estado.vista + (estado.vista === "uso" ? ".jpg" : ".webp");
       poster.alt = PIES[estado.vista];
       poster.classList.add("es-vista");
     }
@@ -136,6 +137,7 @@
     iframe.addEventListener("load", () => {
       poster.hidden = true;
       enviar({ view: estado.vista, color: estado.color });
+      if (simularPendiente) { simularPendiente = false; enviar({ play: true }); }
     });
     marco.appendChild(iframe);
     activar.hidden = true;
@@ -143,6 +145,11 @@
     if (window.matchMedia("(pointer: coarse)").matches) ayuda.textContent = "Desliza a los lados para girar";
   }
   activar.addEventListener("click", cargar3D);
+  // Simular: corre la secuencia de 15 min (en ~14 s) dentro del modelo; si no estaba cargado, lo carga primero.
+  let simularPendiente = false;
+  $("#visor-simular").addEventListener("click", () => {
+    if (iframe) enviar({ play: true }); else { simularPendiente = true; cargar3D(); }
+  });
 
   // En escritorio se carga solo al acercarse; en celular espera a que la persona lo pida.
   const escritorio = window.matchMedia("(min-width: 861px) and (pointer: fine)");

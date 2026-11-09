@@ -12,7 +12,7 @@
 ## Parámetros de URL
 | Parámetro | Valores | Efecto |
 | --- | --- | --- |
-| `view` (o `#hash`) | `perspectiva`, `superior`, `lateral`, `interna` | Vista inicial |
+| `view` (o `#hash`) | `perspectiva`, `superior`, `lateral`, `interna`, `uso` | Vista inicial. `uso` muestra una figura genérica (maniquí) acostada con la cabeza en la almohada, sobre un colchón y bajo una cobija; las ráfagas de aroma van hacia su nariz |
 | `color` | `blanco`, `gris`, `beige` | Color de la funda |
 | `t` | −15 a 0 | Minuto de la secuencia |
 | `shot` | `1` | Oculta la interfaz (solo el lienzo a pantalla completa) y detiene el render tras unos cuadros |
