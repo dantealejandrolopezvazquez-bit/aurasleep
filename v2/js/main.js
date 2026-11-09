@@ -248,6 +248,11 @@
     if (correo.getAttribute("aria-invalid") === "true" && valido(correo.value)) { correo.removeAttribute("aria-invalid"); error.hidden = true; }
   });
 
+  /* ---------- menú de celular: se cierra al elegir una sección ---------- */
+  const menu = $(".menu");
+  if (menu) $$("a", menu).forEach((a) => a.addEventListener("click", () => { menu.open = false; }));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && menu && menu.open) { menu.open = false; $("summary", menu).focus(); } });
+
   /* ---------- referencias: abre "Fuentes" al saltar a una ---------- */
   const fuentes = $(".fuentes");
   $$('a[href^="#fuente-"]').forEach((a) => a.addEventListener("click", () => { fuentes.open = true; }));
