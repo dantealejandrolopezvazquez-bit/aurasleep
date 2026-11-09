@@ -86,7 +86,8 @@ p,li,dd{text-wrap:pretty}
 .reloj__punto{width:7px;height:7px;border-radius:50%;background:var(--ambar);opacity:var(--brillo,.25)}
 .barra .btn--chico{min-height:38px}
 .barra.es-dia .btn{background:var(--tinta);color:var(--papel)}
-@media (max-width:860px){.barra__nav{display:none}}
+.barra__nav a,.barra .btn{white-space:nowrap}
+@media (max-width:1040px){.barra__nav{display:none}}
 @media (max-width:420px){.barra__in{gap:12px}.barra .btn--chico{padding:0 14px;font-size:13.5px}}
 
 /* ---------- hero ---------- */
@@ -320,6 +321,20 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .acordeon details[open] p{animation:aparece .35s var(--curva)}
 @keyframes aparece{from{opacity:0;transform:translateY(-4px)}}
 @media (prefers-reduced-motion:reduce){.acordeon details[open] p{animation:none}.acordeon summary::after{transition:none}}
+
+/* ---------- presentación (Canva) ---------- */
+.canva{position:relative;margin-top:clamp(40px, 5vw, 64px);aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--noche);border:1px solid var(--linea)}
+.canva iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.canva__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.canva__frente{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;
+  background:linear-gradient(180deg, rgba(18,21,42,.35), rgba(18,21,42,.75));color:var(--luna)}
+.canva__titulo{font:500 13px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--luna)}
+.dia .canva .btn{background:var(--ambar);color:var(--ambar-tinta)}
+.dia .canva .btn:hover{background:#F0B57A}
+.canva__aviso{font-size:13.5px;color:#D6D3DC;max-width:36ch}
+.canva__abrir{margin-top:16px;font-size:15px}
+.canva__abrir a{color:var(--ambar-oscuro);text-underline-offset:3px}
+@media (max-width:560px){.canva:not(.cargada){aspect-ratio:4/5}}
 
 /* ---------- cierre ---------- */
 .cierre__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px, 6vw, 88px);align-items:start}

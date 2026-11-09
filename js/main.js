@@ -196,6 +196,22 @@
     }
   });
 
+  /* ---------- presentación de Canva: solo se carga al pedirla (sin cookies de terceros por defecto) ---------- */
+  const canva = $("#canva");
+  $("#canva-cargar").addEventListener("click", () => {
+    const src = canva.dataset.src;
+    if (!src) { window.open("https://www.canva.com/d/j9qwZuL53XPk6Mr", "_blank", "noopener"); return; }
+    const f = document.createElement("iframe");
+    f.src = src;
+    f.title = "Presentación de venta de AuraSleep en Canva";
+    f.allow = "fullscreen";
+    f.allowFullscreen = true;
+    f.loading = "lazy";
+    canva.replaceChildren(f);
+    canva.classList.add("cargada");
+    f.focus();
+  });
+
   /* ---------- referencias: abre "Fuentes" al saltar a una ---------- */
   const fuentes = $(".fuentes");
   $$('a[href^="#fuente-"]').forEach((a) => a.addEventListener("click", () => { fuentes.open = true; }));
