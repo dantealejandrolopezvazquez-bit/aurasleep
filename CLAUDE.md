@@ -84,3 +84,7 @@ Integrantes del equipo (usar tal cual en los créditos):
 Correo de contacto: dantealejandrolopezvazquez@gmail.com. Escuela, profesor(a) y grupo **no se muestran** en el sitio (decisión del usuario, 2026-11-08); no los inventes.
 
 Publicación: GitHub Pages desde la rama `main` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/). Al cambiar `css/estilos.css` o `js/main.js`, sube el número `?v=` con que los carga `index.html`: Pages guarda caché 10 minutos y el navegador usaría la versión vieja. `docs/enlaces.md` está en `.gitignore` porque trae la liga de edición de Canva.
+
+## Sitio v2 ("Amanecer multiplano")
+
+Rediseño en `v2/` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/), en paralelo al sitio original. Su sistema visual está en `DESIGN.md` y la verdad del producto en `PRODUCT.md`. Los planos del paisaje son pinturas de José María Velasco en dominio público (Wikimedia Commons), acreditadas en el sitio. El visor 3D se incrusta con `#embed&marco=multiplano` (solo cambia escenario y etiquetas).

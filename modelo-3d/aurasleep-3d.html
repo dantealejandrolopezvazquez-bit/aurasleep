@@ -88,6 +88,11 @@ body.embed .stage{position:fixed;inset:0;border-radius:0;aspect-ratio:auto;min-h
 body.embed .stage canvas{touch-action:pan-y}
 /* en pantallas angostas las etiquetas se enciman: solo quedan las cotas; el sitio muestra el pie de cada vista */
 @media (max-width:560px){body.embed .lbl:not(.dim),body.embed #leaders{display:none}}
+/* marco "multiplano" (sitio v2): solo cambia el escenario y las etiquetas, no el modelo */
+@font-face{font-family:"Literata";src:url("../v2/fonts/literata-latin.woff2") format("woff2");font-weight:300 800;font-display:swap}
+body.marco-multiplano .lbl{background:rgba(228,233,230,.96);color:#1C2326;border-radius:3px;box-shadow:0 2px 6px rgba(28,35,38,.28);font:600 12.5px/1.25 "Literata",Georgia,serif}
+body.marco-multiplano .lbl small{font:400 11px/1.3 "Literata",Georgia,serif;color:#46525A}
+body.marco-multiplano .lbl.dim{background:transparent;box-shadow:none;color:#F1EEE4;font:500 14px "Literata",Georgia,serif}
 </style>
 
 <div class="wrap">
@@ -136,7 +141,13 @@ const Q = new URLSearchParams(location.search);
 const SHOT = Q.has('shot');
 if(SHOT){ document.body.classList.add('shot'); if(Q.get('bg')==='none') document.body.classList.add('nobg'); }
 // ?embed=1 o #embed (el hash sobrevive a redirecciones de servidores que quitan la consulta)
-const EMBED = !SHOT && (Q.has('embed') || location.hash === '#embed');
+const EMBED = !SHOT && (Q.has('embed') || location.hash.startsWith('#embed'));
+// marco visual opcional (#embed&marco=multiplano): cambia el escenario y las etiquetas, nunca el modelo
+const MARCO = Q.get('marco') || (location.hash.match(/marco=(\w+)/) || [])[1] || '';
+if (MARCO === 'multiplano') document.body.classList.add('marco-multiplano');
+const SKY = MARCO === 'multiplano'
+  ? { top0: '#3B4E5C', top1: '#C9A877', bot0: '#1F2B2F', bot1: '#5F6F69' }   // gouache: niebla → alba
+  : { top0: '#2A2E4B', top1: '#7A4A3C', bot0: '#161A2E', bot1: '#33243A' };
 if(EMBED) document.body.classList.add('embed');
 
 /* ---------- math ---------- */
@@ -477,7 +488,7 @@ function frame(now){
  const Lg=light(T),Ar=aroma(T);
  const pulseIdx=PULSES.findIndex(p=>T>=p&&T<p+0.25);if(pulseIdx>=0&&pulseIdx!==lastPulse){lastPulse=pulseIdx;spawnPuffs(SHOT?0:9)}if(pulseIdx<0&&T<-9)lastPulse=null;
  // stage sky follows the light
- const sky=V.lerp(hex('#2A2E4B'),hex('#7A4A3C'),Lg*.9),skyB=V.lerp(hex('#161A2E'),hex('#33243A'),Lg*.8);
+ const sky=V.lerp(hex(SKY.top0),hex(SKY.top1),Lg*.9),skyB=V.lerp(hex(SKY.bot0),hex(SKY.bot1),Lg*.8);
  stage.style.setProperty('--sky-top','rgb('+sky.map(c=>Math.round(c*255))+')');stage.style.setProperty('--sky-bot','rgb('+skyB.map(c=>Math.round(c*255))+')');
 
  const asp=cv.width/cv.height;const fov=cam.fov*Math.PI/180;
@@ -510,7 +521,20 @@ function frame(now){
  gl.depthMask(true);
  // labels
  if(labNodes.length){const W=cv.clientWidth,H=cv.clientHeight;const hide=!!tw;
-   for(const n of labNodes){const s=xf(VP,n.L.p);const x=(s[0]*.5+.5)*W,y=(1-(s[1]*.5+.5))*H;const lx=Math.min(Math.max(x+n.L.dx,70),W-70),ly=Math.min(Math.max(y+n.L.dy,52),H-48);
+   const ocup=[]; // marco multiplano: etiquetas ya colocadas en este cuadro, para que no se encimen
+   for(const n of labNodes){const s=xf(VP,n.L.p);const x=(s[0]*.5+.5)*W,y=(1-(s[1]*.5+.5))*H;const mx=MARCO?Math.max(70,n.d.offsetWidth/2+8):70;const lx=Math.min(Math.max(x+n.L.dx,mx),W-mx);let ly=Math.min(Math.max(y+n.L.dy,52),H-48);
+     if(MARCO&&!n.L.dim){const w=n.d.offsetWidth,h=n.d.offsetHeight;
+       // un segmento (línea guía) toca un rectángulo (etiqueta) ampliado 6px
+       const cruza=(a,b,r)=>{const x0=r.x-r.w/2-6,x1=r.x+r.w/2+6,y0=r.y-r.h/2-6,y1=r.y+r.h/2+6;
+         for(let t=0;t<=1;t+=.05){const px=a[0]+(b[0]-a[0])*t,py=a[1]+(b[1]-a[1])*t;if(px>x0&&px<x1&&py>y0&&py<y1)return true}return false};
+       for(let k=0;k<8;k++){const yo={x:lx,y:ly,w,h};
+         const choca=r=>Math.abs(r.x-lx)<(r.w+w)/2+8&&Math.abs(r.y-ly)<(r.h+h)/2+8;
+         const o=ocup.find(r=>choca(r)||cruza([r.ax,r.ay],[r.x,r.y],yo)||cruza([x,y],[lx,ly],r));
+         if(!o)break;
+         if(choca(o))ly=ly>=o.y?o.y+(o.h+h)/2+10:o.y-(o.h+h)/2-10; // cajas encimadas: separar
+         else ly+=h+10;                                              // una línea guía cruza: bajar la etiqueta
+         ly=Math.min(Math.max(ly,h/2+6),H-h/2-6)}
+       ocup.push({x:lx,y:ly,w,h,ax:x,ay:y})}
      n.d.style.left=lx+'px';n.d.style.top=ly+'px';n.d.style.opacity=hide?0:1;
      if(n.ln){n.ln.setAttribute('x1',x);n.ln.setAttribute('y1',y);n.ln.setAttribute('x2',lx);n.ln.setAttribute('y2',ly);n.ln.style.opacity=hide?0:1;n.dot.setAttribute('cx',x);n.dot.setAttribute('cy',y);n.dot.style.opacity=hide?0:1}}}
  frames++;if(frames===4)window.__ready=true;
