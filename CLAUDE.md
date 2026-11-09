@@ -87,4 +87,4 @@ Publicación: GitHub Pages desde la rama `main` (https://dantealejandrolopezvazq
 
 ## Sitio v2 ("Amanecer multiplano")
 
-Rediseño en `v2/` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/), en paralelo al sitio original. Su sistema visual está en `DESIGN.md` y la verdad del producto en `PRODUCT.md`. Los planos del paisaje son fotografías de Wikimedia Commons (Lanjoe9, CC BY 3.0; Luis Alvaz, CC BY-SA 4.0), acreditadas en el sitio; las pinturas de Velasco se descartaron porque desentonaban. El visor 3D se incrusta con `#embed&marco=multiplano` (solo cambia escenario y etiquetas).
+Rediseño en `v2/` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/), en paralelo al sitio original. Su sistema visual está en `DESIGN.md` y la verdad del producto en `PRODUCT.md`. El fondo de la portada es una fotografía de Wikimedia Commons (Lanjoe9, CC BY 3.0), acreditada; la almohada es la protagonista de la portada y la línea de tiempo usa los renders hero_noche/hero_amanecer. Se descartaron las pinturas de Velasco y la foto de azoteas porque desentonaban. El visor 3D se incrusta con `#embed&marco=multiplano` (solo cambia escenario y etiquetas).

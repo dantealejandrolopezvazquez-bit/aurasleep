@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#2F4252">
 <link rel="preload" href="fonts/young-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/literata-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/estilos.css?v=8">
+<link rel="stylesheet" href="css/estilos.css?v=12">
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -53,10 +53,9 @@
     <img class="capa" data-vel="0.06" style="top:80.07%" src="img/madrugada-arboles.webp" width="1800" height="269" alt="">
   </div>
   <div class="toma__noche" id="noche" aria-hidden="true"></div>
-  <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." data-vel="0.55">
-
   <div class="toma__cel">
     <h1 id="titulo">Despierta con luz y aroma, no con ruido.</h1>
+    <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." fetchpriority="high">
     <p class="toma__sub">AuraSleep es la almohada que te despierta poco a poco, con una luz de amanecer y un aroma suave de menta o cítrico, 15 minutos antes de tu hora.</p>
     <div class="toma__acciones">
       <a class="tab" href="#como-funciona">Ver cómo funciona</a>
@@ -109,13 +108,8 @@
 
   <div class="mesa" id="mesa" style="--l:0">
     <div class="mesa__cuarto" aria-hidden="true">
-    <div class="mesa__lienzo">
-      <img class="mesa__capa mesa__capa--cielo" src="img/madrugada-cielo.webp" width="1800" height="1350" alt="" loading="lazy" style="top:0">
-      <img class="mesa__capa mesa__capa--volcanes" src="img/madrugada-volcanes.webp" width="1800" height="439" alt="" loading="lazy" style="top:67.48%">
-      <img class="mesa__capa mesa__capa--arboles" src="img/madrugada-arboles.webp" width="1800" height="269" alt="" loading="lazy" style="top:80.07%">
-    </div>
-      <img class="mesa__almohada" src="../public/img/hero_blanco.webp" width="1800" height="1127" alt="" loading="lazy">
-      <img class="mesa__almohada mesa__almohada--luz" id="mesa-luz" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="" loading="lazy">
+      <img class="mesa__escena" src="../public/img/hero_noche.webp" width="1800" height="1127" alt="" loading="lazy">
+      <img class="mesa__escena mesa__escena--luz" id="mesa-luz" src="../public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
       <svg class="mesa__aroma" id="mesa-aroma" viewBox="0 0 200 260"><g filter="url(#bruma)"><ellipse cx="70" cy="210" rx="30" ry="18"/><ellipse cx="110" cy="140" rx="34" ry="20"/><ellipse cx="150" cy="70" rx="36" ry="22"/></g></svg>
     </div>
 
@@ -159,7 +153,6 @@
 
     <div class="camara">
       <div class="camara__marco" id="visor-marco">
-        <span class="perno" aria-hidden="true"></span><span class="perno perno--centro" aria-hidden="true"></span><span class="perno" aria-hidden="true"></span>
         <img class="camara__poster" id="visor-poster" src="../public/img/hero_blanco.webp" width="1800" height="1127" alt="Vista en perspectiva de la almohada AuraSleep color Blanco roto." loading="lazy">
         <button class="tab camara__activar" type="button" id="visor-activar">Cargar el modelo 3D</button>
         <p class="camara__ayuda" id="visor-ayuda" hidden>Arrastra para girar · Ctrl + rueda para acercar</p>
@@ -264,10 +257,17 @@
 </section>
 
 <!-- Interludio: ya amaneció -->
-<figure class="interludio">
-  <img src="img/azoteas-amanecer.webp" width="1800" height="702" alt="Fotografía del Popocatépetl y el Iztaccíhuatl iluminados por el sol del amanecer, vistos sobre azoteas con tinacos." loading="lazy">
-  <figcaption>Popocatépetl e Iztaccíhuatl al amanecer. Foto: Luis Alvaz, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" rel="noopener">CC BY-SA 4.0</a>, recortada.</figcaption>
-</figure>
+<section class="colores" id="colores" aria-labelledby="colores-titulo">
+  <div class="envoltura">
+    <h2 id="colores-titulo">Tres colores de funda.</h2>
+    <p class="entrada">Funda de algodón peinado o mezcla con bambú, lavable, en Blanco roto, Gris piedra y Beige cálido.</p>
+    <ul class="colores__lista">
+      <li><img src="../public/img/cut_blanco.webp" alt="Almohada AuraSleep en Blanco roto" loading="lazy"><p><i style="background:#EDE8DF"></i>Blanco roto</p></li>
+      <li><img src="../public/img/cut_gris.webp" alt="Almohada AuraSleep en Gris piedra" loading="lazy"><p><i style="background:#8F8B85"></i>Gris piedra</p></li>
+      <li><img src="../public/img/cut_beige.webp" alt="Almohada AuraSleep en Beige cálido" loading="lazy"><p><i style="background:#D8C2A3"></i>Beige cálido</p></li>
+    </ul>
+  </div>
+</section>
 
 <!-- 7. Precio y cartuchos -->
 <section class="cel cel--manana" id="precio" aria-labelledby="precio-titulo">
@@ -390,13 +390,12 @@
         <li>Market Intelo. Smart Pillow Market Research Report 2034. <a href="https://marketintelo.com/report/smart-pillow-market" rel="noopener">marketintelo.com</a></li>
         <li>INAH. “La mujer blanca: el Iztaccíhuatl” (nombre de los volcanes del paisaje). <a href="https://inah.gob.mx/foto-del-dia/la-mujer-blanca-el-iztaccihuatl" rel="noopener">inah.gob.mx</a></li>
         <li>Lanjoe9 (2007). “Popocatépetl e Iztaccíhuatl al amanecer”, fotografía, CC BY 3.0. <a href="https://commons.wikimedia.org/wiki/File:100_1294_-_Popocat%C3%A9petl_e_Iztacc%C3%ADhuatl_al_amanecer.jpg" rel="noopener">Wikimedia Commons</a></li>
-        <li>Luis Alvaz (2022). “Popocatépetl e Iztaccíhuatl al amanecer en 2022”, fotografía, CC BY-SA 4.0 (recorte bajo la misma licencia). <a href="https://commons.wikimedia.org/wiki/File:Popocat%C3%A9petl_e_Iztacc%C3%ADhuatl_al_amanecer_en_2022.jpg" rel="noopener">Wikimedia Commons</a></li>
       </ol>
     </details>
-    <p class="letra-chica">Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta. AuraSleep es un concepto: no se vende ni se cobra nada en este sitio. Fotografías de Wikimedia Commons de Lanjoe9 (CC BY 3.0) y Luis Alvaz (CC BY-SA 4.0), recortadas en capas para este sitio.</p>
+    <p class="letra-chica">Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta. AuraSleep es un concepto: no se vende ni se cobra nada en este sitio. Fotografía de fondo: Lanjoe9 (CC BY 3.0, Wikimedia Commons), recortada en capas para este sitio.</p>
   </div>
 </footer>
 
-<script src="js/main.js?v=4" defer></script>
+<script src="js/main.js?v=5" defer></script>
 </body>
 </html>

@@ -88,8 +88,12 @@ input,textarea{caret-color:var(--pino)}
 .capa{position:absolute;left:0;width:100%;height:auto;will-change:transform}
 /* velo de la noche: se disipa conforme bajas */
 .toma__noche{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,22,34,.74) 0%,rgba(18,28,42,.5) 30%,rgba(22,30,40,.3) 52%,rgba(16,18,22,.18) 78%,rgba(12,12,14,.3) 100%),linear-gradient(270deg,rgba(14,22,34,.55) 0%,rgba(14,22,34,.3) 38%,transparent 62%)}
-.toma__almohada{position:absolute;z-index:1;left:max(-2vw, -30px);bottom:-7%;width:min(38vw, 640px);will-change:transform;filter:brightness(calc(.66 + var(--alba, 0)*.34)) saturate(calc(.75 + var(--alba, 0)*.25)) drop-shadow(0 24px 30px rgba(10,14,16,.45))}
-.toma__cel{position:relative;z-index:2;max-width:calc(var(--ancho) + 2*var(--gutter));margin:0 auto;padding:clamp(120px, 17vh, 190px) var(--gutter) 0;padding-left:max(var(--gutter), calc(100% - 680px - var(--gutter)))}
+.toma__almohada{grid-area:foto;justify-self:center;align-self:center;width:118%;max-width:none;margin-left:-12%;filter:drop-shadow(0 30px 40px rgba(6,10,16,.55));will-change:transform}
+.toma__cel{position:relative;z-index:2;max-width:calc(var(--ancho) + 2*var(--gutter));min-height:max(100svh, 680px);margin:0 auto;padding:96px var(--gutter) 72px;display:grid;grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr);grid-template-areas:"foto titulo" "foto sub" "foto acc" "foto dato";column-gap:clamp(24px, 3vw, 56px);align-content:center}
+.toma__cel h1{grid-area:titulo;align-self:end}
+.toma__sub{grid-area:sub}
+.toma__acciones{grid-area:acc}
+.toma__dato{grid-area:dato}
 .toma h1{font-size:clamp(2.55rem, 5.1vw, 5.25rem);line-height:1.02;max-width:12.5ch;text-shadow:0 2px 14px rgba(20,28,34,.35)}
 .toma__sub{margin-top:24px;max-width:36ch;font-size:clamp(1.12rem, 1.45vw, 1.32rem);color:var(--tinta-clara);text-shadow:0 1px 10px rgba(20,28,34,.5)}
 .toma__acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
@@ -99,15 +103,13 @@ input,textarea{caret-color:var(--pino)}
 .toma .tab--linea:hover{background:rgba(244,241,232,.12)}
 .toma__dato{margin-top:22px;font-size:.95rem;color:var(--tinta-clara);line-height:1.5;text-shadow:0 1px 8px rgba(20,28,34,.55)}
 .toma__pie{position:absolute;z-index:2;right:var(--gutter);bottom:18px;text-align:right;font-size:.82rem;font-style:italic;color:rgba(244,241,232,.82);max-width:40ch}
-.toma__pie a,.interludio figcaption a{white-space:nowrap}
+.toma__pie a{white-space:nowrap}
 .ref{font-size:.7em;vertical-align:super;line-height:0;margin-left:2px;text-decoration:none;color:inherit}
 .ref:hover{text-decoration:underline}
 @media (max-width:760px){
   .toma{min-height:max(100svh, 760px)}
-  .toma__cel{padding-top:104px}
-  .toma__almohada{width:96vw;left:auto;right:-14vw;bottom:-3%}
-  .toma__cel{padding-bottom:min(62vw, 250px)}
-  .toma__cel{padding-left:var(--gutter)}
+  .toma__cel{grid-template-columns:1fr;grid-template-areas:"titulo" "foto" "sub" "acc" "dato";padding:96px var(--gutter) 56px;min-height:0}
+  .toma__almohada{width:112%;margin:6px 0 4px -6%}
   .toma__acciones .tab{flex:1 1 220px}
   .toma__pie{display:none}
 }
@@ -163,17 +165,12 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
   --c-ciudad:color-mix(in oklab, #1B2428, #405A57 calc(var(--l)*100%));
   position:relative;max-width:calc(var(--ancho) + 2*var(--gutter));margin:clamp(40px, 5vw, 64px) auto 0;padding:0 var(--gutter);
   display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr);gap:clamp(20px, 3vw, 40px);align-items:end}
-.mesa__cuarto{position:relative;grid-column:1;aspect-ratio:16/10;overflow:hidden;background:#151A1F}
+.mesa__cuarto{position:relative;grid-column:1;aspect-ratio:1800/1127;overflow:hidden;background:#151A2B;border-radius:4px;box-shadow:0 24px 48px -24px rgba(0,0,0,.7)}
+.mesa__escena{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mesa__escena--luz{opacity:var(--l)}
 /* los mismos planos de Velasco: el cielo se ilumina primero, las rocas al final; al aparecer el aroma, el fondo se desenfoca */
 .mesa__lienzo{position:absolute;inset:0}
-.mesa__capa{position:absolute;left:0;width:100%;height:auto;transition:filter .3s linear}
-.mesa__capa--cielo{filter:brightness(calc(.3 + min(1, var(--l)*1.5)*1)) saturate(calc(.55 + var(--l)*.65)) blur(calc(var(--foco, 0) * 1.4px))}
-.mesa__capa--volcanes{filter:brightness(calc(.28 + min(1, var(--l)*1.25)*.95)) saturate(calc(.55 + var(--l)*.6)) blur(calc(var(--foco, 0) * .9px))}
-.mesa__capa--arboles{filter:brightness(calc(.25 + max(0, var(--l)*1.25 - .25)*.9)) saturate(calc(.6 + var(--l)*.5))}
-.mesa__almohada{position:absolute;left:16%;bottom:-18%;width:80%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.45));transition:filter .3s linear}
-.mesa__almohada:not(.mesa__almohada--luz){filter:brightness(calc(.42 + var(--l)*.5)) saturate(calc(.55 + var(--l)*.45))}
-.mesa__almohada--luz{opacity:var(--l)}
-.mesa__aroma{position:absolute;left:69%;top:37%;width:16%;fill:var(--menta-clara);opacity:0;transition:opacity .6s var(--curva)}
+.mesa__aroma{position:absolute;left:70%;top:31%;width:15%;fill:var(--menta-clara);opacity:0;transition:opacity .6s var(--curva)}
 .mesa.con-aroma .mesa__aroma{opacity:.9}
 .mesa.con-aroma{--foco:1}
 @media (prefers-reduced-motion:no-preference){
@@ -226,19 +223,17 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 }
 
 /* ---------- 4. producto: la cámara multiplano ---------- */
-.camara{display:grid;grid-template-columns:minmax(0, 1.8fr) minmax(0, 1fr);gap:clamp(24px, 3vw, 44px);margin-top:clamp(44px, 5vw, 64px);align-items:start}
-.camara__marco{position:relative;aspect-ratio:16/10;background:#2B3B44;border:12px solid var(--umbra);box-shadow:0 18px 36px -18px rgba(28,35,38,.6)}
+.camara{display:grid;gap:22px;margin-top:clamp(44px, 5vw, 64px)}
+.camara__marco{position:relative;aspect-ratio:16/9;background:#2B3B44;border:10px solid var(--umbra);border-radius:4px;box-shadow:0 30px 60px -28px rgba(28,35,38,.65)}
 .camara__marco iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.perno{position:absolute;top:-12px;left:calc(50% - 110px);width:22px;height:9px;border-radius:0 0 6px 6px;background:var(--bruma);z-index:2}
-.perno + .perno--centro{left:calc(50% - 9px);width:18px;height:12px;border-radius:0 0 9px 9px}
-.perno--centro + .perno{left:calc(50% + 88px)}
 .camara__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4% 7%}
 .camara__poster.es-vista{object-fit:cover;padding:0}
 .camara__activar{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);background:var(--tinta-clara);color:var(--pino);border-color:var(--tinta-clara);--anillo:var(--tinta-clara)}
 .camara__activar:hover{background:#fff}
 .camara__activar:active{transform:translateX(-50%) translateY(1px)}
 .camara__ayuda{position:absolute;right:14px;top:12px;font-size:.82rem;color:rgba(244,241,232,.85);pointer-events:none}
-.camara__controles{display:grid;gap:22px}
+.camara__controles{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 40px}
+.camara__pie{flex:1 1 100%;order:3}
 .grupo{display:grid;gap:10px}
 .grupo__et{font:600 .84rem/1.2 var(--f-texto);letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
 .tabs{display:flex;flex-wrap:wrap;gap:6px}
@@ -267,7 +262,6 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 }
 @media (max-width:560px){
   .camara__marco{aspect-ratio:4/3;border-width:8px}
-  .perno{display:none}
   .tabs{display:grid;grid-template-columns:1fr 1fr}
   .tabs button:last-child{grid-column:1 / -1}
   .tabs button{justify-content:center}
@@ -311,18 +305,11 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 .publico__por{margin-top:12px;color:var(--tinta-2);font-size:1.02rem;font-style:italic}
 @media (max-width:820px){.publicos{grid-template-columns:1fr}.publico--principal{grid-row:auto}}
 
-/* ---------- interludio: ya amaneció ---------- */
-.interludio{position:relative;margin:0;background:var(--manana);
-  --ignorar:0;
-  --c-cielo-a:#7FA3B9; --c-cielo-b:#B7CAD1; --c-cielo-c:#EDD3A2;
-  --c-volcan:#8AA1AF; --c-nieve:#F6F5F0; --c-cerro:#6C8A82; --c-ciudad:#4C6662}
-.interludio img{width:100%;height:clamp(220px, 34vw, 440px);object-fit:cover;object-position:50% 45%}
-.interludio figcaption{max-width:var(--ancho);margin:0 auto;padding:10px var(--gutter) 0;font-size:.85rem;font-style:italic;color:var(--tinta-2);text-align:right}
 
 /* ---------- 7. precio ---------- */
 .precios{display:grid;grid-template-columns:minmax(0, 1.3fr) minmax(0, 1fr);gap:clamp(28px, 5vw, 72px);margin-top:clamp(44px, 5vw, 64px);align-items:end}
 .precio{display:grid;gap:12px;align-content:start}
-.precio h3{font-size:1.45rem;display:flex;align-items:center;gap:10px}
+.precio h3{font-size:1.45rem;display:flex;align-items:center;gap:10px;padding-top:18px;border-top:1px solid var(--raya);margin-bottom:-4px}
 .precio__cifra{font:400 clamp(4.2rem, 9vw, 7.2rem)/.95 var(--f-titulo);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
 .precio__cifra span{font-size:.3em;letter-spacing:.02em;margin-left:.15em}
 .precio--cartucho .precio__cifra{font-size:clamp(3rem, 6vw, 4.6rem)}
@@ -410,3 +397,12 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 @media (prefers-reduced-motion:reduce){
   *{transition-duration:.01ms!important}
 }
+
+/* ---------- tres colores de funda ---------- */
+.colores{background:var(--niebla);padding-block:clamp(72px, 9vw, 120px)}
+.colores__lista{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:clamp(16px, 3vw, 40px);margin-top:clamp(36px, 5vw, 56px)}
+.colores__lista li{display:grid;gap:12px;justify-items:center}
+.colores__lista img{width:100%;filter:drop-shadow(0 18px 22px rgba(28,35,38,.28))}
+.colores__lista p{display:flex;align-items:center;gap:10px;font:400 1.3rem/1.2 var(--f-titulo)}
+.colores__lista i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(28,35,38,.35)}
+@media (max-width:640px){.colores__lista{grid-template-columns:1fr;gap:28px}.colores__lista img{width:86%}}

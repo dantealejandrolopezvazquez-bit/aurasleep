@@ -147,7 +147,7 @@ El tono es tranquilo, legible desde el fondo de un salón y honesto. Dos serifas
 El usuario rechazó el aspecto del primer sitio (azul marino oscuro con naranja, Instrument Sans + DM Mono) como "sin personalidad, muy IA"; ese aspecto es antirreferencia.
 
 **Key Characteristics:**
-- Fotografías con licencia libre de Wikimedia Commons (Lanjoe9, CC BY 3.0; Luis Alvaz, CC BY-SA 4.0), acreditadas en la página, como única fuente de imagen de ambiente, cada raster con su archivo de procedencia `.json` al lado.
+- Una fotografía con licencia libre de Wikimedia Commons (Lanjoe9, CC BY 3.0), acreditada en la página, como única imagen de ambiente; el producto se muestra siempre con sus propios renders (portada, línea de tiempo y los tres colores de funda), cada raster con su archivo de procedencia `.json` al lado.
 - Celdas de contenido con grano de papel y fondos que siguen el orden noche → día.
 - Young Serif para cartelas y cifras; Literata para todo lo que se lee.
 - Un acento cálido (luz) y un acento menta (aroma), con significado fijo.
@@ -267,7 +267,7 @@ Pestaña de papel que se toca y cede, con su filo encendido.
 Marca "AuraSleep" en Young Serif 1.45rem; enlaces Literata 1rem al 86 % de opacidad, subrayados al pasar. La barra es transparente sobre la pintura, se vuelve `rgba(20,26,32,.9)` al desplazarse, `manana` con texto `tinta` sobre celdas claras y vuelve a oscura sobre noche o umbra. Bajo 1080px los enlaces y la pestaña se cambian por un `details` "Menú" con chevrón CSS y un panel `manana` con borde de 1.5px y entradas de 44px.
 
 ### Mesa del despertar (signature)
-Los mismos tres planos de la foto de madrugada en un cuarto 16:10 de umbra, controlados por un deslizador de −15 a 0 minutos (`--l` de 0 a 1). El cielo se ilumina primero y las rocas al final (factores 1.5, 1.25 y retardado), la almohada pasa de apagada a encendida por opacidad, y al empezar el aroma los planos lejanos se desenfocan (1.4px el cielo, 0.9px los volcanes; los árboles nunca) mientras suben tres ráfagas de menta. Riel de 8px en `#4A4038` rellenado de ámbar, pulgar `tinta-clara` con aro ámbar de 4px. La lectura del minuto va en voz de cifra.
+Los renders del producto (luz apagada y encendida) en un cuadro 1800:1127, controlados por un deslizador de −15 a 0 minutos (`--l` de 0 a 1). El cielo se ilumina primero y las rocas al final (factores 1.5, 1.25 y retardado), la almohada pasa de apagada a encendida por opacidad, y al empezar el aroma los planos lejanos se desenfocan (1.4px el cielo, 0.9px los volcanes; los árboles nunca) mientras suben tres ráfagas de menta. Riel de 8px en `#4A4038` rellenado de ámbar, pulgar `tinta-clara` con aro ámbar de 4px. La lectura del minuto va en voz de cifra.
 
 ### Hoja de exposición y comparativa
 Tablas de filetes sin fondo; encabezados en voz de etiqueta. La fila en curso de la secuencia se tiñe de ámbar al 16 % con punto de luz; la fila de AuraSleep en la comparativa es un bloque `pino` con su nombre en Young Serif 1.45rem. Bajo 860/820px cada fila se vuelve tarjeta con rótulos por celda.
