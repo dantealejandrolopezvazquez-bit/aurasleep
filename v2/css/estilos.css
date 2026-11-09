@@ -405,3 +405,19 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 .colores__lista p{display:flex;align-items:center;gap:10px;font:650 1.3rem/1.2 var(--f-titulo)}
 .colores__lista i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(28,35,38,.35)}
 @media (max-width:640px){.colores__lista{grid-template-columns:1fr;gap:28px}.colores__lista img{width:86%}}
+
+/* ---------- transiciones de color entre secciones: cada una nace del tono de la anterior ---------- */
+#problema,#como-funciona,#producto,#ventaja,#para-quien,#colores,#precio,#preguntas,#presentacion,#lista,.creditos{background-image:linear-gradient(180deg,var(--desde) 0,var(--desde) 8px,transparent clamp(150px, 19vw, 270px))}
+#problema{--desde:#141A21}
+#como-funciona{--desde:#26333D}
+#producto{--desde:#24201C}
+#ventaja{--desde:var(--bruma)}
+#para-quien,#colores{--desde:var(--niebla)}
+#precio{--desde:var(--niebla)}
+#preguntas,#presentacion,#lista{--desde:var(--manana)}
+.creditos{--desde:var(--manana)}
+.seccion + .seccion,.cel + .cel{border-top:0}
+/* la sombra de los renders se desvanece en vez de cortarse */
+.colores__lista img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(180deg,#000 74%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(180deg,#000 74%,transparent 100%);mask-composite:intersect}
+/* sin costura de subpíxel entre secciones */
+main > section + section{margin-top:-1px}
