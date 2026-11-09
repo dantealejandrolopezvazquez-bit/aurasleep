@@ -103,7 +103,7 @@ input,textarea{caret-color:var(--pino)}
 .toma__dato{margin-top:22px;font-size:.95rem;color:var(--tinta-clara);line-height:1.5;text-shadow:0 1px 8px rgba(20,28,34,.55)}
 .toma__pie{position:absolute;z-index:2;right:var(--gutter);bottom:18px;text-align:right;font-size:.82rem;font-style:italic;color:rgba(244,241,232,.82);max-width:40ch}
 .toma__pie a{white-space:nowrap}
-.ref{font-size:.7em;vertical-align:super;line-height:0;margin-left:2px;text-decoration:none;color:inherit}
+.ref{font-size:max(.72em, 11.5px);vertical-align:super;line-height:0;margin-left:2px;text-decoration:none;color:inherit}
 .ref:hover{text-decoration:underline}
 @media (max-width:760px){
   .toma{min-height:max(100svh, 760px)}
