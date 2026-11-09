@@ -29,7 +29,7 @@ Todo el texto está en `docs/contenido.md` y los datos estructurados en `docs/da
 Usa el skill `aurasleep-marca` (`.claude/skills/aurasleep-marca/SKILL.md`) para cualquier decisión de diseño. Ese skill separa:
 
 - **Fijo:** colores del producto (Blanco roto `#EDE8DF`, Gris piedra `#8F8B85`, Beige cálido `#D8C2A3`), renders de `public/img/`, concepto **de la noche al amanecer** al hacer scroll, español de México y reglas de honestidad (cifras hipotéticas, sin testimonios ni promesas médicas).
-- **Flexible:** tipografía, paleta de interfaz, componentes, movimiento y estilo del tono. Lo que trae es un punto de partida (Young Serif / Manrope / IBM Plex Mono, paleta noche–amanecer). **Se decide con las skills de diseño instaladas** (`impeccable`, `taste-referencias`, `emil-design-eng`, `apple-design`, `animate`, `choreograph`): antes de construir, propón 2–3 direcciones de identidad respaldadas por esas skills, deja que el usuario elija y anota la decisión en `aurasleep-marca`.
+- **Flexible:** tipografía, paleta de interfaz, componentes, movimiento y estilo del tono. Lo que trae es un punto de partida (Hanken Grotesk / Manrope / IBM Plex Mono, paleta noche–amanecer). **Se decide con las skills de diseño instaladas** (`impeccable`, `taste-referencias`, `emil-design-eng`, `apple-design`, `animate`, `choreograph`): antes de construir, propón 2–3 direcciones de identidad respaldadas por esas skills, deja que el usuario elija y anota la decisión en `aurasleep-marca`.
 
 ## Archivos disponibles
 
