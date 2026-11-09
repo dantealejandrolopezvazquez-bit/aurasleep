@@ -326,15 +326,25 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .canva{position:relative;margin-top:clamp(40px, 5vw, 64px);aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--noche);border:1px solid var(--linea)}
 .canva iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .canva__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-.canva__frente{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center;
-  background:linear-gradient(180deg, rgba(18,21,42,.35), rgba(18,21,42,.75));color:var(--luna)}
+.canva__frente{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;text-align:center;
+  background:linear-gradient(180deg, rgba(18,21,42,.35), rgba(18,21,42,.75));color:var(--luna);transition:opacity .4s var(--curva)}
+.canva__frente.se-va{opacity:0;pointer-events:none}
+.canva iframe{opacity:0;transition:opacity .4s var(--curva)}
+.canva.lista iframe{opacity:1}
+.canva__punto{display:none;width:8px;height:8px;border-radius:50%;background:currentColor}
+.canva.cargando .canva__punto{display:inline-block;animation:latido 1.1s ease-in-out infinite}
+.canva.cargando .btn{cursor:progress}
+@keyframes latido{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.canva.cargando .canva__punto{animation:none}}
+.canva__estado{font-size:13.5px;color:#D6D3DC;max-width:40ch;min-height:1.4em}
+.canva__estado a{color:var(--ambar)}
 .canva__titulo{font:500 13px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--luna)}
 .dia .canva .btn{background:var(--ambar);color:var(--ambar-tinta)}
 .dia .canva .btn:hover{background:#F0B57A}
-.canva__aviso{font-size:13.5px;color:#D6D3DC;max-width:36ch}
-.canva__abrir{margin-top:16px;font-size:15px}
+.canva__aviso{color:var(--texto-2)}
+.canva__abrir{margin-top:16px;font-size:14.5px;max-width:none}
 .canva__abrir a{color:var(--ambar-oscuro);text-underline-offset:3px}
-@media (max-width:560px){.canva:not(.cargada){aspect-ratio:4/5}}
+@media (max-width:560px){.canva__titulo{font-size:11.5px}.canva__estado{font-size:12.5px}}
 
 /* ---------- cierre ---------- */
 .cierre__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px, 6vw, 88px);align-items:start}

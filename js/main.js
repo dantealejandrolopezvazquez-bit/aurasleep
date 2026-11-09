@@ -198,18 +198,74 @@
 
   /* ---------- presentación de Canva: solo se carga al pedirla (sin cookies de terceros por defecto) ---------- */
   const canva = $("#canva");
-  $("#canva-cargar").addEventListener("click", () => {
+  const canvaBtn = $("#canva-cargar");
+  const canvaFrente = $("#canva-frente");
+  const canvaEstado = $("#canva-estado");
+  const canvaTxt = $("#canva-btn-txt");
+  const CANVA_VER = "https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view";
+
+  // Adelanta la conexión (DNS + TLS, sin cookies) cuando la persona se acerca al botón.
+  let precalentado = false;
+  const precalentar = () => {
+    if (precalentado) return;
+    precalentado = true;
+    for (const h of ["https://www.canva.com", "https://static.canva.com"]) {
+      const l = document.createElement("link");
+      l.rel = "preconnect"; l.href = h; l.crossOrigin = "";
+      document.head.appendChild(l);
+    }
+  };
+  ["pointerenter", "focus", "touchstart"].forEach((ev) => canvaBtn.addEventListener(ev, precalentar, { passive: true }));
+
+  // El reproductor de Canva mueve el scroll de la página al iniciar. Mientras carga
+  // (y un momento después) se mantiene la posición, salvo que la persona se desplace.
+  function sostenerScroll(hastaListo) {
+    const y = window.scrollY;
+    let activo = true;
+    const soltar = () => { activo = false; };
+    const opts = { passive: true, once: true };
+    window.addEventListener("wheel", soltar, opts);
+    window.addEventListener("touchmove", soltar, opts);
+    window.addEventListener("keydown", soltar, opts);
+    const guardia = () => { if (activo && Math.abs(window.scrollY - y) > 2) window.scrollTo(0, y); };
+    window.addEventListener("scroll", guardia, { passive: true });
+    const fin = () => { activo = false; window.removeEventListener("scroll", guardia); };
+    hastaListo.then(() => setTimeout(fin, 2500));
+    setTimeout(fin, 15000);
+  }
+
+  canvaBtn.addEventListener("click", () => {
     const src = canva.dataset.src;
-    if (!src) { window.open("https://www.canva.com/d/j9qwZuL53XPk6Mr", "_blank", "noopener"); return; }
+    if (!src) { window.open(CANVA_VER, "_blank", "noopener"); return; }
+    if (canva.classList.contains("cargando")) return;
+    canva.classList.add("cargando");
+    canvaBtn.setAttribute("aria-disabled", "true");
+    canvaTxt.textContent = "Cargando presentación…";
+    canvaEstado.textContent = "";
+
     const f = document.createElement("iframe");
-    f.src = src;
     f.title = "Presentación de venta de AuraSleep en Canva";
     f.allow = "fullscreen";
     f.allowFullscreen = true;
-    f.loading = "lazy";
-    canva.replaceChildren(f);
-    canva.classList.add("cargada");
-    f.focus();
+    const listo = new Promise((r) => f.addEventListener("load", r, { once: true }));
+    sostenerScroll(listo);
+    f.src = src;
+    canva.appendChild(f); // detrás de la portada, que sigue visible mientras carga
+
+    const lento = setTimeout(() => {
+      canvaEstado.innerHTML = 'Está tardando un poco. Si no aparece, <a href="' + CANVA_VER + '" target="_blank" rel="noopener">ábrela en Canva</a>.';
+    }, 8000);
+
+    listo.then(() => {
+      clearTimeout(lento);
+      // Canva termina de dibujar la primera diapositiva poco después del evento load.
+      setTimeout(() => {
+        canva.classList.remove("cargando");
+        canva.classList.add("lista");
+        canvaFrente.classList.add("se-va");
+        setTimeout(() => canvaFrente.remove(), 450);
+      }, 600);
+    });
   });
 
   /* ---------- referencias: abre "Fuentes" al saltar a una ---------- */
