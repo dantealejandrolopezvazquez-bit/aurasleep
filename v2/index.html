@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#2F4252">
 <link rel="preload" href="fonts/hanken-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323392F'/%3E%3Ccircle cx='32' cy='40' r='13' fill='%23E9A23B'/%3E%3Crect x='10' y='40' width='44' height='14' fill='%2323392F'/%3E%3Crect x='12' y='40' width='40' height='3' rx='1.5' fill='%23F4F1E8'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/estilos.css?v=19">
+<link rel="stylesheet" href="css/estilos.css?v=21">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("mov");</script>
 </head>
 <body>
@@ -371,7 +371,23 @@
   </div>
 </section>
 
-<!-- 8. Preguntas frecuentes -->
+<!-- 8. La función: presentación de Canva -->
+<section class="cel cel--manana funcion" id="presentacion" aria-labelledby="presentacion-titulo">
+  <div class="envoltura">
+    <h2 id="presentacion-titulo">La presentación, en 13 diapositivas.</h2>
+    <p class="entrada">Presentación de venta del equipo, del problema al cierre.</p>
+    <div class="pantalla" id="canva" data-src="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view?embed">
+      <div class="pantalla__frente" id="canva-frente">
+        <p class="pantalla__titulo">AuraSleep · Presentación de venta</p>
+        <button class="tab" type="button" id="canva-cargar"><span class="pantalla__punto" aria-hidden="true"></span><span id="canva-btn-txt">Ver la presentación aquí</span></button>
+        <p class="pantalla__estado" id="canva-estado" role="status"></p>
+      </div>
+    </div>
+    <p class="pantalla__abrir"><span>Se carga desde Canva, que puede usar sus propias cookies.</span> <a href="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view" target="_blank" rel="noopener">Abrir en Canva a pantalla completa<span class="sr"> (se abre en otra pestaña)</span></a></p>
+  </div>
+</section>
+
+<!-- 9. Preguntas frecuentes -->
 <section class="cel cel--manana" id="preguntas" aria-labelledby="preguntas-titulo">
   <div class="envoltura envoltura--angosta">
     <h2 id="preguntas-titulo">Preguntas frecuentes.</h2>
@@ -385,22 +401,6 @@
       <details><summary>¿Puedo usarla sin celular?</summary><p>Sí, con el botón táctil oculto bajo el textil.</p></details>
       <details><summary>¿Y si soy sensible a los aromas?</summary><p>Es un riesgo que el equipo identificó; los aromas cerca del rostro requieren pruebas de seguridad y alergias antes de lanzar.</p></details>
     </div>
-  </div>
-</section>
-
-<!-- 9. La función: presentación de Canva -->
-<section class="cel cel--manana funcion" id="presentacion" aria-labelledby="presentacion-titulo">
-  <div class="envoltura">
-    <h2 id="presentacion-titulo">La presentación, en 13 diapositivas.</h2>
-    <p class="entrada">Presentación de venta del equipo, del problema al cierre.</p>
-    <div class="pantalla" id="canva" data-src="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view?embed">
-      <div class="pantalla__frente" id="canva-frente">
-        <p class="pantalla__titulo">AuraSleep · Presentación de venta</p>
-        <button class="tab" type="button" id="canva-cargar"><span class="pantalla__punto" aria-hidden="true"></span><span id="canva-btn-txt">Ver la presentación aquí</span></button>
-        <p class="pantalla__estado" id="canva-estado" role="status"></p>
-      </div>
-    </div>
-    <p class="pantalla__abrir"><span>Se carga desde Canva, que puede usar sus propias cookies.</span> <a href="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view" target="_blank" rel="noopener">Abrir en Canva a pantalla completa<span class="sr"> (se abre en otra pestaña)</span></a></p>
   </div>
 </section>
 

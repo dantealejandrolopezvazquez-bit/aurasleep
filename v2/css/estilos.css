@@ -143,7 +143,7 @@ input,textarea{caret-color:var(--pino)}
 .cel--bruma{background:var(--bruma)}
 .cel--manana{background:var(--manana)}
 /* borde de papel: la celda tiene diente de papel */
-.cel::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;mix-blend-mode:multiply;
+.cel::before,.creditos::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .22 0 0 0 0 .24 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .cel > *{position:relative}
 h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
@@ -638,7 +638,9 @@ main{overflow-x:clip}
 .muestrario{display:grid;grid-template-columns:minmax(0, 1.6fr) minmax(0, 1fr);gap:clamp(24px, 4vw, 56px);align-items:center;margin-top:clamp(36px, 5vw, 56px)}
 .muestrario__escena{position:relative;display:grid}
 .muestrario__escena > *{grid-area:1 / 1}
-.muestrario__aura{align-self:center;justify-self:center;width:80%;aspect-ratio:2/1;border-radius:50%;background:radial-gradient(closest-side,var(--funda, #EDE8DF),transparent);opacity:.9;filter:blur(30px);transition:background-color .6s var(--ease-out)}
+.muestrario__aura{align-self:center;justify-self:center;width:80%;aspect-ratio:2/1;border-radius:50%;background:radial-gradient(closest-side,var(--funda, #EDE8DF),transparent);opacity:.9;filter:blur(30px);transition:--funda .6s var(--ease-out)}
+/* registrada para que el halo cambie de color con transición y no de golpe */
+@property --funda{syntax:"<color>";inherits:true;initial-value:#EDE8DF}
 .muestrario[data-color="blanco"]{--funda:#EDE8DF}
 .muestrario[data-color="gris"]{--funda:#8F8B85}
 .muestrario[data-color="beige"]{--funda:#D8C2A3}
@@ -647,11 +649,12 @@ main{overflow-x:clip}
 .muestrario__foto.sale{translate:-24px 0}
 .muestras{display:grid;gap:10px}
 .muestras button{display:flex;align-items:center;gap:14px;min-height:60px;padding:0 18px;border:1.5px solid var(--raya);border-radius:var(--r-control);background:rgba(255,255,255,.3);color:var(--tinta);font:600 1.1rem/1 var(--f-texto);cursor:pointer;text-align:left;transition:border-color .25s var(--ease-out), background-color .25s var(--ease-out), transform .2s var(--ease-out)}
-.muestras i{width:30px;height:30px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1.5px rgba(28,35,38,.3);transition:transform .35s var(--curva)}
+.muestras i{width:30px;height:30px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1.5px rgba(28,35,38,.3);transition:transform .25s var(--ease-out)}
 .muestras button[aria-pressed="true"]{border-color:var(--tinta);background:rgba(255,255,255,.65)}
 .muestras button[aria-pressed="true"] i{transform:scale(1.15);box-shadow:inset 0 0 0 1.5px rgba(28,35,38,.3), 0 0 0 4px rgba(255,255,255,.9), 0 0 0 5.5px var(--tinta)}
-@media (hover:hover) and (pointer:fine){.muestras button:hover{transform:translateX(4px);border-color:rgba(28,35,38,.5)}}
 .muestras button:active{transform:scale(.98)}
+/* al presionar se conserva el desplazamiento del hover: sin salto hacia atrás */
+@media (hover:hover) and (pointer:fine){.muestras button:hover{transform:translateX(4px);border-color:rgba(28,35,38,.5)}.muestras button:hover:active{transform:translateX(4px) scale(.98)}}
 .muestrario__nombre{margin-top:18px;font:650 clamp(1.6rem, 2.6vw, 2.3rem)/1.1 var(--f-titulo);letter-spacing:-.02em}
 .muestrario__nombre span{display:inline-block}
 .mov .muestrario__nombre span.cambia{animation:nombre-entra .5s var(--curva)}
@@ -668,7 +671,7 @@ main{overflow-x:clip}
 /* ---------- preguntas: el acordeón abre con altura animada (donde el navegador lo permite) ---------- */
 @media (prefers-reduced-motion:no-preference){
   .acordeon details{interpolate-size:allow-keywords}
-  .acordeon details::details-content{block-size:0;overflow-y:clip;transition:block-size .35s var(--ease-out), content-visibility .35s allow-discrete}
+  .acordeon details::details-content{block-size:0;overflow-y:clip;transition:block-size .26s var(--ease-out), content-visibility .26s allow-discrete}
   .acordeon details[open]::details-content{block-size:auto}
 }
 .acordeon summary{transition:color .2s var(--ease-out)}
@@ -678,10 +681,13 @@ main{overflow-x:clip}
 /* ---------- créditos: el sol termina de salir ---------- */
 .creditos{position:relative;overflow:hidden}
 .creditos > .envoltura{position:relative}
-.creditos__sol{position:absolute;left:50%;top:0;width:min(900px, 120vw);aspect-ratio:1;margin-left:calc(min(900px, 120vw) / -2);border-radius:50%;pointer-events:none;
-  background:radial-gradient(closest-side,rgba(233,162,59,.42),rgba(233,162,59,.16) 45%,rgba(233,162,59,0) 72%);transform:translateY(-35%)}
-.mov .creditos__sol{transform:translateY(-5%);opacity:.3;transition:transform 2.4s var(--curva), opacity 2s var(--ease-out)}
-.mov .creditos.visto .creditos__sol{transform:translateY(-35%);opacity:1}
+/* la capa se desvanece arriba para que el halo nunca termine en un corte recto */
+.creditos__sol{position:absolute;inset:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 clamp(140px, 16vw, 240px));mask-image:linear-gradient(180deg,transparent 0,#000 clamp(140px, 16vw, 240px))}
+.creditos__sol::before{content:"";position:absolute;left:50%;top:0;width:min(900px, 120vw);aspect-ratio:1;margin-left:calc(min(900px, 120vw) / -2);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(233,162,59,.42),rgba(233,162,59,.16) 45%,rgba(233,162,59,0) 72%);transform:translateY(-30%)}
+.mov .creditos__sol::before{transform:translateY(-5%);opacity:.3;transition:transform 2.4s var(--curva), opacity 2s var(--ease-out)}
+.mov .creditos.visto .creditos__sol::before{transform:translateY(-30%);opacity:1}
 
 /* enlaces del cierre: una flecha que avanza al pasar */
 .enlaces a{gap:10px;text-decoration-color:rgba(28,35,38,.35);transition:text-decoration-color .2s var(--ease-out)}
@@ -705,7 +711,7 @@ main{overflow-x:clip}
 
 /* la barra marca la sección en la que estás */
 .barra__nav a{position:relative}
-.barra__nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--lampara);transform:scaleX(0);transition:transform .35s var(--ease-out)}
+.barra__nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--lampara);transform:scaleX(0);transition:transform .25s var(--ease-out)}
 .barra__nav a.aqui{opacity:1}
 .barra__nav a.aqui::after{transform:scaleX(1)}
 .barra__nav a:hover{text-decoration:none}
