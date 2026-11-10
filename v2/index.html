@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AuraSleep · Despierta con luz y aroma, no con ruido</title>
 <meta name="description" content="AuraSleep es una almohada que te despierta poco a poco con una luz de amanecer y un aroma suave, 15 minutos antes de tu hora. Proyecto escolar de Emprendimiento.">
-<meta name="theme-color" content="#2F4252">
-<link rel="preload" href="fonts/hanken-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323392F'/%3E%3Ccircle cx='32' cy='40' r='13' fill='%23E9A23B'/%3E%3Crect x='10' y='40' width='44' height='14' fill='%2323392F'/%3E%3Crect x='12' y='40' width='40' height='3' rx='1.5' fill='%23F4F1E8'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/estilos.css?v=21">
+<meta name="theme-color" content="#17191B">
+<link rel="preload" href="fonts/barlowc-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317191B'/%3E%3Cpath d='M6 36h22' stroke='%23E9A23B' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M58 36H36' stroke='%233FB28F' stroke-width='7' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='36' r='10' fill='%23F2F3EF' stroke='%23F2F3EF' stroke-width='0'/%3E%3Ccircle cx='32' cy='36' r='6' fill='%2317191B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/estilos.css?v=25">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("mov");</script>
 </head>
 <body>
@@ -49,22 +50,8 @@
 
 <!-- 1. Primera toma: los planos de una mañana en la Ciudad de México -->
 <section class="toma" id="inicio" aria-labelledby="titulo">
-  <div class="lienzo" aria-hidden="true">
-    <img class="capa" data-vel="0.5" style="top:0" src="img/madrugada-cielo.webp" width="1800" height="1350" alt="" fetchpriority="high">
-    <img class="capa" data-vel="0.26" style="top:67.48%" src="img/madrugada-volcanes.webp" width="1800" height="439" alt="">
-    <img class="capa" data-vel="0.06" style="top:80.07%" src="img/madrugada-arboles.webp" width="1800" height="269" alt="">
-  </div>
-  <div class="toma__estrellas" id="estrellas" aria-hidden="true"></div>
-  <div class="toma__noche" id="noche" aria-hidden="true"></div>
   <div class="toma__cel">
     <h1 id="titulo"><span class="linea"><span>Despierta con</span></span> <span class="linea"><span><em class="luz">luz</em> y <em class="aroma">aroma</em>,</span></span> <span class="linea"><span>no con ruido.</span></span></h1>
-    <div class="toma__producto" id="producto-toma">
-      <div class="toma__flota">
-        <div class="toma__halo" aria-hidden="true"></div>
-        <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." fetchpriority="high">
-        <svg class="toma__aroma" viewBox="0 0 100 140" aria-hidden="true"><g filter="url(#bruma-chica)"><ellipse cx="40" cy="118" rx="14" ry="9"/><ellipse cx="40" cy="118" rx="16" ry="10"/><ellipse cx="40" cy="118" rx="18" ry="11"/></g></svg>
-      </div>
-    </div>
     <p class="toma__sub">AuraSleep es la almohada que te despierta poco a poco, con una luz de amanecer y un aroma suave de menta o cítrico, 15 minutos antes de tu hora.</p>
     <div class="toma__acciones">
       <a class="tab" href="#como-funciona">Ver cómo funciona</a>
@@ -72,8 +59,23 @@
     </div>
     <p class="toma__dato">Proyecto de Emprendimiento · Un objeto cotidiano: la almohada<br>Preventa (demostrativa) desde 149 USD<a class="ref" href="#nota-precios" aria-label="Ver nota sobre precios hipotéticos">*</a></p>
   </div>
-  <a class="toma__bajar" href="#problema"><span>Baja y amanece</span><i aria-hidden="true"></i></a>
-  <p class="toma__pie">El Iztaccíhuatl, «mujer blanca» en náhuatl, y el Popocatépetl antes del amanecer. Foto: Lanjoe9, <a href="https://creativecommons.org/licenses/by/3.0/deed.es" rel="noopener">CC BY 3.0</a>.</p>
+  <div class="toma__producto" id="producto-toma">
+    <div class="toma__flota">
+      <div class="toma__halo" aria-hidden="true"></div>
+      <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." fetchpriority="high">
+      <svg class="toma__aroma" viewBox="0 0 100 140" aria-hidden="true"><g filter="url(#bruma-chica)"><ellipse cx="40" cy="118" rx="14" ry="9"/><ellipse cx="40" cy="118" rx="16" ry="10"/><ellipse cx="40" cy="118" rx="18" ry="11"/></g></svg>
+    </div>
+  </div>
+  <!-- diagrama de línea: la línea de luz y la de aroma llegan a la correspondencia AuraSleep -->
+  <div class="ruta" aria-hidden="true">
+    <i class="ruta__linea ruta__linea--luz"></i>
+    <i class="ruta__linea ruta__linea--aroma"></i>
+    <span class="ruta__est" style="--x:9%"><b>−15</b><small>Luz tenue</small></span>
+    <span class="ruta__est" style="--x:26%"><b>−10</b><small>Primeras ráfagas</small></span>
+    <span class="ruta__est" style="--x:43%"><b>−5</b><small>Brillo de amanecer</small></span>
+    <span class="ruta__est ruta__est--aroma" style="--x:91%"><b>Aroma</b><small>Menta o cítrico</small></span>
+    <span class="ruta__trasbordo"><b>AuraSleep</b><small>Despiertas</small></span>
+  </div>
 </section>
 
 <!-- 2. El problema -->
@@ -157,15 +159,14 @@
 
   <div class="recorrido" id="recorrido" style="--l:0">
   <div class="recorrido__fijo">
-  <p class="recorrido__titulo envoltura" aria-hidden="true">Tu despertar, minuto a minuto</p>
-  <div class="mesa" id="mesa">
+    <div class="mesa" id="mesa">
     <div class="mesa__cuarto" aria-hidden="true">
       <img class="mesa__escena" src="../public/img/hero_noche.webp" width="1800" height="1127" alt="" loading="lazy">
       <img class="mesa__escena mesa__escena--luz" id="mesa-luz" src="../public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
       <div class="mesa__brillo"></div>
       <svg class="mesa__aroma" id="mesa-aroma" viewBox="0 0 200 260"><g filter="url(#bruma)"><ellipse cx="70" cy="210" rx="30" ry="18"/><ellipse cx="110" cy="140" rx="34" ry="20"/><ellipse cx="150" cy="70" rx="36" ry="22"/></g></svg>
       <p class="mesa__hora"><output id="mesa-min" for="mesa-rango">−15:00</output> <span id="mesa-unidad">para tu hora</span></p>
-      <p class="mesa__pista" id="mesa-pista">Sigue bajando: cada paso es un minuto</p>
+      <p class="mesa__pista" id="mesa-pista">Sigue bajando: el tren avanza por la línea</p>
     </div>
 
     <div class="mesa__control">
@@ -442,7 +443,7 @@
 </main>
 
 <footer class="creditos cel--dia">
-  <div class="creditos__sol" aria-hidden="true"></div>
+  <div class="creditos__terminal" aria-hidden="true"><i></i><span>Terminal</span></div>
   <div class="envoltura">
     <p class="creditos__titulo">AuraSleep</p>
     <p class="creditos__eslogan">Despierta con luz y aroma, no con ruido.</p>
@@ -468,8 +469,6 @@
         <li>Research and Markets. Smart Pillows – Global Strategic Business Report. <a href="https://www.researchandmarkets.com/reports/6009518/smart-pillows-global-strategic-business-report" rel="noopener">researchandmarkets.com</a></li>
         <li>Intel Market Research. Smart Sleep Tracking Pillow Market. <a href="https://www.intelmarketresearch.com/smart-sleep-tracking-pillow-market-59948" rel="noopener">intelmarketresearch.com</a></li>
         <li>Market Intelo. Smart Pillow Market Research Report 2034. <a href="https://marketintelo.com/report/smart-pillow-market" rel="noopener">marketintelo.com</a></li>
-        <li>INAH. “La mujer blanca: el Iztaccíhuatl” (nombre de los volcanes del paisaje). <a href="https://inah.gob.mx/foto-del-dia/la-mujer-blanca-el-iztaccihuatl" rel="noopener">inah.gob.mx</a></li>
-        <li>Lanjoe9 (2007). “Popocatépetl e Iztaccíhuatl al amanecer”, fotografía, CC BY 3.0. <a href="https://commons.wikimedia.org/wiki/File:100_1294_-_Popocat%C3%A9petl_e_Iztacc%C3%ADhuatl_al_amanecer.jpg" rel="noopener">Wikimedia Commons</a></li>
       </ol>
     </details>
 <details class="fuentes fuentes--ia" open>
@@ -480,11 +479,11 @@
         <li><strong>Criterio del equipo.</strong> El equipo definió qué debía decir cada material, eligió la dirección visual, pidió correcciones de imágenes, tipografía y color, y revisó que las cifras y las fuentes coincidieran con la investigación. Las cifras de costos y precios siguen siendo hipotéticas.</li>
       </ol>
     </details>
-    <p class="letra-chica">Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta. AuraSleep es un concepto: no se vende ni se cobra nada en este sitio. Fotografía de fondo: Lanjoe9 (CC BY 3.0, Wikimedia Commons), recortada en capas para este sitio.</p>
+    <p class="letra-chica">Proyecto escolar. Precios y costos hipotéticos, sujetos a cotizaciones formales. No es una oferta de venta. AuraSleep es un concepto: no se vende ni se cobra nada en este sitio.</p>
   </div>
 </footer>
 
-<script src="js/main.js?v=9" defer></script>
-<script src="js/movimiento.js?v=1" defer></script>
+<script src="js/main.js?v=10" defer></script>
+<script src="js/movimiento.js?v=2" defer></script>
 </body>
 </html>

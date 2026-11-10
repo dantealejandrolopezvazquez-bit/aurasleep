@@ -150,7 +150,8 @@
     const p = Math.min(Math.max((vh * 0.92 - r.top) / (vh * 0.5), 0), 1);
     const e = 1 - Math.pow(1 - p, 3);
     const D = uLuz.offsetWidth, W = union.offsetWidth;
-    const fin = D * 0.24, ini = Math.max(fin, Math.min(D * 1.0, (W - D) / 2));
+    // las placas viajan por su línea hasta quedar a los lados de la correspondencia
+    const fin = D * 0.95, ini = Math.max(fin, (W - D) / 2);
     const off = ini + (fin - ini) * e;
     uLuz.style.transform = "translateX(" + (-off).toFixed(1) + "px)";
     uAroma.style.transform = "translateX(" + off.toFixed(1) + "px)";

@@ -16,37 +16,14 @@
     return Math.pow(s * s * (3 - 2 * s), 1.4);
   };
 
-  /* ---------- cámara multiplano: cada plano se queda atrás a su ritmo ---------- */
-  const toma = $(".toma");
-  const capas = $$("[data-vel]", toma).map((el) => ({ el, vel: parseFloat(el.dataset.vel) || 0 }));
+  /* ---------- barra: se marca al despegarse de la portada ---------- */
   const barra = $("#barra");
-  const noche = $("#noche");
-  const estrellas = $("#estrellas");
   let pendiente = false;
   function alDesplazar() {
     pendiente = false;
-    const y = window.scrollY;
-    const alto = toma.offsetHeight;
-    if (!quieto.matches && y < alto * 1.1) {
-      for (const c of capas) c.el.style.transform = "translate3d(0," + (y * c.vel).toFixed(1) + "px,0)";
-      // amanece mientras la cámara baja: el velo de la noche se disipa
-      const alba = Math.min(y / (alto * 0.9), 1);
-      noche.style.opacity = (1 - alba * 0.8).toFixed(3);
-      if (estrellas) estrellas.style.opacity = (1 - alba * 1.4).toFixed(3);
-      toma.style.setProperty("--alba", alba.toFixed(3));
-    }
-    barra.classList.toggle("sobre-celda", y > alto - 80);
-    barra.classList.toggle("desplazada", y > 24);
-    // la barra toma el color de la sección que tiene debajo
-    const bajo = document.elementFromPoint(window.innerWidth / 2, 76);
-    barra.classList.toggle("sobre-noche", !!(bajo && bajo.closest(".cel--noche, .escenario, .toma")));
+    barra.classList.toggle("desplazada", window.scrollY > 24);
   }
   window.addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(alDesplazar); } }, { passive: true });
-  // el lienzo cubre la toma completa, también cuando la toma es más alta que la pantalla (celular)
-  const medirToma = () => toma.style.setProperty("--alto-toma", toma.offsetHeight + "px");
-  medirToma();
-  window.addEventListener("resize", () => { medirToma(); alDesplazar(); });
-  quieto.addEventListener?.("change", () => { if (quieto.matches) { capas.forEach((c) => (c.el.style.transform = "")); noche.style.opacity = ""; } alDesplazar(); });
   alDesplazar();
 
   /* ---------- la secuencia: el cuarto amanece minuto a minuto ---------- */
