@@ -1059,3 +1059,24 @@ h3{font-weight:700;letter-spacing:0}
 @media (hover:hover) and (pointer:fine){.acordeon summary:hover{color:var(--tinta);text-decoration:underline;text-underline-offset:.24em}}
 .menu ul{border-radius:var(--r-cel)}
 @media (max-width:640px){.duelo__marco{border-radius:var(--r-cel)}}
+
+/* la ruta lateral es un solo trazo continuo: mismo ámbar opaco en todas las secciones */
+@media (min-width:1000px){
+  main > section.cel::after,main > section.escenario::after,.mov main > section.cel::after,.mov main > section.escenario::after{opacity:1}
+}
+/* portada: espacio suficiente bajo la línea para las etiquetas de las estaciones */
+.toma{--y:clamp(150px, 19vh, 190px)}
+@media (max-width:900px){.toma{--y:60px}}
+/* la portada cabe en una pantalla también en laptops bajas */
+@media (min-width:901px){
+  .toma{--y:clamp(150px, 18vh, 190px);padding-top:84px}
+  .toma__cel{padding:clamp(8px, 2vh, 32px) 0 calc(var(--y) + 30px)}
+  .toma h1{font-size:min(5.6vw, 9.2vh, 5.6rem)}
+  .toma__sub{margin-top:clamp(14px, 2.4vh, 26px)}
+  .toma__acciones{margin-top:clamp(18px, 3vh, 30px)}
+  .toma__dato{margin-top:clamp(12px, 2vh, 20px)}
+}
+/* la línea lateral está siempre completa; solo las estaciones se encienden al llegar */
+@media (min-width:1000px){
+  .mov main > section.cel::after,.mov main > section.escenario::after{transform:none;transition:none}
+}
