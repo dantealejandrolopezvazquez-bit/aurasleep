@@ -9,13 +9,18 @@
 <link rel="preload" href="fonts/barlowc-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317191B'/%3E%3Cpath d='M6 36h22' stroke='%23E9A23B' stroke-width='7' stroke-linecap='round'/%3E%3Cpath d='M58 36H36' stroke='%233FB28F' stroke-width='7' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='36' r='10' fill='%23F2F3EF' stroke='%23F2F3EF' stroke-width='0'/%3E%3Ccircle cx='32' cy='36' r='6' fill='%2317191B'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/estilos.css?v=25">
+<link rel="stylesheet" href="css/estilos.css?v=28">
 <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("mov");</script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0"><defs><filter id="bruma" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="18"/></filter><filter id="bruma-chica" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs></svg>
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0"><defs><filter id="bruma" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="18"/></filter><filter id="bruma-chica" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+<symbol id="p-luz" viewBox="0 0 24 24"><path d="M3 18h18M7 18a5 5 0 0 1 10 0M12 5.5V8M5.4 9.4l1.8 1.8M18.6 9.4l-1.8 1.8"/></symbol>
+<symbol id="p-aroma" viewBox="0 0 24 24"><path d="M7 20c-2-2.4 2-4.4 0-6.8S9 8.8 7 6.4M12 20c-2-2.4 2-4.4 0-6.8s2-4.4 0-6.8S14 2 12 2M17 20c-2-2.4 2-4.4 0-6.8s2-4.4 0-6.8"/></symbol>
+<symbol id="p-alarma" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="6.5"/><path d="M12 10.5v3.2l2.2 1.6M4.5 6.5l2.5-2.5M19.5 6.5 17 4M7.5 20.5l-1.5 1.5M16.5 20.5l1.5 1.5"/></symbol>
+<symbol id="p-trasbordo" viewBox="0 0 24 24"><path d="M1.5 12h6M16.5 12h6"/><circle cx="12" cy="12" r="4.5"/></symbol>
+</defs></svg>
 
 <header class="barra" id="barra">
   <div class="barra__in">
@@ -70,6 +75,7 @@
   <div class="ruta" aria-hidden="true">
     <i class="ruta__linea ruta__linea--luz"></i>
     <i class="ruta__linea ruta__linea--aroma"></i>
+    <i class="ruta__codo"></i>
     <span class="ruta__est" style="--x:9%"><b>−15</b><small>Luz tenue</small></span>
     <span class="ruta__est" style="--x:26%"><b>−10</b><small>Primeras ráfagas</small></span>
     <span class="ruta__est" style="--x:43%"><b>−5</b><small>Brillo de amanecer</small></span>
@@ -112,13 +118,13 @@
             <span>6:00</span>
           </div>
           <svg class="duelo__curva" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 70 H330 L338 70 L342 8 L350 70 L356 18 L362 70 L368 30 L374 70 H400"/></svg>
-          <p class="duelo__rotulo">Con alarma</p>
+          <p class="duelo__rotulo"><svg class="picto picto--alarma" aria-hidden="true" focusable="false"><use href="#p-alarma"/></svg>Con alarma</p>
         </div>
         <div class="duelo__lado duelo__lado--aura" id="duelo-aura" aria-hidden="true">
           <img src="../public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
           <svg class="duelo__aroma" viewBox="0 0 100 140"><g filter="url(#bruma-chica)"><ellipse cx="40" cy="118" rx="14" ry="9"/><ellipse cx="40" cy="118" rx="16" ry="10"/><ellipse cx="40" cy="118" rx="18" ry="11"/></g></svg>
           <svg class="duelo__curva" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 70 C120 70 200 66 260 50 S360 14 400 12"/></svg>
-          <p class="duelo__rotulo">Con AuraSleep</p>
+          <p class="duelo__rotulo"><svg class="picto picto--trasbordo" aria-hidden="true" focusable="false"><use href="#p-trasbordo"/></svg>Con AuraSleep</p>
         </div>
         <div class="duelo__divisor" id="duelo-divisor" aria-hidden="true"><span></span></div>
         <label class="sr" for="duelo-rango">Comparar el despertar con alarma y con AuraSleep</label>
@@ -141,9 +147,8 @@
     <div class="evidencia">
       <h3>Hay una alternativa mejor</h3>
       <ul class="evidencia__datos">
-        <li class="dato dato--luz"><p class="dato__cifra"><span data-cuenta="92">92</span><small>&nbsp;%</small></p><p><strong>Luz que simula el amanecer.</strong> Philips reporta que el 92&nbsp;% de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas). <a class="ref" href="#fuente-6">[6]</a><a class="ref" href="#fuente-7">[7]</a></p></li>
-        <li class="dato dato--aroma"><p class="dato__cifra"><span data-cuenta="99">99</span><small>&nbsp;%</small></p><p><strong>Aroma al despertar.</strong> En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99&nbsp;% de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos. <a class="ref" href="#fuente-8">[8]</a><a class="ref" href="#fuente-9">[9]</a></p></li>
-        <li class="dato dato--aroma"><p class="dato__cifra dato__cifra--palabra">Menta</p><p><strong>Menta y estrés.</strong> Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta. <a class="ref" href="#fuente-10">[10]</a></p></li>
+        <li class="lectura lectura--luz"><p class="lectura__cifra"><span data-cuenta="92">92</span><small>&nbsp;%</small></p><div class="lectura__txt"><p class="lectura__linea"><svg class="picto picto--luz" aria-hidden="true" focusable="false"><use href="#p-luz"/></svg>Línea de luz</p><p><strong>Luz que simula el amanecer.</strong> Philips reporta que el 92&nbsp;% de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas). <a class="ref" href="#fuente-6">[6]</a><a class="ref" href="#fuente-7">[7]</a></p></div></li>
+        <li class="lectura lectura--aroma"><p class="lectura__cifra"><span data-cuenta="99">99</span><small>&nbsp;%</small></p><div class="lectura__txt"><p class="lectura__linea"><svg class="picto picto--aroma" aria-hidden="true" focusable="false"><use href="#p-aroma"/></svg>Línea de aroma</p><p><strong>Aroma al despertar.</strong> En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99&nbsp;% de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos. <a class="ref" href="#fuente-8">[8]</a><a class="ref" href="#fuente-9">[9]</a></p><p class="lectura__extra"><strong>Menta y estrés.</strong> Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta. <a class="ref" href="#fuente-10">[10]</a></p></div></li>
       </ul>
       <p class="letra-chica">La hipótesis de que luz + aroma juntos funcionan mejor que cada uno por separado debe comprobarse con pruebas en personas.</p>
     </div>
@@ -189,8 +194,8 @@
     <p class="letra-chica">La calibración exacta (cuánta luz, cuánto aroma y cada cuánto) se ajusta según el perfil del usuario.</p>
 
     <dl class="capas">
-      <div><dt><span class="tinta tinta--luz" aria-hidden="true"></span>Luz</dt><dd>En el borde superior de la funda hay una cinta textil con fibras ópticas de 0.25&nbsp;mm, alimentada por un pequeño LED de tono cálido. Unos 15 minutos antes de la hora programada, la luz sube despacio hasta un brillo tenue que atraviesa los párpados. No es una lámpara que te apunta a la cara.</dd></div>
-      <div><dt><span class="tinta tinta--aroma" aria-hidden="true"></span>Aroma</dt><dd>En un lateral, a la altura de la nariz, un difusor del tamaño de una moneda con una microbomba silenciosa libera ráfagas cortas de menta o cítrico, dirigidas a la nariz y sin llenar la habitación.</dd></div>
+      <div><dt><svg class="picto picto--luz" aria-hidden="true" focusable="false"><use href="#p-luz"/></svg>Luz</dt><dd>En el borde superior de la funda hay una cinta textil con fibras ópticas de 0.25&nbsp;mm, alimentada por un pequeño LED de tono cálido. Unos 15 minutos antes de la hora programada, la luz sube despacio hasta un brillo tenue que atraviesa los párpados. No es una lámpara que te apunta a la cara.</dd></div>
+      <div><dt><svg class="picto picto--aroma" aria-hidden="true" focusable="false"><use href="#p-aroma"/></svg>Aroma</dt><dd>En un lateral, a la altura de la nariz, un difusor del tamaño de una moneda con una microbomba silenciosa libera ráfagas cortas de menta o cítrico, dirigidas a la nariz y sin llenar la habitación.</dd></div>
       <div><dt>Control</dt><dd>Se programa la hora en una app por Bluetooth de bajo consumo. También hay un botón táctil capacitivo oculto bajo el textil.</dd></div>
       <div><dt>Ahorro de energía</dt><dd>Un sensor de presión en la espuma solo activa el sistema si hay una cabeza apoyada.</dd></div>
       <div><dt>Energía</dt><dd>Batería de 4&nbsp;V y 1200–1500&nbsp;mAh para varios despertares por carga, recargada por inducción: sin cables ni conectores expuestos.</dd></div>
@@ -278,8 +283,8 @@
     <h2 id="ventaja-titulo">Las piezas ya existen. La unión, no.</h2>
     <p class="entrada">Lo innovador es la <strong>unión híbrida</strong>: un sistema que despierta con luz y aroma en una secuencia calibrada, dentro de la propia almohada. La innovación está en la experiencia de despertar.</p>
     <div class="union" id="union" aria-hidden="true">
-      <div class="union__c union__c--luz"><span>Luz</span><small>Lámparas de amanecer</small></div>
-      <div class="union__c union__c--aroma"><span>Aroma</span><small>Despertadores de aroma</small></div>
+      <div class="union__c union__c--luz"><svg class="picto picto--luz" aria-hidden="true" focusable="false"><use href="#p-luz"/></svg><span>Luz</span><small>Lámparas de amanecer</small></div>
+      <div class="union__c union__c--aroma"><svg class="picto picto--aroma" aria-hidden="true" focusable="false"><use href="#p-aroma"/></svg><span>Aroma</span><small>Despertadores de aroma</small></div>
       <p class="union__centro">AuraSleep<small>las dos, en tu almohada</small></p>
     </div>
     <table class="comparativa">
@@ -362,7 +367,7 @@
         <a class="tab" href="#lista">Unirme a la lista de espera</a>
       </div>
       <div class="precio precio--cartucho">
-        <h3><span class="tinta tinta--aroma" aria-hidden="true"></span>Cartuchos de aroma</h3>
+        <h3><svg class="picto picto--aroma" aria-hidden="true" focusable="false"><use href="#p-aroma"/></svg>Cartuchos de aroma</h3>
         <p class="precio__cifra"><span data-cuenta="9-14">9–14</span> <span>USD</span></p>
         <p class="precio__det">Uno cada tres meses, de menta o cítrico. Equivale a <strong class="precio__anual"><span data-cuenta="36-56">36–56</span> USD al año</strong>.</p>
         <p class="precio__plan"><strong>Suscripción de cartuchos</strong> (demostrativa): 4 al año, se envían a tu casa.</p>
@@ -443,7 +448,6 @@
 </main>
 
 <footer class="creditos cel--dia">
-  <div class="creditos__terminal" aria-hidden="true"><i></i><span>Terminal</span></div>
   <div class="envoltura">
     <p class="creditos__titulo">AuraSleep</p>
     <p class="creditos__eslogan">Despierta con luz y aroma, no con ruido.</p>
