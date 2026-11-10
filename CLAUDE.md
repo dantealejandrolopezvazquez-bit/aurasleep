@@ -88,3 +88,13 @@ Publicación: GitHub Pages desde la rama `main` (https://dantealejandrolopezvazq
 ## Sitio v2 ("Amanecer multiplano")
 
 Rediseño en `v2/` (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/), en paralelo al sitio original. Su sistema visual está en `DESIGN.md` y la verdad del producto en `PRODUCT.md`. El fondo de la portada es una fotografía de Wikimedia Commons (Lanjoe9, CC BY 3.0), acreditada; la almohada es la protagonista de la portada y la línea de tiempo usa los renders hero_noche/hero_amanecer. Se descartaron las pinturas de Velasco y la foto de azoteas porque desentonaban. El visor 3D se incrusta con `#embed&marco=multiplano` (solo cambia escenario y etiquetas).
+
+## Lista de puntos de la entrega (2026-11-09)
+
+Se revisó la rúbrica del profesor ("Lista de puntos"). Lo que quedó:
+
+- **Visor 3D:** además de perspectiva, superior, lateral (derecha), interna y uso, tiene `frontal`, `posterior` e `izquierda`, con medidas y materiales. Sus renders fijos son `public/img/vista_frontal.jpg`, `vista_posterior.jpg` y `vista_izquierda.jpg`.
+- **Uso de IA:** los dos sitios lo declaran en el pie (`details.fuentes--ia`) y el PDF en su capítulo 6. Si cambia qué herramientas se usaron, hay que cambiarlo en los tres lugares.
+- **PDF de investigación:** se genera desde `docs/investigacion-fuente.html` (imprimir a PDF tamaño carta con fondos). No lleva la liga de edición de Canva. Las fuentes [17] Wikipedia y [18] Sleep Foundation respaldan el análisis del artículo original.
+- **Guion de la exposición oral:** `docs/guion-exposicion.md`.
+- `public/img/poster.jpg` y `volante.jpg` son exportaciones de los diseños de Canva del equipo.
