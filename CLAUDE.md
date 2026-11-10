@@ -102,3 +102,7 @@ Se revisó la rúbrica del profesor ("Lista de puntos"). Lo que quedó:
 ## Sitio principal (decisión del usuario, 2026-11-09)
 
 El sitio principal es **v2** (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/). El sitio original de la raíz ya no se usa: no hace falta mantenerlo ni replicarle cambios. La presentación de Canva tiene 13 diapositivas (las 8 originales más producto original, análisis, vistas del modelo, publicidad e inteligencia artificial).
+
+## Rediseño dinámico de v2 (2026-11-10)
+
+Trabajo local en la rama `v2-dinamico` (sin publicar; el usuario decide cuándo pasarlo a `main`). Agrega movimiento a v2: portada animada, apariciones al hacer scroll, comparador alarma vs AuraSleep, secuencia de 15 minutos que avanza con el scroll, cifras que cuentan, unión luz + aroma, selector vivo de color y cierre con sol. El código de movimiento está en `v2/js/movimiento.js` (cargado con `?v=`, súbelo al cambiarlo) y sus reglas en la sección "Motion" de `DESIGN.md`.

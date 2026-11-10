@@ -235,7 +235,7 @@ La profundidad viene de los planos, no de sombras de interfaz: capas de pintura 
 
 ## Shapes
 
-Esquinas casi rectas de papel cortado: 3px en pestañas, selectores y menú; 2px en campos de texto; cajas, tablas, marcos y celdas sin radio. Lo redondo queda para lo que es luz o pigmento: puntos de luz y aroma, muestras de funda, pulgar del deslizador (50 %) y su riel (4px). Los filetes hacen la estructura: 1.5px de `tinta` en cajas y controles, 2px arriba de cada sacudida o público (4px en el principal), 1px de `--raya` entre filas. Los chevrones de menú, acordeón y fuentes son bordes CSS girados, no glifos. El marco del visor lleva tres pernos de registro arriba, como la barra de una cámara de animación.
+Esquinas suaves desde el rediseño dinámico (2026-11-10): 10px (`--r-control`) en pestañas, selectores, pasos, campos y menú; 18px (`--r-cel`) en el cuarto de la secuencia, el comparador, el marco del visor, la pantalla, las tarjetas de evidencia, la caja y el formulario. Las celdas de sección y las tablas siguen sin radio. Los rótulos sobre imagen ("Con alarma", "Con AuraSleep", la pista de la secuencia) son píldoras opacas. Lo redondo queda para lo que es luz o pigmento: puntos de luz y aroma, muestras de funda, pulgar del deslizador (50 %) y su riel (4px). Los filetes hacen la estructura: 1.5px de `tinta` en cajas y controles, 2px arriba de cada sacudida o público (4px en el principal), 1px de `--raya` entre filas. Los chevrones de menú, acordeón y fuentes son bordes CSS girados, no glifos. El marco del visor lleva tres pernos de registro arriba, como la barra de una cámara de animación.
 
 ## Components
 
@@ -275,6 +275,26 @@ Tablas de filetes sin fondo; encabezados en voz de etiqueta. La fila en curso de
 ### Marco del visor 3D y pantalla
 El visor va en un marco de umbra de 12px (8px en celular) con pernos de registro y cartel previo con la pestaña "Cargar el modelo 3D"; la presentación de Canva va en una pantalla de 10px que muestra un frente de cielo previo al alba hasta que el usuario la carga. Dentro del visor, `body.marco-multiplano` viste las etiquetas como celdas de papel (`rgba(228,233,230,.96)`, `tinta`, 3px, Hanken Grotesk 600 a 12.5px) y evita que se encimen; la geometría no cambia.
 
+## Motion (rediseño dinámico, 2026-11-10)
+
+El usuario sintió la página "plana y seca" y eligió una mezcla: la base noche → amanecer con scroll más piezas interactivas. El movimiento vive en `v2/js/movimiento.js` y en la "capa de movimiento" al final de `v2/css/estilos.css`. Solo se activa con `html.mov`, que un script en el `<head>` pone cuando no hay `prefers-reduced-motion: reduce`; sin JS o con movimiento reducido todo se ve completo y quieto.
+
+- **Curvas:** `--curva` (.16,1,.3,1) para entradas largas; `--ease-out` (.23,1,.32,1) para interfaz; `--ease-io` (.77,0,.175,1) para lo que se mueve en pantalla (trazos, destellos). Interfaz 200–350 ms; entradas de contenido 0.8–1 s.
+- **Portada:** el cielo se acerca (2.6 s), el título sube línea por línea (escalonado 120 ms), la almohada entra y luego flota (7 s), el halo de la cinta respira y salen ráfagas de menta del difusor. Estrellas que titilan y se apagan al bajar. En computadora la almohada sigue al cursor con inercia.
+- **Apariciones:** subida de 28px + opacidad, una sola vez (IntersectionObserver), escalonado de 80 ms entre hermanos. Los títulos `h2` suben palabra por palabra desde su ranura (`aria-label` con el texto completo).
+- **Barra:** línea de avance del amanecer (azul → ámbar) bajo la barra y subrayado ámbar en la sección visible.
+- **Comparador alarma / AuraSleep:** imagen dividida con `input range` invisible encima (teclado y lectores de pantalla). Al aparecer por primera vez la línea se mueve sola una vez para enseñar el gesto.
+- **Secuencia de 15 minutos (signature):** en pantallas de 901px o más de ancho y 680px de alto, la mesa queda fija (`position: sticky`) y el scroll mueve los minutos; los pasos, el deslizador y "Reproducir" mueven el scroll. En celular los pasos animan los minutos sin fijar nada. El fondo del cuarto se calienta con la luz (`--l`).
+- **Cifras que cuentan:** solo cifras de la investigación (92 %, 99 %, medidas, batería, precios), desaceleran al llegar y reservan su ancho final.
+- **La unión:** los círculos de luz y aroma se juntan con el scroll hasta formar AuraSleep.
+- **Selector de funda:** rota solo cada 3.2 s mientras está a la vista y nadie lo toca; se detiene con el cursor encima, al enfocar o al elegir.
+- **Cierre:** el sol sube detrás del nombre en los créditos.
+
+### Named Rules
+**The Motion Explains Rule.** Cada movimiento demuestra el producto (la luz sube, el aroma sale, la alarma sacude) o confirma una acción. Nada se anima solo por decorar contenido que se lee.
+
+**The Still Frame Rule.** Con movimiento reducido no hay sección fija, ni flotación, ni rotación automática, ni conteo: todo aparece en su estado final.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -291,6 +311,6 @@ El visor va en un marco de umbra de 12px (8px en celular) con pernos de registro
 - **Don't** usar `backdrop-filter` ni paneles de vidrio en barras, pestañas o tarjetas.
 - **Don't** poner sombra a celdas, cajas, tablas o texto de contenido; solo a objetos físicos.
 - **Don't** agregar una tercera familia tipográfica ni usar Hanken Grotesk en texto corrido.
-- **Don't** redondear tarjetas o pestañas más allá de 3px ni usar píldoras para botones.
+- **Don't** redondear más allá de 18px ni usar píldoras para botones (las píldoras quedan para rótulos sobre imagen).
 - **Don't** usar los colores de funda como acentos de interfaz.
 - **Don't** usar el ámbar como fondo de superficies grandes o como color de texto sobre papel claro.
