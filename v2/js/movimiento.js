@@ -82,7 +82,7 @@
     });
   }
   function observarApariciones() {
-    const blancos = $$("[data-ap], main h2, .creditos__titulo");
+    const blancos = $$("[data-ap], main h2, .creditos__titulo, .creditos");
     if (!("IntersectionObserver" in window)) { blancos.forEach((el) => el.classList.add("visto")); return; }
     const io = new IntersectionObserver((entradas) => {
       entradas.forEach((e) => {
@@ -91,12 +91,19 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     blancos.forEach((el) => io.observe(el));
   }
-  if (mov()) { prepararApariciones(); observarApariciones(); }
+  if (mov()) {
+    try { prepararApariciones(); observarApariciones(); }
+    catch (err) {
+      // si algo falla, nada se queda escondido
+      document.querySelectorAll("[data-ap], main h2").forEach((el) => el.classList.add("visto"));
+      console.error(err);
+    }
+  }
 
   /* ---------- cifras que cuentan (solo cifras reales de la investigación) ---------- */
   // <span data-cuenta="164">164</span>, o data-cuenta="36-56" para rangos; data-dec para decimales
   const cifras = $$("[data-cuenta]");
-  const formato = (v, dec) => v.toLocaleString("es-MX", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  const formato = (v, dec) => v.toLocaleString("es-MX", { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: false });
   function contar(el) {
     const partes = el.dataset.cuenta.split("-").map(Number);
     const dec = parseInt(el.dataset.dec || "0", 10);
@@ -132,9 +139,27 @@
   const fino = window.matchMedia("(hover: hover) and (pointer: fine)");
   let mx = 0, my = 0, ax = 0, ay = 0, pend = false;
 
+  const union = $("#union");
+  const uLuz = union && $(".union__c--luz", union);
+  const uAroma = union && $(".union__c--aroma", union);
+  const uCentro = union && $(".union__centro", union);
+  function pintarUnion() {
+    const r = union.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (r.bottom < -200 || r.top > vh + 200) return;
+    const p = Math.min(Math.max((vh * 0.92 - r.top) / (vh * 0.5), 0), 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const D = uLuz.offsetWidth, W = union.offsetWidth;
+    const fin = D * 0.24, ini = Math.max(fin, Math.min(D * 1.0, (W - D) / 2));
+    const off = ini + (fin - ini) * e;
+    uLuz.style.transform = "translateX(" + (-off).toFixed(1) + "px)";
+    uAroma.style.transform = "translateX(" + off.toFixed(1) + "px)";
+    uCentro.style.setProperty("--u", Math.min(Math.max((p - 0.6) / 0.3, 0), 1).toFixed(3));
+  }
   function cuadro() {
     pend = false;
     const y = window.scrollY;
+    if (union && mov()) pintarUnion();
     const max = document.documentElement.scrollHeight - window.innerHeight;
     if (avance) avance.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0).toFixed(4) + ")";
     if (prod && mov()) {
@@ -158,6 +183,10 @@
     });
     toma.addEventListener("pointerleave", () => { mx = 0; my = 0; pedir(); });
   }
-  quieto.addEventListener?.("change", () => { if (quieto.matches && prod) prod.style.transform = ""; });
+  quieto.addEventListener?.("change", () => {
+    if (!quieto.matches) return;
+    if (prod) prod.style.transform = "";
+    if (union) { uLuz.style.transform = ""; uAroma.style.transform = ""; uCentro.style.removeProperty("--u"); }
+  });
   pedir();
 })();

@@ -138,10 +138,10 @@
 
     <div class="evidencia">
       <h3>Hay una alternativa mejor</h3>
-      <ul>
-        <li><strong>Luz que simula el amanecer.</strong> Philips reporta que el 92&nbsp;% de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas). <a class="ref" href="#fuente-6">[6]</a><a class="ref" href="#fuente-7">[7]</a></li>
-        <li><strong>Aroma al despertar.</strong> En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99&nbsp;% de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos. <a class="ref" href="#fuente-8">[8]</a><a class="ref" href="#fuente-9">[9]</a></li>
-        <li><strong>Menta y estrés.</strong> Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta. <a class="ref" href="#fuente-10">[10]</a></li>
+      <ul class="evidencia__datos">
+        <li class="dato dato--luz"><p class="dato__cifra"><span data-cuenta="92">92</span><small>&nbsp;%</small></p><p><strong>Luz que simula el amanecer.</strong> Philips reporta que el 92&nbsp;% de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas). <a class="ref" href="#fuente-6">[6]</a><a class="ref" href="#fuente-7">[7]</a></p></li>
+        <li class="dato dato--aroma"><p class="dato__cifra"><span data-cuenta="99">99</span><small>&nbsp;%</small></p><p><strong>Aroma al despertar.</strong> En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99&nbsp;% de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos. <a class="ref" href="#fuente-8">[8]</a><a class="ref" href="#fuente-9">[9]</a></p></li>
+        <li class="dato dato--aroma"><p class="dato__cifra dato__cifra--palabra">Menta</p><p><strong>Menta y estrés.</strong> Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta. <a class="ref" href="#fuente-10">[10]</a></p></li>
       </ul>
       <p class="letra-chica">La hipótesis de que luz + aroma juntos funcionan mejor que cada uno por separado debe comprobarse con pruebas en personas.</p>
     </div>
@@ -237,6 +237,13 @@
       </div>
     </div>
 
+    <ul class="cifras" aria-label="AuraSleep en cifras">
+      <li><p class="cifras__n"><span data-cuenta="48">48</span> × <span data-cuenta="68">68</span><small> cm</small></p><p class="cifras__et">de almohada, con perfil ergonómico</p></li>
+      <li><p class="cifras__n"><span data-cuenta="13">13</span><small> cm</small></p><p class="cifras__et">de alto al centro y 10&nbsp;cm en los bordes</p></li>
+      <li><p class="cifras__n"><span data-cuenta="0.25" data-dec="2">0.25</span><small> mm</small></p><p class="cifras__et">cada fibra óptica de la cinta de luz</p></li>
+      <li><p class="cifras__n"><span data-cuenta="1200-1500" data-sep="–">1200–1500</span><small> mAh</small></p><p class="cifras__et">de batería, con carga por inducción</p></li>
+    </ul>
+
     <div class="ficha">
       <table class="ficha__tabla">
         <caption>Ficha técnica</caption>
@@ -269,6 +276,11 @@
   <div class="envoltura">
     <h2 id="ventaja-titulo">Las piezas ya existen. La unión, no.</h2>
     <p class="entrada">Lo innovador es la <strong>unión híbrida</strong>: un sistema que despierta con luz y aroma en una secuencia calibrada, dentro de la propia almohada. La innovación está en la experiencia de despertar.</p>
+    <div class="union" id="union" aria-hidden="true">
+      <div class="union__c union__c--luz"><span>Luz</span><small>Lámparas de amanecer</small></div>
+      <div class="union__c union__c--aroma"><span>Aroma</span><small>Despertadores de aroma</small></div>
+      <p class="union__centro">AuraSleep<small>las dos, en tu almohada</small></p>
+    </div>
     <table class="comparativa">
       <caption class="sr">Comparación de AuraSleep con soluciones actuales</caption>
       <thead><tr><th scope="col">Solución actual</th><th scope="col">Qué hace</th><th scope="col">Qué le falta</th></tr></thead>
@@ -317,11 +329,22 @@
   <div class="envoltura">
     <h2 id="colores-titulo">Tres colores de funda.</h2>
     <p class="entrada">Funda de algodón peinado o mezcla con bambú, lavable, en Blanco roto, Gris piedra y Beige cálido.</p>
-    <ul class="colores__lista">
-      <li><img src="../public/img/cut_blanco.webp" alt="Almohada AuraSleep en Blanco roto" loading="lazy"><p><i style="background:#EDE8DF"></i>Blanco roto</p></li>
-      <li><img src="../public/img/cut_gris.webp" alt="Almohada AuraSleep en Gris piedra" loading="lazy"><p><i style="background:#8F8B85"></i>Gris piedra</p></li>
-      <li><img src="../public/img/cut_beige.webp" alt="Almohada AuraSleep en Beige cálido" loading="lazy"><p><i style="background:#D8C2A3"></i>Beige cálido</p></li>
-    </ul>
+    <div class="muestrario" id="muestrario" data-color="blanco">
+      <div class="muestrario__escena">
+        <div class="muestrario__aura" aria-hidden="true"></div>
+        <img class="muestrario__foto activa" data-color="blanco" src="../public/img/cut_blanco.webp" width="1800" height="849" alt="Almohada AuraSleep en Blanco roto" loading="lazy">
+        <img class="muestrario__foto" data-color="gris" src="../public/img/cut_gris.webp" width="1800" height="849" alt="Almohada AuraSleep en Gris piedra" loading="lazy" aria-hidden="true">
+        <img class="muestrario__foto" data-color="beige" src="../public/img/cut_beige.webp" width="1800" height="849" alt="Almohada AuraSleep en Beige cálido" loading="lazy" aria-hidden="true">
+      </div>
+      <div class="muestrario__control">
+        <div class="muestras" role="group" aria-label="Color de la funda">
+          <button type="button" data-funda="blanco" aria-pressed="true"><i style="background:#EDE8DF"></i><span>Blanco roto</span></button>
+          <button type="button" data-funda="gris" aria-pressed="false"><i style="background:#8F8B85"></i><span>Gris piedra</span></button>
+          <button type="button" data-funda="beige" aria-pressed="false"><i style="background:#D8C2A3"></i><span>Beige cálido</span></button>
+        </div>
+        <p class="muestrario__nombre" aria-live="polite"><span id="funda-nombre">Blanco roto</span></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -333,14 +356,14 @@
     <div class="precios">
       <div class="precio">
         <h3>Almohada AuraSleep</h3>
-        <p class="precio__cifra">164 <span>USD</span></p>
+        <p class="precio__cifra"><span data-cuenta="164" data-dur="1600">164</span> <span>USD</span></p>
         <p class="precio__det">Precio de referencia en la web · lanzamiento de 149 a 179 USD<a class="ref" href="#nota-precios">*</a></p>
         <a class="tab" href="#lista">Unirme a la lista de espera</a>
       </div>
       <div class="precio precio--cartucho">
         <h3><span class="tinta tinta--aroma" aria-hidden="true"></span>Cartuchos de aroma</h3>
-        <p class="precio__cifra">9–14 <span>USD</span></p>
-        <p class="precio__det">Uno cada tres meses, de menta o cítrico. Equivale a 36–56 USD al año.</p>
+        <p class="precio__cifra"><span data-cuenta="9-14">9–14</span> <span>USD</span></p>
+        <p class="precio__det">Uno cada tres meses, de menta o cítrico. Equivale a <strong class="precio__anual"><span data-cuenta="36-56">36–56</span> USD al año</strong>.</p>
         <p class="precio__plan"><strong>Suscripción de cartuchos</strong> (demostrativa): 4 al año, se envían a tu casa.</p>
       </div>
     </div>
@@ -368,7 +391,7 @@
 <!-- 9. La función: presentación de Canva -->
 <section class="cel cel--manana funcion" id="presentacion" aria-labelledby="presentacion-titulo">
   <div class="envoltura">
-    <h2 id="presentacion-titulo">La presentación, en 8 diapositivas.</h2>
+    <h2 id="presentacion-titulo">La presentación, en 13 diapositivas.</h2>
     <p class="entrada">Presentación de venta del equipo, del problema al cierre.</p>
     <div class="pantalla" id="canva" data-src="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view?embed">
       <div class="pantalla__frente" id="canva-frente">
@@ -419,6 +442,7 @@
 </main>
 
 <footer class="creditos cel--dia">
+  <div class="creditos__sol" aria-hidden="true"></div>
   <div class="envoltura">
     <p class="creditos__titulo">AuraSleep</p>
     <p class="creditos__eslogan">Despierta con luz y aroma, no con ruido.</p>

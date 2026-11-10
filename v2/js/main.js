@@ -245,6 +245,52 @@
     if (iframe) enviar({ color: estado.color }); else actualizarPoster();
   }));
 
+  /* ---------- selector vivo de color de funda ---------- */
+  const muestrario = $("#muestrario");
+  if (muestrario) {
+    const fotos = $$(".muestrario__foto", muestrario);
+    const botones = $$("[data-funda]", muestrario);
+    const nombre = $("#funda-nombre");
+    const ORDEN = ["blanco", "gris", "beige"];
+    let actual = "blanco";
+    let giro = null;
+    let tocado = false;
+    function elegir(color) {
+      if (color === actual) return;
+      fotos.forEach((f) => {
+        const es = f.dataset.color === color;
+        f.classList.toggle("sale", f.dataset.color === actual);
+        f.classList.toggle("activa", es);
+        if (es) f.removeAttribute("aria-hidden"); else f.setAttribute("aria-hidden", "true");
+      });
+      botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.funda === color)));
+      muestrario.dataset.color = color;
+      nombre.textContent = NOMBRES[color];
+      nombre.classList.remove("cambia");
+      void nombre.offsetWidth; // reinicia la animación del nombre
+      nombre.classList.add("cambia");
+      actual = color;
+      setTimeout(() => fotos.forEach((f) => f.classList.remove("sale")), 820);
+    }
+    const parar = () => { if (giro) { clearInterval(giro); giro = null; } };
+    const arrancar = () => {
+      if (tocado || giro || quieto.matches || document.hidden) return;
+      giro = setInterval(() => elegir(ORDEN[(ORDEN.indexOf(actual) + 1) % ORDEN.length]), 3200);
+    };
+    botones.forEach((b) => b.addEventListener("click", () => { tocado = true; parar(); elegir(b.dataset.funda); }));
+    // mientras el cursor está encima, no cambia sola
+    muestrario.addEventListener("pointerenter", parar);
+    muestrario.addEventListener("pointerleave", arrancar);
+    muestrario.addEventListener("focusin", parar);
+    document.addEventListener("visibilitychange", () => (document.hidden ? parar() : visible && arrancar()));
+    let visible = false;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((es) => {
+        es.forEach((e) => { visible = e.isIntersecting; if (visible) arrancar(); else parar(); });
+      }, { threshold: 0.5 }).observe(muestrario);
+    }
+  }
+
   /* ---------- la función: Canva solo carga al pedirla ---------- */
   const canva = $("#canva");
   const canvaBtn = $("#canva-cargar");
