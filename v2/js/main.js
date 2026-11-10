@@ -21,6 +21,7 @@
   const capas = $$("[data-vel]", toma).map((el) => ({ el, vel: parseFloat(el.dataset.vel) || 0 }));
   const barra = $("#barra");
   const noche = $("#noche");
+  const estrellas = $("#estrellas");
   let pendiente = false;
   function alDesplazar() {
     pendiente = false;
@@ -31,6 +32,7 @@
       // amanece mientras la cámara baja: el velo de la noche se disipa
       const alba = Math.min(y / (alto * 0.9), 1);
       noche.style.opacity = (1 - alba * 0.8).toFixed(3);
+      if (estrellas) estrellas.style.opacity = (1 - alba * 1.4).toFixed(3);
       toma.style.setProperty("--alba", alba.toFixed(3));
     }
     barra.classList.toggle("sobre-celda", y > alto - 80);
@@ -250,6 +252,60 @@
   correo.addEventListener("input", () => {
     if (correo.getAttribute("aria-invalid") === "true" && valido(correo.value)) { correo.removeAttribute("aria-invalid"); error.hidden = true; }
   });
+
+  /* ---------- comparador: alarma contra AuraSleep ---------- */
+  const duelo = $("#duelo");
+  if (duelo) {
+    const dRango = $("#duelo-rango");
+    const dAura = $("#duelo-aura");
+    const dDiv = $("#duelo-divisor");
+    const nAlarma = $("#duelo-notas-alarma");
+    const nAura = $("#duelo-notas-aura");
+    let pista = null;
+    const fijar = (x) => {
+      dAura.style.clipPath = "inset(0 0 0 " + x + "%)";
+      dDiv.style.left = x + "%";
+      nAlarma.classList.toggle("atenua", x < 38);
+      nAura.classList.toggle("atenua", x > 62);
+      const r = Math.round(x);
+      dRango.setAttribute("aria-valuetext", r <= 8 ? "Se ve solo el despertar con AuraSleep" : r >= 92 ? "Se ve solo el despertar con alarma" : r + " por ciento alarma, " + (100 - r) + " por ciento AuraSleep");
+    };
+    const soltarPista = () => { if (pista) { cancelAnimationFrame(pista); pista = null; } };
+    dRango.addEventListener("input", () => { soltarPista(); fijar(parseFloat(dRango.value)); });
+    ["pointerdown", "keydown"].forEach((ev) => dRango.addEventListener(ev, soltarPista));
+    fijar(50);
+    // una sola vez: la línea se mueve sola para enseñar que se puede arrastrar
+    const ensenar = () => {
+      const pasos = [[50, 0], [70, 700], [32, 1600], [50, 2300]];
+      const t0 = performance.now();
+      const suave = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+      const cuadro = (now) => {
+        const t = now - t0;
+        let i = 1;
+        while (i < pasos.length - 1 && t > pasos[i][1]) i++;
+        const [a, ta] = pasos[i - 1], [b, tb] = pasos[i];
+        const k = Math.min(Math.max((t - ta) / (tb - ta), 0), 1);
+        const x = a + (b - a) * suave(k);
+        dRango.value = x;
+        fijar(x);
+        if (t < pasos[pasos.length - 1][1]) pista = requestAnimationFrame(cuadro); else pista = null;
+      };
+      pista = requestAnimationFrame(cuadro);
+    };
+    if ("IntersectionObserver" in window) {
+      let mostrado = false;
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          duelo.classList.toggle("vivo", e.isIntersecting);
+          if (e.isIntersecting) {
+            duelo.classList.add("visto-curva");
+            if (!mostrado && !quieto.matches) { mostrado = true; setTimeout(ensenar, 500); }
+          }
+        });
+      }, { threshold: 0.45 });
+      io.observe($("#duelo-marco"));
+    } else duelo.classList.add("vivo", "visto-curva");
+  }
 
   /* ---------- menú de celular: se cierra al elegir una sección ---------- */
   const menu = $(".menu");

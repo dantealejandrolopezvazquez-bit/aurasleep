@@ -7,12 +7,14 @@
 <meta name="description" content="AuraSleep es una almohada que te despierta poco a poco con una luz de amanecer y un aroma suave, 15 minutos antes de tu hora. Proyecto escolar de Emprendimiento.">
 <meta name="theme-color" content="#2F4252">
 <link rel="preload" href="fonts/hanken-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/estilos.css?v=18">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323392F'/%3E%3Ccircle cx='32' cy='40' r='13' fill='%23E9A23B'/%3E%3Crect x='10' y='40' width='44' height='14' fill='%2323392F'/%3E%3Crect x='12' y='40' width='40' height='3' rx='1.5' fill='%23F4F1E8'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/estilos.css?v=19">
+<script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("mov");</script>
 </head>
 <body>
 <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0"><defs><filter id="bruma" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="18"/></filter></defs></svg>
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0"><defs><filter id="bruma" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="18"/></filter><filter id="bruma-chica" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs></svg>
 
 <header class="barra" id="barra">
   <div class="barra__in">
@@ -40,6 +42,7 @@
       </ul>
     </details>
   </div>
+  <div class="avance" aria-hidden="true"><i id="avance"></i></div>
 </header>
 
 <main id="contenido">
@@ -51,10 +54,17 @@
     <img class="capa" data-vel="0.26" style="top:67.48%" src="img/madrugada-volcanes.webp" width="1800" height="439" alt="">
     <img class="capa" data-vel="0.06" style="top:80.07%" src="img/madrugada-arboles.webp" width="1800" height="269" alt="">
   </div>
+  <div class="toma__estrellas" id="estrellas" aria-hidden="true"></div>
   <div class="toma__noche" id="noche" aria-hidden="true"></div>
   <div class="toma__cel">
-    <h1 id="titulo">Despierta con luz y aroma, no con ruido.</h1>
-    <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." fetchpriority="high">
+    <h1 id="titulo"><span class="linea"><span>Despierta con</span></span> <span class="linea"><span><em class="luz">luz</em> y <em class="aroma">aroma</em>,</span></span> <span class="linea"><span>no con ruido.</span></span></h1>
+    <div class="toma__producto" id="producto-toma">
+      <div class="toma__flota">
+        <div class="toma__halo" aria-hidden="true"></div>
+        <img class="toma__almohada" src="../public/img/hero_aroma_nobg.webp" width="1800" height="1127" alt="Almohada AuraSleep color Blanco roto con la cinta de luz encendida y una ráfaga de aroma saliendo del difusor lateral." fetchpriority="high">
+        <svg class="toma__aroma" viewBox="0 0 100 140" aria-hidden="true"><g filter="url(#bruma-chica)"><ellipse cx="40" cy="118" rx="14" ry="9"/><ellipse cx="40" cy="118" rx="16" ry="10"/><ellipse cx="40" cy="118" rx="18" ry="11"/></g></svg>
+      </div>
+    </div>
     <p class="toma__sub">AuraSleep es la almohada que te despierta poco a poco, con una luz de amanecer y un aroma suave de menta o cítrico, 15 minutos antes de tu hora.</p>
     <div class="toma__acciones">
       <a class="tab" href="#como-funciona">Ver cómo funciona</a>
@@ -62,6 +72,7 @@
     </div>
     <p class="toma__dato">Proyecto de Emprendimiento · Un objeto cotidiano: la almohada<br>Preventa (demostrativa) desde 149 USD<a class="ref" href="#nota-precios" aria-label="Ver nota sobre precios hipotéticos">*</a></p>
   </div>
+  <a class="toma__bajar" href="#problema"><span>Baja y amanece</span><i aria-hidden="true"></i></a>
   <p class="toma__pie">El Iztaccíhuatl, «mujer blanca» en náhuatl, y el Popocatépetl antes del amanecer. Foto: Lanjoe9, <a href="https://creativecommons.org/licenses/by/3.0/deed.es" rel="noopener">CC BY 3.0</a>.</p>
 </section>
 
@@ -85,6 +96,45 @@
         <p>En parejas o cuartos compartidos, la alarma de una persona interrumpe el sueño de la otra.</p>
       </li>
     </ol>
+
+    <figure class="duelo" id="duelo">
+      <figcaption class="duelo__enc">
+        <h3>Dos formas de despertar</h3>
+        <p>Arrastra la línea para comparar la misma mañana.</p>
+      </figcaption>
+      <div class="duelo__marco" id="duelo-marco">
+        <div class="duelo__lado duelo__lado--alarma" aria-hidden="true">
+          <img src="../public/img/hero_noche.webp" width="1800" height="1127" alt="" loading="lazy">
+          <div class="duelo__alarma">
+            <svg viewBox="0 0 120 120"><g class="duelo__ondas"><circle cx="60" cy="60" r="34"/><circle cx="60" cy="60" r="34"/><circle cx="60" cy="60" r="34"/></g><g class="duelo__reloj"><circle cx="60" cy="62" r="26"/><path d="M60 48v15l9 6"/><path d="M38 36l-8-8M82 36l8-8"/></g></svg>
+            <span>6:00</span>
+          </div>
+          <svg class="duelo__curva" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 70 H330 L338 70 L342 8 L350 70 L356 18 L362 70 L368 30 L374 70 H400"/></svg>
+          <p class="duelo__rotulo">Con alarma</p>
+        </div>
+        <div class="duelo__lado duelo__lado--aura" id="duelo-aura" aria-hidden="true">
+          <img src="../public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
+          <svg class="duelo__aroma" viewBox="0 0 100 140"><g filter="url(#bruma-chica)"><ellipse cx="40" cy="118" rx="14" ry="9"/><ellipse cx="40" cy="118" rx="16" ry="10"/><ellipse cx="40" cy="118" rx="18" ry="11"/></g></svg>
+          <svg class="duelo__curva" viewBox="0 0 400 80" preserveAspectRatio="none"><path d="M0 70 C120 70 200 66 260 50 S360 14 400 12"/></svg>
+          <p class="duelo__rotulo">Con AuraSleep</p>
+        </div>
+        <div class="duelo__divisor" id="duelo-divisor" aria-hidden="true"><span></span></div>
+        <label class="sr" for="duelo-rango">Comparar el despertar con alarma y con AuraSleep</label>
+        <input class="duelo__rango" type="range" id="duelo-rango" min="0" max="100" value="50" step="1">
+      </div>
+      <div class="duelo__notas">
+        <ul class="duelo__lista duelo__lista--alarma" id="duelo-notas-alarma">
+          <li>El sonido corta el sueño de golpe, a la hora exacta.</li>
+          <li>El sobresalto dispara la respuesta de estrés.</li>
+          <li>Despierta también a quien duerme al lado.</li>
+        </ul>
+        <ul class="duelo__lista duelo__lista--aura" id="duelo-notas-aura">
+          <li>La luz sube poco a poco durante 15 minutos.</li>
+          <li>Ráfagas cortas de menta o cítrico, dirigidas a la nariz.</li>
+          <li>Sin sonido: la otra persona sigue durmiendo.</li>
+        </ul>
+      </div>
+    </figure>
 
     <div class="evidencia">
       <h3>Hay una alternativa mejor</h3>
@@ -406,6 +456,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=8" defer></script>
+<script src="js/main.js?v=9" defer></script>
+<script src="js/movimiento.js?v=1" defer></script>
 </body>
 </html>
