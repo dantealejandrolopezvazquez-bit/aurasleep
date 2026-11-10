@@ -1,316 +1,381 @@
 ---
-name: AuraSleep v2 — Amanecer multiplano
-description: Una mañana de la Ciudad de México en planos pintados, de la noche al amanecer, para una almohada que despierta con luz y aroma.
+name: AuraSleep v2 — Línea del despertar
+description: El despertar es una línea con estaciones; la línea de luz y la de aroma se unen en la correspondencia AuraSleep.
 colors:
+  grafito: "#17191B"
+  grafito-2: "#22262A"
+  grafito-3: "#2E3338"
+  esmalte: "#F2F3EF"
+  esmalte-2: "#E5E8E2"
+  blanco: "#FBFBF8"
+  tinta: "#17191B"
+  tinta-2: "#4A5157"
+  tinta-clara: "#F2F3EF"
+  tinta-clara-2: "#B8BEC3"
+  tinta-2-tunel: "#C3C8CC"
   lampara: "#E9A23B"
-  menta: "#2E7D67"
-  menta-clara: "#8FD4BE"
-  pino: "#23392F"
-  pino-2: "#2F4A3E"
-  musgo: "#4D6B5A"
-  tinta: "#1C2326"
-  tinta-2: "#44515A"
-  tinta-clara: "#F4F1E8"
-  tinta-clara-2: "#D3DBDD"
-  cel-noche: "#26333D"
-  umbra: "#24201C"
-  bruma: "#C7D3D6"
-  niebla: "#D4DDDF"
-  manana: "#E3E7E1"
-  dia: "#EDF0EA"
-  campo: "#FBFCFA"
+  luz-tinta: "#8F5300"
+  luz-clara: "#F4BC62"
+  menta: "#3FB28F"
+  aroma-tinta: "#17735A"
+  menta-clara: "#8FD8C0"
   error: "#A12A1E"
-  ok-fondo: "#DCEEE6"
-  ok-tinta: "#1E5444"
+  ok-fondo: "#DCEFE7"
+  ok-tinta: "#155A47"
   funda-blanco-roto: "#EDE8DF"
   funda-gris-piedra: "#8F8B85"
   funda-beige-calido: "#D8C2A3"
 typography:
   display:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "clamp(2.55rem, 5.1vw, 5.25rem)"
-    fontWeight: 400
-    lineHeight: 1.02
-    letterSpacing: "-0.01em"
-  cifra:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "clamp(4.2rem, 9vw, 7.2rem)"
-    fontWeight: 400
-    lineHeight: 0.95
-    letterSpacing: "-0.03em"
-    fontFeature: "tnum"
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "clamp(3rem, 5.6vw, 5.6rem)"
+    fontWeight: 700
+    lineHeight: 0.9
+    letterSpacing: "-0.005em"
   headline:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "clamp(2.05rem, 3.7vw, 3.55rem)"
-    fontWeight: 400
-    lineHeight: 1.06
-    letterSpacing: "-0.01em"
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "clamp(2.3rem, 4.4vw, 4.1rem)"
+    fontWeight: 700
+    lineHeight: 0.98
+    letterSpacing: "-0.005em"
   title:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "1.35rem"
-    fontWeight: 400
-    lineHeight: 1.2
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "clamp(1.6rem, 2.4vw, 2.1rem)"
+    fontWeight: 700
+    lineHeight: 1.05
+    letterSpacing: "0em"
+  cifra:
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "clamp(5rem, 11vw, 8.6rem)"
+    fontWeight: 700
+    lineHeight: 0.86
+    letterSpacing: "-0.01em"
+    fontFeature: "tnum"
+  estacion:
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "clamp(1.3rem, 2vw, 1.9rem)"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.04em"
+    fontFeature: "tnum"
   lead:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "clamp(1.12rem, 1.4vw, 1.28rem)"
+    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "clamp(1.12rem, 1.4vw, 1.26rem)"
     fontWeight: 400
     lineHeight: 1.62
   body:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "1.18rem"
+    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "1.12rem"
     fontWeight: 400
     lineHeight: 1.62
   small:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
+    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "0.92rem"
     fontWeight: 400
     lineHeight: 1.5
   label:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
-    fontSize: "0.84rem"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "0.08em"
+    fontFamily: "Barlow Condensed, Arial Narrow, system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.1em"
   button:
-    fontFamily: "Hanken Grotesk, Georgia, Times New Roman, serif"
+    fontFamily: "Overpass, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "1.02rem"
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1
     letterSpacing: "0.01em"
 rounded:
-  campo: "2px"
-  cel: "3px"
-  riel: "4px"
+  control: "6px"
+  cel: "10px"
+  linea: "99px"
   punto: "50%"
 spacing:
+  grosor: "clamp(9px, 0.9vw, 12px)"
   gutter: "clamp(18px, 4vw, 48px)"
-  seccion: "clamp(84px, 11vw, 140px)"
+  seccion: "clamp(88px, 11vw, 144px)"
   bloque: "clamp(44px, 5vw, 64px)"
   ancho: "1200px"
-  ancho-angosto: "860px"
+  ancho-preguntas: "860px"
   barra: "68px"
 components:
-  tab-primary:
-    backgroundColor: "{colors.pino}"
+  placa:
+    backgroundColor: "{colors.grafito}"
     textColor: "{colors.tinta-clara}"
     typography: "{typography.button}"
-    rounded: "{rounded.cel}"
-    padding: "0 26px"
+    rounded: "{rounded.control}"
+    padding: "0 24px"
     height: "52px"
-  tab-primary-hover:
-    backgroundColor: "{colors.pino-2}"
-  tab-primary-sobre-noche:
-    backgroundColor: "{colors.tinta-clara}"
-    textColor: "{colors.pino}"
-  tab-linea:
+  placa-hover:
+    backgroundColor: "{colors.grafito-3}"
+  placa-linea:
     backgroundColor: "transparent"
     textColor: "{colors.tinta}"
     typography: "{typography.button}"
-    rounded: "{rounded.cel}"
-    padding: "0 26px"
+    rounded: "{rounded.control}"
+    padding: "0 24px"
     height: "52px"
-  tab-chica:
+  placa-linea-hover:
+    backgroundColor: "{colors.grafito}"
+    textColor: "{colors.tinta-clara}"
+  placa-chica:
     padding: "0 18px"
     height: "44px"
+  placa-sobre-grafito:
+    backgroundColor: "{colors.esmalte}"
+    textColor: "{colors.grafito}"
+    typography: "{typography.button}"
+    rounded: "{rounded.control}"
+    padding: "0 24px"
+    height: "52px"
+  placa-sobre-grafito-hover:
+    backgroundColor: "#FFFFFF"
   selector:
     backgroundColor: "transparent"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.cel}"
+    rounded: "{rounded.control}"
     padding: "0 16px"
     height: "46px"
   selector-activo:
-    backgroundColor: "{colors.pino}"
+    backgroundColor: "{colors.grafito}"
     textColor: "{colors.tinta-clara}"
-  campo:
-    backgroundColor: "{colors.campo}"
+  muestra-funda:
+    backgroundColor: "{colors.blanco}"
     textColor: "{colors.tinta}"
-    rounded: "{rounded.campo}"
+    rounded: "{rounded.control}"
+    padding: "0 18px"
+    height: "60px"
+  campo:
+    backgroundColor: "{colors.blanco}"
+    textColor: "{colors.tinta}"
+    rounded: "{rounded.control}"
     padding: "0 14px"
     height: "50px"
+  rotulo-trasbordo:
+    backgroundColor: "{colors.grafito}"
+    textColor: "{colors.tinta-clara}"
+    typography: "{typography.estacion}"
+    rounded: "{rounded.control}"
+    padding: "6px 12px 4px"
+  placa-union:
+    backgroundColor: "{colors.esmalte}"
+    textColor: "{colors.tinta}"
+    rounded: "{rounded.cel}"
+    padding: "12px 16px 10px"
   fila-aurasleep:
-    backgroundColor: "{colors.pino}"
+    backgroundColor: "{colors.grafito}"
     textColor: "{colors.tinta-clara}"
 ---
 
-# Design System: AuraSleep v2 — Amanecer multiplano
+# Design System: AuraSleep v2 — Línea del despertar
 
-Alcance: este sistema describe solo el mundo v2 (`v2/`, publicado en /aurasleep/v2/) y el marco `marco-multiplano` del visor 3D; el sitio heredado de la raíz (`index.html`, `css/estilos.css`) es una superficie aparte que sigue en paralelo y no se rige por este archivo.
+Alcance: este sistema describe solo el mundo v2 (`v2/`, publicado en /aurasleep/v2/; rediseño en la rama `v2-dinamico`). El sitio heredado de la raíz (`index.html`, `css/estilos.css`) es una superficie aparte y no se rige por este archivo. El mundo anterior, "Amanecer multiplano", quedó retirado y vive en el historial de git.
 
 ## Overview
 
-**Creative North Star: "La toma multiplano de una mañana"**
+**Creative North Star: "La línea del despertar"**
 
-La página es una cámara multiplano que baja por los planos de una fotografía del Iztaccíhuatl y el Popocatépetl antes del amanecer (cielo, volcanes, árboles) mientras un velo de noche se levanta. Cada sección de contenido es una celda de papel mate apoyada sobre esos planos, y el fondo de las celdas avanza en orden de la noche al día: pizarra nocturna, cuarto en umbra, bruma, niebla, mañana y, en los créditos, día pleno. El amanecer no se ilustra: ocurre con el desplazamiento.
+El despertar es una línea de transporte con cuatro estaciones (−15, −10, −5 y la hora). La línea de luz (ámbar) entra por la izquierda, la línea de aroma (menta) entra por la derecha y sube en diagonal, y las dos se unen en la correspondencia AuraSleep, que es donde se para la almohada. La página es la señalética de esa línea: placas de esmalte claro y tramos de túnel de grafito, con un riel al margen que tiene una estación por sección y que se enciende cuando llegas a su título, hasta terminar en un anillo terminal junto al nombre de los créditos.
 
-El tono es tranquilo, legible desde el fondo de un salón y honesto. Una sola sans humanista, Hanken Grotesk, sostiene todo: 650 para títulos y cifras, 400 para leer; no hay serifa ni monoespaciada. Sustituyó a Young Serif + Literata porque el usuario las sintió antinaturales. Los controles son pestañas de celda opacas con un filo encendido en ámbar, nunca vidrio. La única calidez del sistema es la luz de AuraSleep (ámbar lámpara) y el único color frío saturado es el aroma (menta). Todo lo demás sale de la madrugada: pino, musgo, bruma, umbra.
+El tono es de señalética pública: claro, condensado, legible desde el fondo de un salón y sin adorno. Fuera de las dos líneas hay tres valores (grafito, esmalte y su tinta). La luz y el aroma son los únicos colores, y cada uno significa una sola cosa. Los títulos, los nombres de estación y las cifras van en Barlow Condensed 700. Todo lo que se lee va en Overpass. Los pictogramas son originales y de un solo trazo (luz, aroma, alarma, trasbordo). No hay logotipos, nombres ni pictogramas de ningún sistema de transporte real.
 
-El usuario rechazó el aspecto del primer sitio (azul marino oscuro con naranja, Instrument Sans + DM Mono) como "sin personalidad, muy IA"; ese aspecto es antirreferencia.
+El mundo rechaza dos plantillas: la foto oscura y cinematográfica del producto con un eslogan serif gigante, y la plantilla crema de bienestar. Sigue siendo antirreferencia el primer sitio (azul marino oscuro con naranja, Instrument Sans + DM Mono), que el usuario calificó de "sin personalidad, muy IA".
 
 **Key Characteristics:**
-- Una fotografía con licencia libre de Wikimedia Commons (Lanjoe9, CC BY 3.0), acreditada en la página, como única imagen de ambiente; el producto se muestra siempre con sus propios renders (portada, línea de tiempo y los tres colores de funda), cada raster con su archivo de procedencia `.json` al lado.
-- Celdas de contenido con grano de papel y fondos que siguen el orden noche → día.
-- Hanken Grotesk para cartelas y cifras; Hanken Grotesk para todo lo que se lee.
-- Un acento cálido (luz) y un acento menta (aroma), con significado fijo.
-- Pestañas de celda opacas con filo ámbar; ningún desenfoque de fondo tras controles.
-- Movimiento que se congela en una toma fija con `prefers-reduced-motion`.
+- Diagrama de línea en la portada: tramo ámbar con estaciones −15/−10/−5, tramo menta que sube en diagonal y anillo de correspondencia bajo la almohada.
+- Riel al margen con una estación anillada por sección, que se enciende en ámbar al llegar y acaba en una terminal junto al título de los créditos.
+- Placas de esmalte y túneles de grafito que se alternan; no hay degradados de fondo.
+- Dos colores de línea con significado fijo y un solo grosor de línea (`grosor`).
+- Barlow Condensed 700 para letreros y cifras, Overpass para leer.
+- Pictogramas SVG de un solo trazo, definidos como `<symbol>` en `index.html` y del color de su línea.
+- El producto aparece siempre con sus propios renders. Los colores de funda solo aparecen en las fundas.
 
 ## Colors
 
-Pigmentos fríos y terrosos sacados de la pintura, con una sola lámpara cálida y un solo verde menta que significan producto.
+Un túnel de grafito y placas de esmalte casi neutros, cruzados por dos líneas de color: ámbar para la luz y menta para el aroma.
 
 ### Primary
-- **Ámbar lámpara** (`lampara`): la luz de AuraSleep. Filo interior de las pestañas, anillo de foco, relleno del deslizador del despertar, fila actual de la hoja de exposición (al 16 %), punto de la luz, selección de texto y fuente citada (`:target`, al 22 %). Nunca como fondo de superficie grande ni como color de texto sobre claro.
-- **Pino** (`pino`) y **Pino encendido** (`pino-2`): fondo de la pestaña principal y de su estado hover, selector activo, fila de AuraSleep en la comparativa, enlace "saltar al contenido".
+- **Ámbar lámpara** (`lampara`): la línea de luz. Se usa en el tramo de luz de la portada, el riel lateral y sus estaciones encendidas, el tramo recorrido del deslizador y su tren, las estaciones pasadas de la secuencia (la estación detenida va llena), la mitad de luz de la barra de avance, el punto y el subrayado de la sección actual en la barra, el rótulo "Con AuraSleep" del lado iluminado del comparador, el anillo de foco y la selección de texto. Sobre esmalte nunca se usa como color de texto.
+- **Luz sobre esmalte** (`luz-tinta`): la palabra "luz" del eslogan y los pictogramas de luz sobre fondo claro (AA).
+- **Luz sobre grafito** (`luz-clara`): las cifras de luz en el túnel, el minuto de la estación detenida y los pictogramas de luz sobre grafito.
 
 ### Secondary
-- **Menta** (`menta`) y **Menta clara** (`menta-clara`): el aroma. La clara pinta las ráfagas de aroma y el punto de aroma sobre fondos oscuros o junto al precio del cartucho; la profunda es el `accent-color` de los radios de aroma del formulario.
+- **Menta** (`menta`): la línea de aroma. Se usa en el tramo y el codo de aroma de la portada, la placa de aroma de la unión y su línea, la lectura de aroma de la evidencia y la parte final de la barra de avance.
+- **Aroma sobre esmalte** (`aroma-tinta`): la palabra "aroma" del eslogan, la cifra del cartucho, los pictogramas de aroma sobre claro y el `accent-color` de los radios para elegir aroma.
+- **Aroma sobre grafito** (`menta-clara`): las cifras y los pictogramas de aroma en el túnel, y las ráfagas que salen del difusor en los renders.
 
 ### Tertiary
-- **Colores de funda** (`funda-blanco-roto`, `funda-gris-piedra`, `funda-beige-calido`): fijados por la marca. Solo aparecen en las muestras del selector de funda y en los renders; no son paleta de interfaz.
+- **Colores de funda** (`funda-blanco-roto`, `funda-gris-piedra`, `funda-beige-calido`): los fija la marca. Solo aparecen en las muestras del selector de funda, en los selectores del visor 3D y en los renders. No son paleta de interfaz.
 
 ### Neutral
-- **Tinta** (`tinta`): texto principal sobre papel claro, bordes de cajas, filetes gruesos.
-- **Tinta segunda** (`tinta-2`): entradillas, párrafos secundarios, etiquetas de grupo, letra chica.
-- **Tinta clara** (`tinta-clara`) y **Tinta clara segunda** (`tinta-clara-2`): texto sobre noche, umbra y la primera toma; la clara también es el fondo de la pestaña principal sobre escenas oscuras.
-- **Celda de noche** (`cel-noche`): fondo de la sección del problema; ahí `tinta` y `tinta-2` se redefinen a sus versiones claras.
-- **Umbra** (`umbra`): el cuarto donde se ilumina la mesa del despertar, marco del visor 3D y pantalla de la presentación.
-- **Bruma** (`bruma`), **Niebla** (`niebla`), **Mañana** (`manana`), **Día** (`dia`): fondos de celda en orden de amanecer; `niebla` es también el fondo del `body`, `manana` el de la barra sobre celdas claras y del menú.
-- **Musgo** (`musgo`): solo el pulgar de la barra de desplazamiento.
-- **Campo** (`campo`): fondo de los campos de texto.
-- **Error** (`error`) y **Confirmación** (`ok-fondo` con `ok-tinta`): estados del formulario demostrativo.
-- Filete (`--raya`): `rgba(28,35,38,.22)` sobre claro, `rgba(244,241,232,.26)` sobre noche; divisores de tablas y acordeones.
+- **Grafito** (`grafito`): el túnel. Fondo de la barra, de "Cómo funciona", de la presentación y de los créditos. También es el fondo de las placas principales, del selector activo, de la fila AuraSleep, del rótulo de correspondencia y del anillo de trasbordo.
+- **Grafito segundo** (`grafito-2`): el túnel de "El problema" y el fondo de la pantalla de la presentación y del marco del visor.
+- **Grafito tercero** (`grafito-3`): el tramo de línea que todavía no se recorre, los anillos de estación apagados, el hover de la placa principal y el filo de la pantalla.
+- **Esmalte** (`esmalte`) y **Esmalte segundo** (`esmalte-2`): las placas. El primero es el fondo de la portada, del producto, de la ventaja, de "para quién" y de las preguntas, y el relleno de los anillos de estación. El segundo es el fondo de colores, precio y lista de espera, y el hover de los selectores.
+- **Blanco de placa** (`blanco`): caja de la ficha, formulario, campos y muestras de funda.
+- **Tinta** (`tinta`) y **Tinta segunda** (`tinta-2`): el texto principal sobre esmalte, y las entradillas, la letra chica y los rótulos de grupo.
+- **Tinta clara** (`tinta-clara`), **Tinta clara segunda** (`tinta-clara-2`) y **Tinta segunda del túnel** (`tinta-2-tunel`): el texto sobre grafito. En las secciones de túnel, `--tinta` y `--tinta-2` se redefinen como `tinta-clara` y `tinta-2-tunel`.
+- Filete (`--raya`): `rgba(23,25,27,.18)` sobre esmalte y `rgba(242,243,239,.2)` sobre grafito, para separar filas de tablas y acordeones.
+- **Error** (`error`) y **Confirmación** (`ok-fondo` con `ok-tinta`): los estados del formulario demostrativo. Son colores de estado, no de aroma.
 
 ### Named Rules
-**The One Lamp Rule.** El ámbar es la luz del producto y nada más: aparece donde algo está encendido, enfocado o en curso. Si un elemento no representa luz, foco o progreso, no lleva ámbar.
+**The Amber Is Light Rule.** El ámbar significa luz y lo que se enciende: la línea de luz, las estaciones encendidas, el progreso, el foco y la selección. Las placas de acción general van en grafito sobre esmalte o en esmalte sobre grafito, nunca en ámbar.
 
-**The Mint Is Aroma Rule.** La menta solo aparece donde se habla del aroma (ráfagas, punto de aroma, cartucho, elección de aroma). Nunca como acento decorativo genérico.
+**The Mint Is Aroma Rule.** La menta solo aparece donde se habla del aroma: la línea, las ráfagas, el cartucho y la elección de aroma. Nunca se usa como acento decorativo ni como color de estado.
 
-**The Dawn Order Rule.** Los fondos de sección avanzan de oscuro a claro en el orden de la página: primera toma y `cel-noche` → `umbra` → `bruma` → `niebla` → `manana` → `dia`. Una sección nueva toma el fondo que le corresponde por su lugar; no se vuelve a la noche después del amanecer.
+**The Three Values Rule.** Todo lo que no es una línea es grafito, esmalte o su tinta, con sus segundos tonos. Si un elemento nuevo necesita otro color, ese elemento está mal planteado.
 
 ## Typography
 
-**Display Font:** Hanken Grotesk 650 (con Georgia, "Times New Roman", serif), autoalojada en `v2/fonts/`.
-**Body Font:** Hanken Grotesk variable 300–800, con itálica 400–500 (con Georgia, "Times New Roman", serif), autoalojada, `font-optical-sizing:auto`.
+**Display Font:** Barlow Condensed 700 (con "Arial Narrow", system-ui, sans-serif), autoalojada en `v2/fonts/` (también hay archivos de 500 y 600).
+**Body Font:** Overpass variable 400–800, con itálica 400 (con system-ui, -apple-system, "Segoe UI", sans-serif), autoalojada.
 
-**Character:** Hanken Grotesk es la cartela de cine: un solo peso, redonda y cálida, para títulos y cifras. Hanken Grotesk es la página de libro en el plano más cercano: lectura larga, itálica para pies de pintura y créditos.
+**Character:** Barlow Condensed es el letrero de la estación: angosta, firme y en mayúsculas cuando nombra algo. Overpass, que también nació de la señalética vial, es la placa explicativa: abierta y legible proyectada.
 
 ### Hierarchy
-- **Display** (Hanken Grotesk 650, `clamp(2.55rem, 5.1vw, 5.25rem)`, 1.02, máx. 12.5ch): solo el eslogan de la primera toma.
-- **Cifra** (Hanken Grotesk 650, `clamp(4.2rem, 9vw, 7.2rem)`, 0.95, −0.03em, numerales tabulares): precios; la lectura del minuto del despertar usa la misma voz a `clamp(3rem, 6vw, 5.4rem)`.
-- **Headline** (Hanken Grotesk 650, `clamp(2.05rem, 3.7vw, 3.55rem)`, 1.06, máx. 20ch, `text-wrap:balance`): títulos de sección.
-- **Title** (Hanken Grotesk 650, 1.35rem–2rem, 1.12–1.2): sacudidas, públicos, razones, capas, encabezados de fila, preguntas del acordeón.
-- **Lead** (Hanken Grotesk 400, `clamp(1.12rem, 1.4vw, 1.28rem)`, máx. 62ch, color `tinta-2` con `strong` 600 en `tinta`): la entradilla bajo cada título.
-- **Body** (Hanken Grotesk 400, 1.18rem, 1.62): texto corrido; listas y celdas de tabla entre 1.02 y 1.08rem, máx. 58–68ch.
-- **Small** (Hanken Grotesk 400, 0.92rem, 1.5, máx. 64ch): letra chica de honestidad (precios hipotéticos, hipótesis por comprobar).
-- **Label** (Hanken Grotesk 600, 0.84rem, 0.08em, mayúsculas): solo encabezados de columna de tabla y nombres de grupo de controles ("Plano", "Funda"). Es rótulo funcional de un control o columna, no antetítulo de sección.
+- **Display** (Barlow Condensed 700, `clamp(3rem, 5.6vw, 5.6rem)`, 0.9, mayúsculas, tres renglones): solo el eslogan de la portada. "luz" va en `luz-tinta` y "aroma" en `aroma-tinta`. El título de los créditos usa la misma voz a `clamp(3.4rem, 8vw, 6rem)`.
+- **Headline** (Barlow Condensed 700, `clamp(2.3rem, 4.4vw, 4.1rem)`, 0.98, máx. 18ch, `text-wrap:balance`, sin mayúsculas forzadas): los títulos de sección. Cada uno es una estación del riel.
+- **Title** (Barlow Condensed 700, 1.6–2.3rem, 1.02–1.1): sacudidas, públicos (el principal a `clamp(2.2rem, 3.6vw, 3.2rem)`), capas, razones, el encabezado de la ficha y las cajas.
+- **Cifra** (Barlow Condensed 700, `clamp(5rem, 11vw, 8.6rem)`, 0.86, numerales tabulares): el precio. Las lecturas de evidencia van a `clamp(4.4rem, 8vw, 7rem)`, el minuto del despertar a `clamp(3rem, 6vw, 5.6rem)` y las cifras del producto a `clamp(2.4rem, 4vw, 3.6rem)`. Las unidades bajan a Overpass 600.
+- **Estación** (Barlow Condensed 700, `clamp(1.3rem, 2vw, 1.9rem)`, tabular): los minutos y nombres de las estaciones de la portada y de la secuencia (1.6rem). El rótulo de correspondencia y las placas de la unión van en mayúsculas con 0.04em.
+- **Lead** (Overpass 400, `clamp(1.12rem, 1.4vw, 1.26rem)`, máx. 62ch, `tinta-2` con `strong` 700 en `tinta`): la entradilla bajo cada título.
+- **Body** (Overpass 400, 1.12rem, 1.62): el texto corrido. Listas y celdas van de 1.02 a 1.08rem, con medidas de 58 a 66ch.
+- **Small** (Overpass 400, 0.92rem, 1.5, máx. 64ch): la letra chica de honestidad (precios hipotéticos, datos del fabricante).
+- **Label** (Barlow Condensed 700, 0.95rem, 0.1em, mayúsculas): solo para encabezados de columna, nombres de grupo de controles ("Plano", "Funda"), los nombres de cargo en los créditos y los rótulos del comparador. Siempre nombra un control, una columna o un dato que está al lado.
+- **Button** (Overpass 700, 1.02rem, 0.01em): el texto de las placas (0.95rem en la chica). Las preguntas del acordeón van en Overpass 700 a `clamp(1.1rem, 1.5vw, 1.28rem)`.
 
 ### Named Rules
-**The One Family Rule.** Hanken Grotesk hace todo: 650 para titular y contar cifras, 400 para explicar. No se agrega otra familia; Instrument Sans y DM Mono siguen siendo la antirreferencia.
+**The Signage Voice Rule.** Barlow Condensed nombra (títulos, estaciones, cifras, rótulos) y Overpass explica. Barlow nunca se usa en párrafos, y no se agrega una tercera familia.
 
-**The Back Row Rule.** El cuerpo no baja de 1.02rem salvo letra chica y pies; el texto se lee proyectado antes que bonito.
+**The No Kicker Rule.** Ningún título lleva antetítulo, numeración decorativa ni etiqueta en mayúsculas encima. La estación del riel ya cumple esa función. La voz de etiqueta queda solo para controles, columnas y cargos.
+
+**The Back Row Rule.** El cuerpo va a 1.12rem y el texto secundario no baja de 0.92rem, salvo los rótulos dentro de una tarjeta en celular. El texto se lee proyectado antes que bonito.
 
 ## Layout
 
-Contenedor de 1200px (`ancho`) con medianil fluido (`gutter`, `clamp(18px, 4vw, 48px)`); preguntas usa la envoltura angosta de 860px. Las celdas respiran con `clamp(84px, 11vw, 140px)` arriba y abajo; los bloques dentro de una sección se separan con `clamp(44px, 5vw, 64px)`. La barra fija mide 68px y `scroll-padding-top` es 76px.
+Contenedor de 1200px (`ancho`) con medianil fluido (`gutter`). Las secciones respiran con `seccion` arriba y abajo, y los bloques internos se separan con `bloque`. La barra fija mide 68px y `scroll-padding-top` es 76px. Las preguntas usan el ancho completo para quedar en el riel, con el acordeón limitado a 860px.
 
-La composición es asimétrica y de cámara, no de rejilla de tarjetas: la primera toma pone la cartela a la derecha (máx. 680px) y la almohada en el plano cercano abajo a la izquierda; las tres sacudidas del problema bajan escalonadas (0, 4vw, 8vw) como un paneo; la mesa del despertar es 1.7fr de cuarto contra 1fr de control; el visor es 1.8fr contra 1fr; los públicos ponen al principal en dos filas a la izquierda. Las columnas se apilan en 900px, 860px, 820px y 760px según la sección; en 560px los selectores pasan a rejilla de 2 y 3 columnas. A 360px no hay desplazamiento horizontal (`overflow-x:hidden` en `body`, lienzo de la toma al 300 % recortado).
+El riel al margen solo aparece a partir de 1000px. Corre a 30px a la izquierda del borde del contenido (`--riel`), con una estación anillada de 28px junto a cada `h2` y un tramo del grosor de línea por sección. En los créditos baja hasta la terminal, un anillo junto al título "AuraSleep". Debajo de 1000px el riel desaparece y la terminal queda como un anillo ámbar sobre el título.
 
-En celular la primera toma reordena: pintura arriba, velo más denso en la banda del texto, almohada a la derecha abajo, acciones a ancho completo y sin el pie de la pintura.
+La composición es asimétrica y sigue la línea, no una rejilla de tarjetas. En la portada, el eslogan queda arriba a la izquierda (máx. 660px o 56 %). La almohada se centra sobre el trasbordo (`--t`, 68 %) y la ruta corre a lo ancho por la franja inferior. Las tres sacudidas del problema bajan escalonadas (0, 4vw, 8vw). En la mesa del despertar, el cuarto ocupa 1.55fr y el control 1fr. Los públicos ponen al principal en dos filas. Los precios van a 1.3fr contra 1fr. Las columnas se apilan entre 900px y 760px según la sección. A 900px la portada se reordena (texto, almohada y luego ruta) y oculta la estación −10. A 560px oculta la estación de aroma y los selectores pasan a rejilla. A 360px no hay desplazamiento horizontal.
+
+### Named Rules
+**The One Station Per Section Rule.** Cada sección de `main` con título es una estación del riel y tiene exactamente una. Una sección nueva hereda su estación y no agrega marcadores propios.
 
 ## Elevation & Depth
 
-La profundidad viene de los planos, no de sombras de interfaz: capas de pintura apiladas que se desplazan a distinto ritmo (`data-vel` 0.5, 0.34, 0.2, 0.06 de cielo a rocas), un velo de noche que se disipa al bajar y un enfoque que desenfoca los planos lejanos cuando aparece el aroma. Las celdas de papel son planas y llevan un grano de ruido SVG en `multiply`. Las sombras solo existen en objetos físicos: la pestaña (que se despega un poco de su celda), el marco del visor, la pantalla de la presentación, el menú desplegado y la almohada recortada.
+El sistema es plano. La profundidad viene de alternar placa de esmalte y túnel de grafito, no de levantar superficies. Las placas, tablas, cajas, lecturas y el formulario no tienen sombra. Las sombras quedan para lo que es objeto o fotografía: la almohada recortada, los cuadros con render dentro del túnel y el menú desplegado. La luz del producto puede brillar sobre su propio render (halo de la cinta, brillo de la mesa), porque es la luz que se demuestra y no un efecto de interfaz.
 
 ### Shadow Vocabulary
-- **Despegue de pestaña** (`0 2px 0 rgba(28,35,38,.18), 0 8px 18px -10px rgba(28,35,38,.45)`): bajo las pestañas sólidas; las de línea no llevan sombra.
-- **Filo encendido** (`inset 0 0 0 3px var(--anillo), inset 0 0 0 4px rgba(233,162,59,.6)`): el filo ámbar dentro de la pestaña sólida.
-- **Marco de visor** (`0 18px 36px -18px rgba(28,35,38,.6)`) y **pantalla** (`0 26px 50px -24px rgba(0,0,0,.6)`): marcos gruesos de umbra (12px y 10px).
-- **Menú** (`0 14px 30px -14px rgba(28,35,38,.5)`): desplegable de navegación móvil.
-- **Almohada** (`drop-shadow(0 24px 30px rgba(10,14,16,.45))`): el producto sobre el plano cercano.
+- **Almohada** (`filter: drop-shadow(0 26px 26px rgba(23,25,27,.28))`): el render de la portada sobre el esmalte.
+- **Cuadro en el túnel** (`box-shadow: 0 30px 60px -30px rgba(0,0,0,.8)`): el cuarto de la secuencia y el comparador.
+- **Menú** (`box-shadow: 0 18px 34px -18px rgba(23,25,27,.6)`): el panel del menú móvil.
+- **Filo de pantalla** (`box-shadow: 0 0 0 2px var(--grafito-3)`): un filete sólido alrededor de la pantalla de la presentación. No es un resplandor.
 
 ### Named Rules
-**The Paper Lies Flat Rule.** Las celdas, tablas, cajas y textos no proyectan sombra; solo lo que en el rodaje sería un objeto (pestaña, marco, pantalla, almohada) se separa del plano.
+**The Flat Enamel Rule.** Una placa de esmalte nunca se levanta. Si algo necesita separarse, lleva un filete o cambia de valor (esmalte, esmalte segundo o blanco).
 
-**The No Glass Rule.** Ningún control ni barra usa `backdrop-filter`. Sobre la pintura, la barra se oscurece con `rgba(20,26,32,.9)` opaco y las pestañas son papel sólido o línea.
+**The No Glass Rule.** Ningún control, barra ni panel usa `backdrop-filter`. La barra es grafito opaco.
+
+**The No Halo Rule.** No se usan resplandores sin desplazamiento (`0 0 Npx`) en controles, cuadros ni texto. El único brillo es la luz del producto pintada sobre su render.
 
 ## Shapes
 
-Esquinas suaves desde el rediseño dinámico (2026-11-10): 10px (`--r-control`) en pestañas, selectores, pasos, campos y menú; 18px (`--r-cel`) en el cuarto de la secuencia, el comparador, el marco del visor, la pantalla, las tarjetas de evidencia, la caja y el formulario. Las celdas de sección y las tablas siguen sin radio. Los rótulos sobre imagen ("Con alarma", "Con AuraSleep", la pista de la secuencia) son píldoras opacas. Lo redondo queda para lo que es luz o pigmento: puntos de luz y aroma, muestras de funda, pulgar del deslizador (50 %) y su riel (4px). Los filetes hacen la estructura: 1.5px de `tinta` en cajas y controles, 2px arriba de cada sacudida o público (4px en el principal), 1px de `--raya` entre filas. Los chevrones de menú, acordeón y fuentes son bordes CSS girados, no glifos. El marco del visor lleva tres pernos de registro arriba, como la barra de una cámara de animación.
+Hay dos esquinas: 6px (`control`) para placas, selectores, campos, rótulos, la pista y la placa del menú, y 10px (`cel`) para cuadros, la caja, el formulario, la pantalla, el visor, las placas de la unión y las filas de la comparativa en celular. Los tramos de línea terminan en punta redonda (`linea`, 99px). Lo redondo (`punto`) queda para estaciones, anillos y muestras de funda.
+
+La línea tiene un solo grosor (`grosor`, de 9 a 12px). Las estaciones son anillos: 26–28px con aro de 6px, en `esmalte` o en el fondo de su sección. Las marcas del deslizador miden 20px con aro de 5px. El trasbordo es un anillo de 52–58px con aro de grafito de 10–11px. El tren del deslizador es un punto ámbar de 30px con aro de grafito de 7px. Los filetes estructurales son de grafito: 3px sobre sacudidas, públicos, precios, cifras y el acordeón, 6px sobre el público principal, 2px en cajas y controles, y 1px de `--raya` entre filas. Los chevrones del menú, del acordeón, de las fuentes y de los enlaces son bordes CSS girados. Los pictogramas son SVG de un solo trazo (`stroke-width:2.2`, puntas redondas) que toman el color de su línea.
+
+### Named Rules
+**The One Line Weight Rule.** Todo tramo de línea (portada, riel, secuencia, deslizador, unión, lecturas) usa `grosor`. Solo la barra de avance (3px) y el subrayado de la barra (2px) son más delgados, porque son indicadores de la barra y no la línea.
 
 ## Components
 
-### Buttons (pestañas de celda)
-Pestaña de papel que se toca y cede, con su filo encendido.
-- **Shape:** esquinas de papel cortado (3px), borde de 1.5px, alto mínimo 52px (44px en la chica).
-- **Primary:** `pino` con texto `tinta-clara`, Hanken Grotesk 600 a 1.02rem, filo interior ámbar y despegue; sobre escenas oscuras (primera toma, visor, pantalla) se invierte a fondo `tinta-clara` con texto `pino` y el filo sigue el color de fondo.
-- **Hover / Focus:** hover a `pino-2` (o blanco en la versión invertida); presión `translateY(1px) scale(.985)`; foco con anillo ámbar de 3px a 3px de distancia. Transiciones de .25s con `--curva`.
-- **Línea:** transparente con borde y texto del contexto, hover con velo de pino al 8 % (o de tinta clara al 10–12 % sobre oscuro), sin sombra.
-- En la barra, mientras flota sobre la pintura o sobre noche, la pestaña pasa a línea clara.
+### Buttons (placas)
+Placa de señalética: sólida, firme, sin brillo.
+- **Shape:** esquinas de 6px, borde de 2px, alto mínimo de 52px (44px en la chica).
+- **Primary:** fondo grafito con texto `tinta-clara` sobre esmalte. Sobre grafito (barra, visor, pantalla) se invierte a fondo esmalte con texto grafito.
+- **Hover / Focus:** hover a `grafito-3` (o a blanco puro en la invertida). Con puntero fino sube 2px. La presión es `scale(.98)`. El foco es un anillo ámbar de 3px a 3px de distancia. Las transiciones duran de .16 a .25s con `--ease-out`.
+- **Línea:** transparente, con borde y texto del contexto. Al pasar se rellena de grafito (o de `tinta-clara` sobre túnel).
 
 ### Selectores (vistas y funda)
-- **Style:** fila de botones de 46px con borde de 1.5px de `tinta`, 3px de radio, Hanken Grotesk 500; las fundas llevan su muestra redonda de 22px.
-- **State:** el activo de vista se rellena de `pino`; el activo de funda engrosa el borde a 3px y la letra a 700 (la muestra ya es el color). Estado en `aria-pressed`.
+- **Style:** botones de 46px con borde de grafito de 2px, 6px de radio y Overpass 600. Las fundas llevan su muestra redonda de 22px.
+- **State:** la vista activa se rellena de grafito. La funda activa suma un filo interior de grafito de 2px y letra 800. El estado va en `aria-pressed`.
+
+### Muestras de funda (selector vivo)
+Filas de 60px sobre `blanco` con borde `--raya` de 2px y muestra de 30px. La activa pasa a borde grafito y su muestra crece al 115 % con doble aro. El nombre de la funda va en Barlow 700 en mayúsculas. El render cambia con un fundido lateral de 24px.
 
 ### Cards / Containers
-- **Corner Style:** sin radio.
-- **Background:** el de la celda; el formulario usa `rgba(255,255,255,.35)` sobre `manana`.
-- **Shadow Strategy:** ninguna (The Paper Lies Flat Rule).
-- **Border:** 1.5px de `tinta`.
-- **Internal Padding:** 24–26px en la caja de la ficha; `clamp(22px, 3vw, 34px)` en el formulario.
+- **Corner Style:** 10px.
+- **Background:** `blanco` (caja de la ficha, formulario). La evidencia no usa tarjetas: son lecturas sobre su línea.
+- **Shadow Strategy:** ninguna (The Flat Enamel Rule).
+- **Border:** 2px de grafito.
+- **Internal Padding:** 24–26px en la caja y `clamp(22px, 3vw, 34px)` en el formulario.
 
 ### Inputs / Fields
-- **Style:** 50px de alto, fondo `campo`, borde de 1.5px de `tinta-2`, 2px de radio, Hanken Grotesk 1.05rem; cursor de texto `pino`.
-- **Focus:** anillo ámbar de 3px a 1px y borde a `tinta`.
-- **Error / Disabled:** borde y mensaje en `error`; confirmación en bloque `ok-fondo` con texto `ok-tinta`. Radios de 20px con acento `menta`.
+- **Style:** 50px de alto, fondo `blanco`, borde de 2px en `tinta-2`, 6px de radio, Overpass 1.05rem, cursor grafito.
+- **Focus:** anillo ámbar de 3px a 1px de distancia y borde en `tinta`.
+- **Error / Disabled:** borde y mensaje en `error`. La confirmación es un bloque `ok-fondo` con texto `ok-tinta` y una palomita. Los radios de aroma usan `aroma-tinta`.
 
 ### Navigation
-Marca "AuraSleep" en Hanken Grotesk 1.45rem; enlaces Hanken Grotesk 1rem al 86 % de opacidad, subrayados al pasar. La barra es transparente sobre la pintura, se vuelve `rgba(20,26,32,.9)` al desplazarse, `manana` con texto `tinta` sobre celdas claras y vuelve a oscura sobre noche o umbra. Bajo 1080px los enlaces y la pestaña se cambian por un `details` "Menú" con chevrón CSS y un panel `manana` con borde de 1.5px y entradas de 44px.
+Es el letrero de la estación: barra grafito de 68px. La marca "AuraSleep" va en Barlow 700 a 1.6rem en mayúsculas, con un anillo de trasbordo que lleva un punto ámbar a la izquierda y uno menta a la derecha. Cada enlace (Overpass 600, `tinta-clara-2`) tiene una estación anillada de 10px. La sección actual se enciende: el punto se rellena de ámbar, aparece un subrayado ámbar de 2px y se marca con `aria-current="location"`. La placa "Lista de espera" va en esmalte. Debajo de la barra corre el avance (ámbar y luego menta). Bajo 1080px, los enlaces se cambian por un `details` "Menú" con un panel de esmalte cuyas entradas de 46px llevan una estación ámbar.
 
-### Mesa del despertar (signature)
-Los renders del producto (luz apagada y encendida) en un cuadro 1800:1127, controlados por un deslizador de −15 a 0 minutos (`--l` de 0 a 1). El cielo se ilumina primero y las rocas al final (factores 1.5, 1.25 y retardado), la almohada pasa de apagada a encendida por opacidad, y al empezar el aroma los planos lejanos se desenfocan (1.4px el cielo, 0.9px los volcanes; los árboles nunca) mientras suben tres ráfagas de menta. Riel de 8px en `#4A4038` rellenado de ámbar, pulgar `tinta-clara` con aro ámbar de 4px. La lectura del minuto va en voz de cifra.
+### Diagrama de la portada (signature)
+Tramo ámbar desde el borde izquierdo hasta el trasbordo (`--t`) con estaciones −15/−10/−5 (cifra en voz de estación y nombre en Overpass 0.86rem). Tramo menta que entra 46px más abajo desde la derecha, con su estación "Aroma" y un codo de 84px que sube a 33.3° hasta el trasbordo. El anillo de trasbordo lleva debajo el rótulo "AuraSleep" (en mayúsculas) en placa grafito, y la almohada se para encima.
 
-### Hoja de exposición y comparativa
-Tablas de filetes sin fondo; encabezados en voz de etiqueta. La fila en curso de la secuencia se tiñe de ámbar al 16 % con punto de luz; la fila de AuraSleep en la comparativa es un bloque `pino` con su nombre en Hanken Grotesk 1.45rem. Bajo 860/820px cada fila se vuelve tarjeta con rótulos por celda.
+### Secuencia de 15 minutos (signature)
+Cuarto con los renders de noche y amanecer (1800:1127). La luz (`--l`, de 0 a 1) cruza los renders con un fundido y calienta el fondo. El deslizador es un tramo de línea con cuatro marcas de estación, relleno ámbar hasta el tren. Abajo están los cuatro pasos como estaciones sobre un tramo vertical: apagadas (aro `grafito-3`) hasta que llegas, pasadas con aro ámbar, y la estación detenida llena de ámbar, con su minuto en `luz-clara` y un velo ámbar al 10 %. Solo hay una estación detenida a la vez. Cada paso lleva los pictogramas de luz y de aroma, y el de aroma va atenuado en −15.
 
-### Marco del visor 3D y pantalla
-El visor va en un marco de umbra de 12px (8px en celular) con pernos de registro y cartel previo con la pestaña "Cargar el modelo 3D"; la presentación de Canva va en una pantalla de 10px que muestra un frente de cielo previo al alba hasta que el usuario la carga. Dentro del visor, `body.marco-multiplano` viste las etiquetas como celdas de papel (`rgba(228,233,230,.96)`, `tinta`, 3px, Hanken Grotesk 600 a 12.5px) y evita que se encimen; la geometría no cambia.
+### Comparativa y unión
+Tabla de filetes con encabezados en voz de etiqueta. Cada competidor va con el pictograma de su línea (luz, aroma o ninguno para las almohadas inteligentes). La fila AuraSleep es un bloque grafito con el pictograma de trasbordo y su nombre en Barlow 700 a 1.9rem, en mayúsculas. Arriba, en la unión, la línea ámbar llega desde la izquierda y la menta desde la derecha hasta un anillo de trasbordo central con el rótulo "AuraSleep". Las placas "Luz" y "Aroma" son de esmalte, con aro interior de 4px del color de su línea.
 
-## Motion (rediseño dinámico, 2026-11-10)
+### Lecturas de evidencia
+Cada cifra de la investigación va sobre un tramo de su línea, con una estación anillada al inicio. La cifra va en `luz-clara` o `menta-clara`, en columna de 15rem, y el texto en Overpass al lado. No son tarjetas.
 
-El usuario sintió la página "plana y seca" y eligió una mezcla: la base noche → amanecer con scroll más piezas interactivas. El movimiento vive en `v2/js/movimiento.js` y en la "capa de movimiento" al final de `v2/css/estilos.css`. Solo se activa con `html.mov`, que un script en el `<head>` pone cuando no hay `prefers-reduced-motion: reduce`; sin JS o con movimiento reducido todo se ve completo y quieto.
+### Visor 3D y pantalla
+El visor y la pantalla de Canva van en cuadros de 10px sobre `grafito-2`, sin marco grueso. La placa de carga va invertida (esmalte sobre grafito). La pantalla muestra un frente grafito con el título en Barlow, en mayúsculas, hasta que el usuario la carga. El visor se incrusta con `#embed&marco=multiplano`, que solo cambia el escenario y las etiquetas. Su geometría no se toca.
 
-- **Curvas:** `--curva` (.16,1,.3,1) para entradas largas; `--ease-out` (.23,1,.32,1) para interfaz; `--ease-io` (.77,0,.175,1) para lo que se mueve en pantalla (trazos, destellos). Interfaz 200–350 ms; entradas de contenido 0.8–1 s.
-- **Portada:** el cielo se acerca (2.6 s), el título sube línea por línea (escalonado 120 ms), la almohada entra y luego flota (7 s), el halo de la cinta respira y salen ráfagas de menta del difusor. Estrellas que titilan y se apagan al bajar. En computadora la almohada sigue al cursor con inercia.
-- **Apariciones:** subida de 28px + opacidad, una sola vez (IntersectionObserver), escalonado de 80 ms entre hermanos. Los títulos `h2` suben palabra por palabra desde su ranura (`aria-label` con el texto completo).
-- **Barra:** línea de avance del amanecer (azul → ámbar) bajo la barra y subrayado ámbar en la sección visible.
-- **Comparador alarma / AuraSleep:** imagen dividida con `input range` invisible encima (teclado y lectores de pantalla). Al aparecer por primera vez la línea se mueve sola una vez para enseñar el gesto.
-- **Secuencia de 15 minutos (signature):** en pantallas de 901px o más de ancho y 680px de alto, la mesa queda fija (`position: sticky`) y el scroll mueve los minutos; los pasos, el deslizador y "Reproducir" mueven el scroll. En celular los pasos animan los minutos sin fijar nada. El fondo del cuarto se calienta con la luz (`--l`).
-- **Cifras que cuentan:** solo cifras de la investigación (92 %, 99 %, medidas, batería, precios), desaceleran al llegar y reservan su ancho final.
-- **La unión:** los círculos de luz y aroma se juntan con el scroll hasta formar AuraSleep.
-- **Selector de funda:** rota solo cada 3.2 s mientras está a la vista y nadie lo toca; se detiene con el cursor encima, al enfocar o al elegir.
-- **Cierre:** el sol sube detrás del nombre en los créditos.
+## Motion
+
+El movimiento vive en `v2/js/movimiento.js`, en partes de `v2/js/main.js` (secuencia, comparador, selector de funda) y en la capa de movimiento de `v2/css/estilos.css`. Solo se activa con `html.mov`, una clase que pone un script en el `<head>` cuando no hay `prefers-reduced-motion: reduce`. Sin JS o con movimiento reducido, todo se ve completo y quieto.
+
+- **Curvas:** `--curva` (.16,1,.3,1) para entradas largas, `--ease-out` (.23,1,.32,1) para la interfaz y `--ease-io` (.77,0,.175,1) para lo que se traza (líneas, riel, curva del comparador, destellos). La interfaz dura de 160 a 300 ms y las entradas de contenido de 0.8 a 1.6 s.
+- **Portada:** el tramo de luz se traza desde la izquierda (1.4 s) y el de aroma desde la derecha (1.2 s, a los 0.5 s). Después aparece el codo y las estaciones se encienden en orden (0.45/0.75/1.05 s, aroma 1.1 s, trasbordo 1.45 s). El eslogan sube renglón por renglón (escalonado de 120 ms). La almohada entra (1.6 s) y luego flota (7 s), el halo de la cinta respira y salen ráfagas de menta del difusor. Con puntero fino, la almohada sigue al cursor con inercia.
+- **Apariciones:** suben 28px con fundido una sola vez (IntersectionObserver), con un escalonado de 80 ms entre hermanos. Los `h2` y el título de los créditos suben palabra por palabra desde su ranura (45 ms por palabra; `aria-label` con el texto completo).
+- **Riel:** al aparecer el `h2` de una sección, su tramo del riel se traza hacia abajo (1.6 s) y su estación pasa de gris a ámbar.
+- **Barra:** el avance se llena con el scroll. La sección visible enciende su estación y su subrayado.
+- **Comparador:** imagen dividida con un `input range` invisible encima (teclado y lectores de pantalla). La primera vez que aparece, la línea se mueve sola una vez para enseñar el gesto. Mientras está a la vista, el reloj timbra y las ondas salen. La curva de cada lado se dibuja en 2.4 s.
+- **Secuencia fija:** en ventanas de 901px o más de ancho y 680px o más de alto, la mesa queda fija (`position: sticky`) y el scroll mueve el tren por las estaciones. Los pasos, el deslizador y "Reproducir" mueven el scroll. En pantallas menores, los pasos animan los minutos sin fijar nada.
+- **Cifras que cuentan:** solo cifras de la investigación y de `datos.json`. Duran 1.4 s con desaceleración, empiezan con el 60 % visible y reservan su ancho final.
+- **La unión:** con el scroll, las placas de luz y aroma viajan por su línea desde los bordes hasta quedar a los lados del trasbordo. El rótulo "AuraSleep" aparece en el último 40 % del recorrido.
+- **Selector de funda:** rota solo cada 3.2 s mientras está a la vista y nadie lo toca. Se detiene con el cursor encima, al enfocarlo, al elegir una funda o con la pestaña oculta.
+- **Acordeón:** la altura se anima en .26 s donde el navegador lo permite.
 
 ### Named Rules
-**The Motion Explains Rule.** Cada movimiento demuestra el producto (la luz sube, el aroma sale, la alarma sacude) o confirma una acción. Nada se anima solo por decorar contenido que se lee.
+**The Motion Explains Rule.** Cada movimiento demuestra el producto (la luz sube, el aroma sale, la alarma sacude, las líneas se unen) o confirma una acción o una llegada. Nada se anima solo por decorar contenido que se lee.
 
-**The Still Frame Rule.** Con movimiento reducido no hay sección fija, ni flotación, ni rotación automática, ni conteo: todo aparece en su estado final.
+**The Still Frame Rule.** Con movimiento reducido no hay sección fija, flotación, rotación automática, conteo, trazado ni cursor seguido: todo aparece en su estado final, con las líneas completas y las estaciones encendidas.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** usar como imagen de ambiente solo fotografías con licencia libre y crédito visible (CC BY / CC BY-SA), cada `.webp` con su `.webp.json` de procedencia al lado.
-- **Do** reservar `lampara` para luz, foco y progreso, y la menta para el aroma.
-- **Do** dar a cada sección nueva el fondo que le toca en el orden noche → día (`cel-noche`, `umbra`, `bruma`, `niebla`, `manana`, `dia`).
-- **Do** titular en Hanken Grotesk 650 y escribir en Hanken Grotesk, con el cuerpo a 1.18rem/1.62 y medidas de 58–68ch.
-- **Do** poner la letra chica de cifras hipotéticas en voz `small` junto a cada precio o costo.
-- **Do** congelar todo movimiento con `prefers-reduced-motion: reduce`: parallax, velo, ráfagas y acordeón quedan en toma fija.
-- **Do** mantener alto táctil de 44px o más en todo control y anillo de foco ámbar de 3px.
+- **Do** dibujar cualquier línea nueva con `grosor` y punta redonda, y marcar sus paradas con anillos de estación.
+- **Do** reservar `lampara` para luz, estaciones encendidas, progreso y foco. Para texto de luz usa `luz-tinta` sobre esmalte y `luz-clara` sobre grafito.
+- **Do** reservar la menta para el aroma, con `aroma-tinta` sobre esmalte y `menta-clara` sobre grafito.
+- **Do** dar a cada sección nueva con título su estación en el riel y un fondo de esmalte o de túnel de grafito.
+- **Do** titular, nombrar estaciones y escribir cifras en Barlow Condensed 700, y escribir todo lo demás en Overpass, con el cuerpo a 1.12rem/1.62.
+- **Do** poner la letra chica de cifras hipotéticas en voz `small` junto a cada precio o costo. No se muestran testimonios, reseñas ni promesas médicas.
+- **Do** usar pictogramas originales de un solo trazo como `<symbol>` en `index.html`, del color de su línea.
+- **Do** congelar todo movimiento con `prefers-reduced-motion: reduce` (The Still Frame Rule).
+- **Do** mantener un alto táctil de 44px o más en todo control y el anillo de foco ámbar de 3px.
 
 ### Don't:
-- **Don't** volver al aspecto del primer sitio: azul marino oscuro con naranja, Instrument Sans, DM Mono.
-- **Don't** usar `backdrop-filter` ni paneles de vidrio en barras, pestañas o tarjetas.
-- **Don't** poner sombra a celdas, cajas, tablas o texto de contenido; solo a objetos físicos.
-- **Don't** agregar una tercera familia tipográfica ni usar Hanken Grotesk en texto corrido.
-- **Don't** redondear más allá de 18px ni usar píldoras para botones (las píldoras quedan para rótulos sobre imagen).
-- **Don't** usar los colores de funda como acentos de interfaz.
-- **Don't** usar el ámbar como fondo de superficies grandes o como color de texto sobre papel claro.
+- **Don't** pintar placas de acción general en ámbar ni en menta: van en grafito o en esmalte.
+- **Don't** agregar un tercer color de línea ni usar los colores de funda como acentos de interfaz.
+- **Don't** poner antetítulos, numeraciones decorativas ni etiquetas en mayúsculas sobre los títulos.
+- **Don't** usar `backdrop-filter` ni paneles de vidrio.
+- **Don't** usar resplandores sin desplazamiento en controles, cuadros o texto.
+- **Don't** poner sombra a placas, tablas, cajas o lecturas.
+- **Don't** mezclar grosores de línea ni dibujar líneas punteadas o degradadas entre luz y aroma (salvo la barra de avance).
+- **Don't** usar logotipos, nombres ni pictogramas de sistemas de transporte reales.
+- **Don't** volver al aspecto del primer sitio (azul marino oscuro con naranja, Instrument Sans, DM Mono), a la foto oscura con eslogan serif gigante ni a la plantilla crema de bienestar.
+- **Don't** redondear más allá de 10px las superficies ni usar píldoras para botones.
