@@ -98,3 +98,7 @@ Se revisó la rúbrica del profesor ("Lista de puntos"). Lo que quedó:
 - **PDF de investigación:** se genera desde `docs/investigacion-fuente.html` (imprimir a PDF tamaño carta con fondos). No lleva la liga de edición de Canva. Las fuentes [17] Wikipedia y [18] Sleep Foundation respaldan el análisis del artículo original.
 - **Guion de la exposición oral:** `docs/guion-exposicion.md`.
 - `public/img/poster.jpg` y `volante.jpg` son exportaciones de los diseños de Canva del equipo.
+
+## Sitio principal (decisión del usuario, 2026-11-09)
+
+El sitio principal es **v2** (https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/). El sitio original de la raíz ya no se usa: no hace falta mantenerlo ni replicarle cambios. La presentación de Canva tiene 13 diapositivas (las 8 originales más producto original, análisis, vistas del modelo, publicidad e inteligencia artificial).
