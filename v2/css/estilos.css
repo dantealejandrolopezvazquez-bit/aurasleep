@@ -1080,3 +1080,49 @@ h3{font-weight:700;letter-spacing:0}
 @media (min-width:1000px){
   .mov main > section.cel::after,.mov main > section.escenario::after{transform:none;transition:none}
 }
+
+/* transición entre secciones: cada una nace del color de la anterior, sin línea de corte */
+#problema,#como-funciona,#producto,#ventaja,#para-quien,#colores,#precio,#presentacion,#preguntas,#lista,.creditos{
+  background-image:linear-gradient(180deg,var(--desde) 0,var(--desde) 2px,transparent clamp(80px, 9vw, 130px))}
+#problema{--desde:var(--esmalte)}
+#como-funciona{--desde:var(--grafito-2)}
+#producto{--desde:var(--grafito);box-shadow:none}
+#ventaja,#para-quien{--desde:var(--esmalte)}
+#colores{--desde:var(--esmalte)}
+#precio{--desde:var(--esmalte-2)}
+#presentacion{--desde:var(--esmalte-2)}
+#preguntas{--desde:var(--grafito)}
+#lista{--desde:var(--esmalte)}
+.creditos{--desde:var(--esmalte-2)}
+/* degradado con curva suave (en oklab, sin franja gris) */
+#problema,#como-funciona,#producto,#ventaja,#para-quien,#colores,#precio,#presentacion,#preguntas,#lista,.creditos{
+  --largo:clamp(90px, 10vw, 140px);
+  background-image:linear-gradient(in oklab 180deg,
+    var(--desde) 0,
+    color-mix(in oklab, var(--desde) 94%, transparent) calc(var(--largo) * .15),
+    color-mix(in oklab, var(--desde) 78%, transparent) calc(var(--largo) * .32),
+    color-mix(in oklab, var(--desde) 52%, transparent) calc(var(--largo) * .5),
+    color-mix(in oklab, var(--desde) 26%, transparent) calc(var(--largo) * .68),
+    color-mix(in oklab, var(--desde) 8%, transparent) calc(var(--largo) * .85),
+    transparent var(--largo))}
+main > section + section,main + .creditos{margin-top:-1px}
+/* tapa la costura de subpíxel con el color de inicio de cada sección */
+#problema,#como-funciona,#producto,#ventaja,#para-quien,#colores,#precio,#presentacion,#preguntas,#lista,.creditos{box-shadow:0 -2px 0 var(--desde)}
+/* el fondo base es el color de la sección anterior y el degradado termina en el propio:
+   así ninguna fila de subpíxel queda con el color equivocado */
+#problema{--fondo:var(--grafito-2)}
+#como-funciona{--fondo:var(--grafito)}
+#producto,#ventaja,#para-quien,#preguntas{--fondo:var(--esmalte)}
+#colores,#precio,#lista{--fondo:var(--esmalte-2)}
+#presentacion,.creditos{--fondo:var(--grafito)}
+#problema,#como-funciona,#producto,#ventaja,#para-quien,#colores,#precio,#presentacion,#preguntas,#lista,.creditos{
+  background-color:var(--desde);box-shadow:none;
+  background-image:linear-gradient(in oklab 180deg,
+    var(--desde) 0,
+    color-mix(in oklab, var(--desde) 94%, var(--fondo)) calc(var(--largo) * .15),
+    color-mix(in oklab, var(--desde) 78%, var(--fondo)) calc(var(--largo) * .32),
+    color-mix(in oklab, var(--desde) 52%, var(--fondo)) calc(var(--largo) * .5),
+    color-mix(in oklab, var(--desde) 26%, var(--fondo)) calc(var(--largo) * .68),
+    color-mix(in oklab, var(--desde) 8%, var(--fondo)) calc(var(--largo) * .85),
+    var(--fondo) var(--largo), var(--fondo) 100%)}
+@media (min-width:1000px){main > section.cel::after,main > section.escenario::after{top:-2px}}
