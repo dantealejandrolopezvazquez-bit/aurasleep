@@ -49,18 +49,28 @@
   quieto.addEventListener?.("change", () => { if (quieto.matches) { capas.forEach((c) => (c.el.style.transform = "")); noche.style.opacity = ""; } alDesplazar(); });
   alDesplazar();
 
-  /* ---------- la mesa: la secuencia vuelve a iluminar todos los planos ---------- */
+  /* ---------- la secuencia: el cuarto amanece minuto a minuto ---------- */
   const mesa = $("#mesa");
+  const recorrido = $("#recorrido");
+  const fijo = $(".recorrido__fijo");
   const rango = $("#mesa-rango");
   const salida = $("#mesa-min");
   const unidad = $("#mesa-unidad");
-  const filas = $$("#hoja tr");
+  const pasos = $$("#hoja .paso");
   const play = $("#mesa-play");
+  const pistaMesa = $("#mesa-pista");
+  const BARRA = 68;
   let animando = null;
+  let minuto = -15;
+  let fijado = false;
+  const sujetar = (v, a, b) => Math.min(Math.max(v, a), b);
+  const suaveIO = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
 
   function pintar(m) {
+    minuto = m;
     const l = luz(m);
-    mesa.style.setProperty("--l", l.toFixed(3));
+    recorrido.style.setProperty("--l", l.toFixed(3));
+    rango.value = m;
     rango.style.setProperty("--p", ((m + 15) / 15) * 100 + "%");
     const hora = m >= -0.001;
     salida.textContent = hora ? "Hora" : fmt(m);
@@ -68,12 +78,66 @@
     mesa.classList.toggle("con-aroma", m >= -10);
     mesa.style.setProperty("--cadencia", m >= -5 ? "1.9s" : "3.4s");
     let texto = "";
-    filas.forEach((tr) => {
-      const ok = m >= parseFloat(tr.dataset.desde) && m < parseFloat(tr.dataset.hasta);
-      tr.classList.toggle("actual", ok);
-      if (ok) texto = tr.textContent.replace(/\s+/g, " ").trim();
+    pasos.forEach((p) => {
+      const desde = parseFloat(p.dataset.desde), hasta = parseFloat(p.dataset.hasta);
+      const ok = m >= desde && m < hasta;
+      p.setAttribute("aria-pressed", String(ok));
+      p.classList.toggle("pasado", m >= hasta);
+      p.style.setProperty("--k", ok ? (hasta > 0 ? 1 : sujetar((m - desde) / (hasta - desde), 0, 1)).toFixed(3) : "0");
+      if (ok) texto = p.textContent.replace(/\s+/g, " ").trim();
     });
     rango.setAttribute("aria-valuetext", (hora ? "Hora de despertar" : fmt(m).replace("−", "menos ") + " minutos") + ". " + texto);
+  }
+  // modo fijo: en pantallas amplias el scroll mueve los minutos
+  const viaje = () => recorrido.offsetHeight - fijo.offsetHeight;
+  const inicioRecorrido = () => recorrido.getBoundingClientRect().top + window.scrollY - BARRA;
+  const yDeMinuto = (m) => inicioRecorrido() + ((m + 15) / 15) * viaje();
+  function medirFijado() {
+    const debe = !quieto.matches && window.innerWidth >= 901 && window.innerHeight >= 680;
+    if (debe !== fijado) { fijado = debe; recorrido.classList.toggle("fijado", fijado); }
+    if (fijado) desdeScroll();
+  }
+  function desdeScroll() {
+    if (!fijado) return;
+    const top = recorrido.getBoundingClientRect().top;
+    const p = sujetar((BARRA - top) / viaje(), 0, 1);
+    pintar(-15 + 15 * p);
+    pistaMesa.classList.toggle("fuera", p > 0.04);
+  }
+  let pendMesa = false;
+  window.addEventListener("scroll", () => {
+    if (fijado && !pendMesa) { pendMesa = true; requestAnimationFrame(() => { pendMesa = false; desdeScroll(); }); }
+  }, { passive: true });
+  window.addEventListener("resize", medirFijado);
+  quieto.addEventListener?.("change", medirFijado);
+
+  // lleva la secuencia a un minuto: con scroll en modo fijo, o animando los minutos
+  function irA(destino, dur, alTerminar) {
+    if (animando) cancelAnimationFrame(animando);
+    const parejo = dur > 2000; // la reproducción va a ritmo constante; los saltos, con curva
+    if (quieto.matches) {
+      if (fijado) window.scrollTo({ top: yDeMinuto(destino), behavior: "instant" }); else pintar(destino);
+      if (alTerminar) alTerminar();
+      return;
+    }
+    const t0 = performance.now();
+    if (fijado) {
+      const y0 = window.scrollY, y1 = yDeMinuto(destino);
+      const cuadro = (now) => {
+        const k = sujetar((now - t0) / dur, 0, 1);
+        window.scrollTo({ top: y0 + (y1 - y0) * (parejo ? k : suaveIO(k)), behavior: "instant" });
+        if (k < 1) animando = requestAnimationFrame(cuadro); else { animando = null; if (alTerminar) alTerminar(); }
+      };
+      animando = requestAnimationFrame(cuadro);
+    } else {
+      const m0 = minuto;
+      const cuadro = (now) => {
+        const k = sujetar((now - t0) / dur, 0, 1);
+        pintar(m0 + (destino - m0) * (parejo ? k : suaveIO(k)));
+        if (k < 1) animando = requestAnimationFrame(cuadro); else { animando = null; if (alTerminar) alTerminar(); }
+      };
+      animando = requestAnimationFrame(cuadro);
+    }
   }
   function detener() {
     if (animando) cancelAnimationFrame(animando);
@@ -81,24 +145,34 @@
     play.setAttribute("aria-pressed", "false");
     play.textContent = "Reproducir el despertar";
   }
-  rango.addEventListener("input", () => { detener(); pintar(parseFloat(rango.value)); });
+  // si la persona toma el control del scroll, la reproducción se detiene
+  ["wheel", "touchstart", "keydown"].forEach((ev) => window.addEventListener(ev, (e) => {
+    if (play.getAttribute("aria-pressed") !== "true") return;
+    if (ev === "keydown" && (e.target === play || e.key === "Tab" || e.key === "Shift")) return;
+    detener();
+  }, { passive: true }));
+  rango.addEventListener("input", () => {
+    detener();
+    const m = parseFloat(rango.value);
+    if (fijado) window.scrollTo({ top: yDeMinuto(m), behavior: "instant" }); else pintar(m);
+  });
+  pasos.forEach((p) => p.addEventListener("click", () => {
+    detener();
+    irA(parseFloat(p.dataset.min), 900);
+  }));
   play.addEventListener("click", () => {
-    if (animando) { detener(); return; }
-    let inicio = parseFloat(rango.value);
-    if (inicio >= -0.001) inicio = -15;
-    const t0 = performance.now() - ((inicio + 15) / 15) * 15000; // 1 s por minuto
+    if (play.getAttribute("aria-pressed") === "true") { detener(); return; }
+    if (minuto >= -0.001) {
+      if (fijado) window.scrollTo({ top: yDeMinuto(-15), behavior: "instant" });
+      pintar(-15);
+    }
+    const inicio = minuto;
     play.setAttribute("aria-pressed", "true");
     play.textContent = "Pausar";
-    const paso = (now) => {
-      const m = Math.min(-15 + ((now - t0) / 15000) * 15, 0);
-      rango.value = m;
-      pintar(m);
-      if (m >= 0) { detener(); return; }
-      animando = requestAnimationFrame(paso);
-    };
-    animando = requestAnimationFrame(paso);
+    irA(0, Math.max(-inicio * 1000, 2001), detener); // 1 s por minuto
   });
-  pintar(parseFloat(rango.value));
+  pintar(-15);
+  medirFijado();
 
   /* ---------- visor 3D con el marco "multiplano" ---------- */
   const marco = $("#visor-marco");

@@ -155,32 +155,36 @@
     <p class="entrada">AuraSleep sustituye la alarma sonora por un despertar secuencial y multisensorial. Trabaja de forma no invasiva sobre la <strong>vía visual indirecta</strong> (luz que atraviesa los párpados cerrados) y la <strong>vía olfativa</strong> (aroma dirigido a la nariz).</p>
   </div>
 
-  <div class="mesa" id="mesa" style="--l:0">
+  <div class="recorrido" id="recorrido" style="--l:0">
+  <div class="recorrido__fijo">
+  <p class="recorrido__titulo envoltura" aria-hidden="true">Tu despertar, minuto a minuto</p>
+  <div class="mesa" id="mesa">
     <div class="mesa__cuarto" aria-hidden="true">
       <img class="mesa__escena" src="../public/img/hero_noche.webp" width="1800" height="1127" alt="" loading="lazy">
       <img class="mesa__escena mesa__escena--luz" id="mesa-luz" src="../public/img/hero_amanecer.webp" width="1800" height="1127" alt="" loading="lazy">
+      <div class="mesa__brillo"></div>
       <svg class="mesa__aroma" id="mesa-aroma" viewBox="0 0 200 260"><g filter="url(#bruma)"><ellipse cx="70" cy="210" rx="30" ry="18"/><ellipse cx="110" cy="140" rx="34" ry="20"/><ellipse cx="150" cy="70" rx="36" ry="22"/></g></svg>
+      <p class="mesa__hora"><output id="mesa-min" for="mesa-rango">−15:00</output> <span id="mesa-unidad">para tu hora</span></p>
+      <p class="mesa__pista" id="mesa-pista">Sigue bajando: cada paso es un minuto</p>
     </div>
 
     <div class="mesa__control">
-      <p class="mesa__lectura"><output id="mesa-min" for="mesa-rango">−15:00</output> <span id="mesa-unidad">para tu hora</span></p>
       <label class="sr" for="mesa-rango">Minutos antes de tu hora de despertar</label>
       <input type="range" id="mesa-rango" min="-15" max="0" step="0.25" value="-15">
       <div class="mesa__marcas" aria-hidden="true"><span>−15</span><span>−10</span><span>−5</span><span>Hora</span></div>
+      <ol class="pasos" id="hoja" aria-label="Secuencia del despertar">
+        <li><button type="button" class="paso" data-min="-15" data-desde="-15" data-hasta="-10" aria-pressed="true"><span class="paso__min">−15</span><span class="paso__txt"><span class="paso__luz"><span class="sr">Luz: </span>Empieza a encenderse, muy tenue</span><span class="paso__aroma"><span class="sr">Aroma: </span>Sin aroma todavía</span></span><i class="paso__barra" aria-hidden="true"></i></button></li>
+        <li><button type="button" class="paso" data-min="-10" data-desde="-10" data-hasta="-5" aria-pressed="false"><span class="paso__min">−10</span><span class="paso__txt"><span class="paso__luz"><span class="sr">Luz: </span>Sube de intensidad de forma gradual</span><span class="paso__aroma"><span class="sr">Aroma: </span>Primeras ráfagas cortas de menta o cítrico</span></span><i class="paso__barra" aria-hidden="true"></i></button></li>
+        <li><button type="button" class="paso" data-min="-5" data-desde="-5" data-hasta="-0.01" aria-pressed="false"><span class="paso__min">−5</span><span class="paso__txt"><span class="paso__luz"><span class="sr">Luz: </span>Brillo tenue tipo amanecer</span><span class="paso__aroma"><span class="sr">Aroma: </span>Ráfagas más frecuentes</span></span><i class="paso__barra" aria-hidden="true"></i></button></li>
+        <li><button type="button" class="paso" data-min="0" data-desde="-0.01" data-hasta="1" aria-pressed="false"><span class="paso__min">Hora</span><span class="paso__txt"><span class="paso__luz"><span class="sr">Luz: </span>Luz estable</span><span class="paso__aroma"><span class="sr">Aroma: </span>Última ráfaga; despiertas</span></span><i class="paso__barra" aria-hidden="true"></i></button></li>
+      </ol>
       <button class="tab tab--linea tab--chica" type="button" id="mesa-play" aria-pressed="false">Reproducir el despertar</button>
     </div>
   </div>
+  </div>
+  </div>
 
   <div class="envoltura">
-    <table class="hoja" aria-label="Secuencia del despertar">
-      <thead><tr><th scope="col">Minuto</th><th scope="col">Luz (fibra óptica)</th><th scope="col">Aroma (difusor)</th></tr></thead>
-      <tbody id="hoja">
-        <tr data-desde="-15" data-hasta="-10"><th scope="row">−15</th><td>Empieza a encenderse, muy tenue</td><td>—</td></tr>
-        <tr data-desde="-10" data-hasta="-5"><th scope="row">−10 a −5</th><td>Sube de intensidad de forma gradual</td><td>Primeras ráfagas cortas de menta o cítrico</td></tr>
-        <tr data-desde="-5" data-hasta="-0.01"><th scope="row">−5 a 0</th><td>Brillo tenue tipo amanecer</td><td>Ráfagas más frecuentes</td></tr>
-        <tr data-desde="-0.01" data-hasta="1"><th scope="row">Hora</th><td>Luz estable</td><td>Última ráfaga; el usuario despierta</td></tr>
-      </tbody>
-    </table>
     <p class="letra-chica">La calibración exacta (cuánta luz, cuánto aroma y cada cuánto) se ajusta según el perfil del usuario.</p>
 
     <dl class="capas">
