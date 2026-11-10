@@ -105,7 +105,10 @@
   const PIES = {
     perspectiva: "Perspectiva: la almohada con su base de carga por inducción, el botón táctil oculto y el difusor en el lateral.",
     superior: "Vista superior: la cinta de fibra óptica en el borde superior (60–80 cm lineales, 3–4 cm de ancho) y las medidas de 68 × 48 cm.",
-    lateral: "Vista lateral: el difusor de aroma tamaño moneda y el perfil ergonómico de 13 cm al centro y unos 10 cm cerca de los bordes.",
+    frontal: "Vista frontal: el ancho de 68 cm, el perfil ergonómico de 13 cm al centro y la base de carga por inducción bajo una esquina.",
+    posterior: "Vista posterior: el borde superior con la cinta de fibra óptica cosida y el LED cálido que la alimenta en una esquina.",
+    izquierda: "Vista lateral izquierda: el lado opuesto al difusor, con el fondo de 48 cm y el perfil de 13 cm al centro y unos 10 cm cerca de los bordes.",
+    lateral: "Vista lateral derecha: el difusor de aroma tamaño moneda y el perfil ergonómico de 13 cm al centro y unos 10 cm cerca de los bordes.",
     interna: "Vista interna (rayos X): batería, placa BLE, bobina de inducción, sensor de presión, cartucho, microbomba y módulo LED dentro de una bolsita de malla acolchada.",
     uso: "En uso: con la cabeza apoyada, la luz de la cinta llega a los párpados cerrados y el difusor dirige ráfagas de aroma hacia la nariz, sin sonido. La figura es genérica, solo de referencia.",
   };
@@ -117,7 +120,7 @@
       poster.alt = "Vista en perspectiva de la almohada AuraSleep color " + NOMBRES[estado.color] + ".";
       poster.classList.remove("es-vista");
     } else {
-      poster.src = "public/img/vista_" + estado.vista + (estado.vista === "uso" ? ".jpg" : ".webp");
+      poster.src = "public/img/vista_" + estado.vista + (["uso", "frontal", "posterior", "izquierda"].includes(estado.vista) ? ".jpg" : ".webp");
       poster.alt = PIES[estado.vista];
       poster.classList.add("es-vista");
     }

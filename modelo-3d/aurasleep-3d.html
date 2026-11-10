@@ -111,7 +111,10 @@ body.marco-multiplano .lbl.dim{background:transparent;box-shadow:none;color:#F1E
       <div class="tabs" role="group" aria-label="Vistas">
         <button id="v-perspectiva" data-v="perspectiva" aria-pressed="true">Perspectiva</button>
         <button id="v-superior" data-v="superior" aria-pressed="false">Superior · fibra óptica</button>
-        <button id="v-lateral" data-v="lateral" aria-pressed="false">Lateral · difusor</button>
+        <button id="v-frontal" data-v="frontal" aria-pressed="false">Frontal</button>
+        <button id="v-posterior" data-v="posterior" aria-pressed="false">Posterior</button>
+        <button id="v-lateral" data-v="lateral" aria-pressed="false">Lateral der. · difusor</button>
+        <button id="v-izquierda" data-v="izquierda" aria-pressed="false">Lateral izq.</button>
         <button id="v-interna" data-v="interna" aria-pressed="false">Interna · electrónica</button>
         <button id="v-uso" data-v="uso" aria-pressed="false">En uso · persona</button>
       </div>
@@ -292,6 +295,12 @@ const P_DIMT=part(lines(dimTop),{col:'#F4E9DC',op:0,mode:1},'dimtop');
 const sxp=35.2;const t10=f(0,19);
 const dimSide=[[sxp,-6.45,-29.5],[sxp,6.5,-29.5],[sxp,6.5,0],[sxp,6.5,-31],[sxp,-6.45,0],[sxp,-6.45,-31],[sxp,-t10,29.5],[sxp,t10,29.5],[sxp,t10,19],[sxp,t10,31],[sxp,-t10,19],[sxp,-t10,31]];
 const P_DIMS=part(lines(dimSide),{col:'#F4E9DC',op:0,mode:1},'dimside');
+const dimW=z=>[[-34,9.6,z],[34,9.6,z],[-34,8.6,z],[-34,10.6,z],[34,8.6,z],[34,10.6,z]];
+const dimH=(x,z)=>[[x,-6.45,z],[x,6.5,z],[x-1,-6.45,z],[x+1,-6.45,z],[x-1,6.5,z],[x+1,6.5,z]];
+const P_DIMF=part(lines(dimW(25).concat(dimH(38.5,25))),{col:'#F4E9DC',op:0,mode:1},'dimfront');
+const P_DIMB=part(lines(dimW(-25).concat(dimH(-38.5,-25))),{col:'#F4E9DC',op:0,mode:1},'dimback');
+const dimLeft=dimSide.map(p=>[-p[0],p[1],p[2]]).concat([[-sxp,9.6,-24],[-sxp,9.6,24],[-sxp,8.6,-24],[-sxp,10.6,-24],[-sxp,8.6,24],[-sxp,10.6,24]]);
+const P_DIML=part(lines(dimLeft),{col:'#F4E9DC',op:0,mode:1},'dimleft');
 
 // shadow catcher
 const P_SH=part({p:[-70,FLOOR,-55,70,FLOOR,-55,70,FLOOR,55,-70,FLOOR,55],n:[0,1,0,0,1,0,0,1,0,0,1,0],i:[0,2,1,0,3,2]},{mode:2,op:.55},'shadow');
@@ -377,6 +386,9 @@ const VIEWS={
  perspectiva:{th:.62,ph:1.12,r:122,t:[-2,-1,0],fov:35},
  superior:{th:0,ph:.0015,r:405,t:[1,0,1],fov:14},
  lateral:{th:Math.PI/2,ph:1.52,r:295,t:[4,-.5,0],fov:12},
+ izquierda:{th:-Math.PI/2,ph:1.52,r:295,t:[-4,-.5,0],fov:12},
+ frontal:{th:0,ph:1.52,r:400,t:[0,-.5,4],fov:12},
+ posterior:{th:Math.PI,ph:1.52,r:400,t:[0,-.5,-4],fov:12},
  interna:{th:-.62,ph:.93,r:112,t:[-1,-1,3],fov:35},
  uso:{th:1.12,ph:.95,r:132,t:[8,4,5],fov:35}};
 let view=VIEWS[Q.get('view')]?Q.get('view'):(VIEWS[location.hash.slice(1)]?location.hash.slice(1):'perspectiva');
@@ -412,6 +424,19 @@ const LBL=[
  {v:['lateral'],p:[30,topY(30,-19.4),-19.4],t:'Cinta de fibra óptica',s:'visible como costura mate',dx:-120,dy:-50},
  {v:['lateral'],p:[sxp,0,-29.5],t:'13 cm',s:'centro',dim:1,dx:44,dy:0},
  {v:['lateral'],p:[sxp,0,29.5],t:'≈10 cm',s:'cerca del borde',dim:1,dx:-62,dy:0},
+ {v:['frontal'],p:[0,9.6,25],t:'68 cm',s:'ancho',dim:1,dx:0,dy:-22},
+ {v:['frontal'],p:[38.5,0,25],t:'13 cm',s:'alto al centro',dim:1,dx:52,dy:0},
+ {v:['frontal'],p:[12,-2,24],t:'Funda algodón / bambú',s:'lavable · núcleo viscoelástico',dx:110,dy:92},
+ {v:['frontal'],p:[-40,FLOOR+1.2,24],t:'Base de carga por inducción',s:'sin cables expuestos',dx:-20,dy:74},
+ {v:['posterior'],p:[0,9.6,-25],t:'68 cm',s:'ancho',dim:1,dx:0,dy:-22},
+ {v:['posterior'],p:[-38.5,0,-25],t:'13 cm',s:'alto al centro',dim:1,dx:52,dy:0},
+ {v:['posterior'],p:[8,topY(8,-19.4)+.2,-19.4],t:'Cinta de fibra óptica',s:'borde superior · luz de amanecer',dx:-230,dy:150},
+ {v:['posterior'],p:[-31.6,ledY,-19.4],t:'LED cálido',s:'alimenta la cinta',dx:40,dy:96},
+ {v:['izquierda'],p:[-sxp,9.6,0],t:'48 cm',s:'fondo',dim:1,dx:0,dy:-22},
+ {v:['izquierda'],p:[-sxp,0,-29.5],t:'13 cm',s:'centro',dim:1,dx:-44,dy:0},
+ {v:['izquierda'],p:[-sxp,0,29.5],t:'≈10 cm',s:'cerca del borde',dim:1,dx:62,dy:0},
+ {v:['izquierda'],p:[-34,-2,4],t:'Funda algodón / bambú',s:'lavable · núcleo viscoelástico',dx:70,dy:96},
+ {v:['izquierda'],p:[-34,topY(-33,-19.4),-19.4],t:'Cinta de fibra óptica',s:'borde superior',dx:-70,dy:96},
  {v:['interna'],p:[-27.2,0.8,14.6],t:'Batería 4 V · 1300 mAh',s:'varios despertares por carga',dx:-200,dy:24},
  {v:['interna'],p:[-20.6,0,16.6],t:'Placa BLE + driver',s:'control desde la app',dx:40,dy:96},
  {v:['interna'],p:[-24.5,coilY,15.5],t:'Bobina de inducción',s:'receptora',dx:-130,dy:58},
@@ -438,10 +463,16 @@ const PANEL={
  <dl><dt>Medidas</dt><dd>48 × 68 cm</dd><dt>Perfil</dt><dd>13 cm centro · ≈10 cm bordes</dd><dt>Peso</dt><dd>0.9 – 1.1 kg</dd><dt>Funda</dt><dd>Algodón peinado o mezcla con bambú, lavable</dd><dt>Núcleo</dt><dd>Espuma viscoelástica de densidad media</dd><dt>Control</dt><dd>App por Bluetooth de bajo consumo + botón táctil</dd></dl>`,
  superior:`<h2>Vista superior: la fibra óptica</h2><p>La luz viaja por una cinta textil de fibras PMMA cosida en el borde superior. Apagada se siente como una costura mate; encendida atraviesa los párpados cerrados y le indica al cerebro que baje la melatonina.</p>
  <dl><dt>Fibra</dt><dd>PMMA tratada, Ø 0.25 mm</dd><dt>Longitud</dt><dd>60 – 80 cm lineales</dd><dt>Costura</dt><dd>3 – 4 cm de ancho</dd><dt>Fuente</dt><dd>LED de tono cálido, módulo reemplazable</dd><dt>Rampa</dt><dd>15 min hasta brillo tenue</dd></dl>`,
- lateral:`<h2>Vista lateral: el difusor de aroma</h2><p>Del tamaño de una moneda y oculto tras textil transpirable. Una microbomba silenciosa dispara ráfagas cortas y dirigidas, así el aroma llega a la nariz sin llenar la habitación.</p>
+ lateral:`<h2>Vista lateral derecha: el difusor de aroma</h2><p>Del tamaño de una moneda y oculto tras textil transpirable. Una microbomba silenciosa dispara ráfagas cortas y dirigidas, así el aroma llega a la nariz sin llenar la habitación.</p>
  <dl><dt>Bomba</dt><dd>Diafragma miniatura, &lt; 100 mW</dd><dt>Aromas</dt><dd>Menta o cítrico</dd><dt>Cartucho</dt><dd>10 – 15 mL de aceite grado cosmético</dd><dt>Recarga</dt><dd>Trimestral · 9 – 14 USD</dd></dl>`,
  interna:`<h2>Vista interna: la electrónica</h2><p>Todo vive protegido dentro del núcleo. Si no hay una cabeza apoyada, el sensor de presión mantiene el sistema apagado para ahorrar batería.</p>
  <ul class="legend"><li><b style="background:#3D5A80"></b>Batería 4 V · 1200–1500 mAh</li><li><b style="background:#2F6B4F"></b>Placa de control BLE y driver</li><li><b style="background:#C77B3F"></b>Bobina receptora de carga por inducción</li><li><b style="background:#E3A33B"></b>Sensor de presión en la espuma</li><li><b style="background:#8FD6B5"></b>Cartucho de aroma reemplazable</li><li><b style="background:#3B3E4A"></b>Microbomba de diafragma</li><li><b style="background:#B8B4AC"></b>Módulo LED con disipador pasivo</li><li><b style="background:#D4A72C"></b>Cableado interno</li></ul>`};
+PANEL.frontal=`<h2>Vista frontal: forma y medidas</h2><p>De frente se aprecia el ancho de 68 cm y el perfil ergonómico de la almohada. Bajo una esquina asoma la base de carga por inducción.</p>
+ <dl><dt>Ancho</dt><dd>68 cm</dd><dt>Perfil</dt><dd>13 cm centro · ≈10 cm bordes</dd><dt>Funda</dt><dd>Algodón peinado o mezcla con bambú, lavable</dd><dt>Núcleo</dt><dd>Espuma viscoelástica de densidad media</dd><dt>Colores</dt><dd>Blanco roto · Gris piedra · Beige cálido</dd></dl>`;
+PANEL.posterior=`<h2>Vista posterior: el borde de la luz</h2><p>Por detrás queda el borde superior, donde va cosida la cinta textil de fibra óptica. Apagada se ve como una costura mate; el LED cálido que la alimenta va protegido en una esquina.</p>
+ <dl><dt>Ancho</dt><dd>68 cm</dd><dt>Fibra</dt><dd>PMMA tratada, Ø 0.25 mm</dd><dt>Longitud</dt><dd>60 – 80 cm lineales</dd><dt>Fuente</dt><dd>LED de tono cálido, módulo reemplazable</dd></dl>`;
+PANEL.izquierda=`<h2>Vista lateral izquierda: el perfil</h2><p>El lado opuesto al difusor de aroma. Se aprecia el fondo de 48 cm y el perfil ergonómico: 13 cm al centro y unos 10 cm cerca de los bordes.</p>
+ <dl><dt>Fondo</dt><dd>48 cm</dd><dt>Perfil</dt><dd>13 cm centro · ≈10 cm bordes</dd><dt>Peso</dt><dd>0.9 – 1.1 kg</dd><dt>Funda</dt><dd>Algodón peinado o mezcla con bambú, lavable</dd></dl>`;
 PANEL.uso=`<h2>En uso: así te despierta</h2><p>Con la cabeza apoyada, el sensor de presión activa el sistema. Quince minutos antes de tu hora, la cinta del borde superior sube su luz y atraviesa los párpados cerrados; el difusor del lateral dirige ráfagas cortas de menta o cítrico hacia la nariz. Sin sonido: quien duerme al lado no se despierta.</p>
  <p class="note">Figura genérica de referencia, no representa a una persona real.</p>`;
 const SEQ=`<div class="seq"><h3>Secuencia de despertar</h3><div class="track"><div class="light"></div>${PULSES.map(p=>`<span class="pip" style="left:${(p+15)/15*100}%"></span>`).join('')}</div>
@@ -504,7 +535,7 @@ function frame(now){
  const bandEm=Lg>0.001?V.sc(hex('#FFA24A'),0.12+Lg*1.15):[0,0,0];P_BAND.mat.em=bandEm;P_BAND.mat.col=Lg>0.001?'#F6D2A6':'#BDB3A3';
  P_FIB.mat.op=(0.18+Lg*0.8)*(1-xray*0.5);P_FIB.mat.col=Lg>0.05?'#FFE2B8':'#FFFFFF';
  P_LEDCHIP.mat.em=V.sc(hex('#FFB060'),Lg*1.5);P_BLED.mat.em=V.sc(hex('#7CF0C4'),0.8);
- P_CONT.mat.op=xray*0.28;P_DIMT.mat.op=view==='superior'&&!tw?0.9:0;P_DIMS.mat.op=view==='lateral'&&!tw?0.9:0;
+ P_CONT.mat.op=xray*0.28;P_DIMT.mat.op=view==='superior'&&!tw?0.9:0;P_DIMS.mat.op=view==='lateral'&&!tw?0.9:0;P_DIMF.mat.op=view==='frontal'&&!tw?0.9:0;P_DIMB.mat.op=view==='posterior'&&!tw?0.9:0;P_DIML.mat.op=view==='izquierda'&&!tw?0.9:0;
  const list=[];for(const p of parts){if(p===PUFF)continue;if(p.mat.op<=0.001)continue;list.push(p)}
  const opaque=list.filter(p=>p.mat.op>=0.999&&p.mat.mode===0),trans=list.filter(p=>!(p.mat.op>=0.999&&p.mat.mode===0)&&p.mat.mode!==2);
  const d2=p=>p.c?(p.c[0]-eye[0])**2+(p.c[1]-eye[1])**2+(p.c[2]-eye[2])**2:0;trans.sort((a,b)=>d2(b)-d2(a));

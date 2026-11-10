@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>AuraSleep · Investigación del producto</title>
+<!-- Fuente del PDF docs/AuraSleep_Investigacion.pdf. Se imprime a PDF tamaño carta desde el navegador. -->
+<style>
+@font-face{font-family:"Hanken Grotesk";src:url("../v2/fonts/hanken-normal-latin.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"Hanken Grotesk";src:url("../v2/fonts/hanken-italic-latin.woff2") format("woff2");font-weight:100 900;font-style:italic}
+@page{size:Letter;margin:19mm 18mm 20mm;
+  @bottom-left{content:"AuraSleep · Investigación del producto";font:400 8.5pt "Hanken Grotesk",sans-serif;color:#5A6B63}
+  @bottom-right{content:counter(page);font:600 8.5pt "Hanken Grotesk",sans-serif;color:#5A6B63}}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font:400 10.2pt/1.5 "Hanken Grotesk",system-ui,sans-serif;color:#17231D}
+h1,h2,h3,p,ul,ol,figure,table,dl{margin:0;padding:0}
+.portada{height:236mm;color:#F4EFE6;background:linear-gradient(180deg,#141B26 0,#1F2433 48%,#4A3238 100%);border-radius:3mm;display:flex;flex-direction:column;justify-content:space-between;padding:18mm 17mm 15mm;break-after:page;overflow:hidden}
+.portada__kicker{font:600 9pt/1.3 "Hanken Grotesk";letter-spacing:.16em;text-transform:uppercase;color:#E9C9A0}
+.portada h1{font:650 62pt/1 "Hanken Grotesk";letter-spacing:-.03em;margin-top:9mm}
+.portada__eslogan{font:italic 400 17pt/1.3 "Hanken Grotesk";margin-top:4mm}
+.portada img{width:128mm;display:block;margin:0 auto}
+.portada dl{display:grid;grid-template-columns:34mm 1fr;gap:2.2mm 6mm;font-size:10.5pt;border-top:1px solid rgba(244,239,230,.45);padding-top:6mm}
+.portada dt{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:8pt;color:#E9C9A0;padding-top:.6mm}
+.portada__doc{font-size:11pt;margin-top:3mm;color:#E6E0D6}
+.cap{break-before:page}
+.cap__num{font:600 8.5pt/1 "Hanken Grotesk";letter-spacing:.16em;text-transform:uppercase;color:#8A5A12}
+h2{font:650 25pt/1.1 "Hanken Grotesk";letter-spacing:-.02em;margin:2.5mm 0 6mm;color:#23392F}
+h3{font:650 13pt/1.25 "Hanken Grotesk";margin:7mm 0 2.5mm;color:#23392F;break-after:avoid}
+p{margin-bottom:3mm}
+p + ul, p + ol{margin-top:-1mm}
+ul,ol{padding-left:5.5mm;margin-bottom:3mm}
+li{margin-bottom:1.3mm}
+table{width:100%;border-collapse:collapse;margin:2.5mm 0 4mm;font-size:9.3pt;line-height:1.4;break-inside:avoid}
+caption{caption-side:bottom;text-align:left;font-size:8.4pt;color:#5A6B63;padding-top:1.8mm}
+th,td{text-align:left;vertical-align:top;padding:2mm 2.4mm;border-bottom:1px solid #CBD5D0}
+thead th{font:600 8pt/1.3 "Hanken Grotesk";letter-spacing:.08em;text-transform:uppercase;color:#3D5248;border-bottom:1.5px solid #23392F}
+tbody th{font-weight:600;width:27%}
+td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+thead th.num{white-space:normal}
+tr.total th,tr.total td{font-weight:650;border-top:1.5px solid #23392F;border-bottom:0}
+.nota{font-size:8.6pt;line-height:1.45;color:#5A6B63}
+.caja{background:#E3EAE5;border-left:3px solid #23392F;padding:4mm 5mm;margin:4mm 0;break-inside:avoid}
+.caja p:last-child{margin-bottom:0}
+figure{margin:3mm 0 5mm;break-inside:avoid;min-width:0}
+figure img{display:block;width:100%;border-radius:1.5mm}
+figcaption{font-size:8.5pt;line-height:1.4;color:#5A6B63;margin-top:1.6mm}
+.dos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4mm 5mm}
+.dos figure{margin:0}
+.anuncios{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6mm;align-items:start}
+.anuncios img{border:1px solid #CBD5D0}
+.indice td:first-child{width:9mm;font-weight:650;color:#8A5A12}
+.indice td:nth-child(2){width:34%;font-weight:600}
+.ligas td:first-child{font-weight:600;width:30%}
+a{color:#1F4E79;text-decoration:none;overflow-wrap:anywhere}
+.refs{font-size:8.9pt;line-height:1.42;list-style:none;padding:0}
+.refs li{display:grid;grid-template-columns:8mm 1fr;margin-bottom:1.8mm;break-inside:avoid}
+sup,.r{font-size:.82em;color:#8A5A12;font-weight:600;vertical-align:baseline}
+</style>
+</head>
+<body>
+
+<section class="portada">
+  <div>
+    <p class="portada__kicker">Emprendimiento · Un objeto cotidiano: la almohada</p>
+    <h1>AuraSleep</h1>
+    <p class="portada__eslogan">Despierta con luz y aroma, no con ruido.</p>
+    <p class="portada__doc">Investigación del producto · Documento de entrega final</p>
+  </div>
+  <img src="../public/img/hero_aroma_nobg.webp" alt="Almohada AuraSleep con la luz de amanecer encendida.">
+  <dl>
+    <dt>Integrantes</dt><dd>Dante Lopez · Sebastian Saavedra · Carlos Prol · Sebastian Lavariega</dd>
+    <dt>Materia</dt><dd>Emprendimiento</dd>
+    <dt>Fecha</dt><dd>Noviembre de 2026</dd>
+  </dl>
+</section>
+
+<section>
+  <p class="cap__num">Contenido</p>
+  <h2>Índice</h2>
+  <table class="indice">
+    <thead><tr><th>#</th><th>Capítulo</th><th>Qué contiene</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>El artículo original: la almohada</td><td>Historia, quién y cuándo, innovaciones; análisis de características, funciones, materiales, usos, ventajas, desventajas y necesidades que atiende</td></tr>
+      <tr><td>2</td><td>Problema y oportunidad de mejora</td><td>Por qué la alarma sonora es un mal comienzo del día, a quién afecta y qué oportunidades deja</td></tr>
+      <tr><td>3</td><td>Innovación</td><td>Qué es AuraSleep, cómo funciona, modelo 3D con sus vistas, colores, materiales, medidas y ventaja competitiva</td></tr>
+      <tr><td>4</td><td>Viabilidad financiera</td><td>Costos, precio, márgenes, ingresos recurrentes y escenario de ventas</td></tr>
+      <tr><td>5</td><td>Presentación, publicidad y ligas</td><td>Presentación en Canva, póster, volante, sitio web y modelo 3D</td></tr>
+      <tr><td>6</td><td>Uso de inteligencia artificial</td><td>Qué herramientas se usaron, para qué y cómo se revisaron los resultados</td></tr>
+      <tr><td></td><td>Referencias</td><td>Fuentes consultadas</td></tr>
+    </tbody>
+  </table>
+  <p>Este documento responde a las tres preguntas de la actividad “Un objeto cotidiano”: (1) qué objeto de uso diario elegimos, (2) cuál es su problemática, incluyendo cuándo se inventó, quién lo inventó y cuántas innovaciones ha tenido, y (3) cómo es nuestro producto, que innova lo existente. Al final se valida si el producto es viable y comercial.</p>
+  <p class="nota">Las cifras de costos y precios son hipotéticas y deben confirmarse con cotizaciones formales. Las referencias numeradas entre corchetes [n] aparecen al final del documento.</p>
+</section>
+
+<!-- ================= 1 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 1</p>
+  <h2>El artículo original: la almohada</h2>
+  <p>Pasamos cerca de un tercio de la vida dormidos, y la almohada nos acompaña cada noche. Es uno de los objetos cotidianos más antiguos y, a la vez, uno de los que menos ha cambiado en su función: sostener la cabeza. Elegimos la almohada porque creemos que todavía puede facilitar la vida del usuario en un momento que hoy resolvemos mal: el despertar.</p>
+
+  <h3>¿Cuándo fue inventada y quién la inventó?</h3>
+  <p>La almohada no tiene un inventor único. Los primeros registros de su uso vienen de las civilizaciones de Mesopotamia, alrededor del 7000 a.C. <span class="r">[1]</span>. En el antiguo Egipto se encontraron almohadas en las tumbas de los faraones; no eran suaves, sino soportes tallados en madera o piedra sobre los que descansaba la cabeza <span class="r">[2]</span>. Además de dar comodidad, servían para mantener insectos lejos del cabello, la boca y los oídos <span class="r">[1]</span>.</p>
+  <p>El componente que hoy define a las almohadas ergonómicas sí tiene autor. En 1966, el ingeniero aeronáutico Charles Yost, contratado por la NASA a través de Stencel Aero Engineering, desarrolló una espuma de celdas abiertas con propiedades viscoelásticas para mejorar la seguridad de los asientos de avión: la espuma viscoelástica o <em>memory foam</em> <span class="r">[3]</span>. Trabajó junto con el científico de la NASA Chiharu Kubokawa <span class="r">[5]</span>. En 1969 Yost fundó Dynamic Systems para comercializarla <span class="r">[3]</span>, y en 1998 fue incluido en el Salón de la Fama de la Tecnología Espacial de la NASA <span class="r">[4]</span>.</p>
+
+  <h3>¿Cuántas y cuáles han sido sus innovaciones?</h3>
+  <p>Identificamos seis grandes innovaciones en la historia de la almohada. Las dos últimas no son almohadas, pero atacan el mismo problema que AuraSleep y son su antecedente directo.</p>
+  <table>
+    <thead><tr><th>Época</th><th>Innovación</th><th>Qué cambió</th></tr></thead>
+    <tbody>
+      <tr><th>c. 7000 a.C.</th><td>Primeras almohadas rígidas (Mesopotamia, Egipto)</td><td>Soportes de piedra o madera para elevar la cabeza [1][2]</td></tr>
+      <tr><th>Grecia y Roma</th><td>Almohadas suaves rellenas</td><td>Pasan de soporte rígido a cojín relleno [1]</td></tr>
+      <tr><th>c. 1700</th><td>Uso generalizado en Europa</td><td>La almohada se vuelve un objeto común en el hogar [2]</td></tr>
+      <tr><th>1966</th><td>Espuma viscoelástica (Charles Yost, NASA)</td><td>Material que se adapta a la forma y reparte la presión [3]</td></tr>
+      <tr><th>Década de 2010</th><td>Almohadas inteligentes</td><td>Monitoreo del sueño, terapia antirronquidos, ajuste de altura [11]</td></tr>
+      <tr><th>2006 – 2014</th><td>Despertadores de luz y de aroma</td><td>Philips Wake-up Light simula el amanecer [6]; SensorWake despierta con aroma [8]</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Análisis del artículo original</h3>
+  <p>Antes de rediseñarla, analizamos la almohada convencional tal como se usa hoy en casa.</p>
+  <table>
+    <tbody>
+      <tr><th>Qué es</th><td>Un soporte del cuerpo en reposo para comodidad, terapia o decoración; la pieza en la que se apoya la cabeza durante el sueño [17][2].</td></tr>
+      <tr><th>Función</th><td>Mantener recta la columna vertebral rellenando la concavidad del cuello, para relajar la nuca, evitar tensiones musculares y ayudar a conseguir un sueño agradable [17].</td></tr>
+      <tr><th>Usos y contexto</th><td>Se coloca sobre el colchón, en la parte superior de la cama, y se usa todas las noches. También hay almohadas decorativas (cojines), corporales y ortopédicas: cervicales, lumbares y de viaje en forma de U [17].</td></tr>
+      <tr><th>Características</th><td>El modelo estándar tiene tres piezas: un material interior blando, una funda interior cosida de algodón o fibra y una funda exterior que se retira para lavar [17][2]. Las medidas habituales van de 67 a 170 cm de largo, según el ancho de la cama [17].</td></tr>
+      <tr><th>Necesidades que atiende</th><td>Descanso, comodidad y soporte del cuello y la cabeza mientras se duerme [17][18].</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Materiales</h3>
+  <table>
+    <thead><tr><th>Relleno</th><th>Lo que ofrece</th><th>Su límite</th></tr></thead>
+    <tbody>
+      <tr><th>Fibra (poliéster)</th><td>Son las más habituales [17]; accesibles y transpirables [2]</td><td>Ofrecen un apoyo bajo y, si son de mala calidad, se apelmazan al lavarlas [2]; pueden durar solo un año [18]</td></tr>
+      <tr><th>Pluma y plumón</th><td>Se moldean al cuello de cada persona [2]</td><td>Dan calor [2]</td></tr>
+      <tr><th>Látex</th><td>Se adapta a la forma y al peso de la cabeza [2]; puede durar hasta tres años [18]</td><td>—</td></tr>
+      <tr><th>Espuma viscoelástica</th><td>Se adapta a la forma y reparte la presión [3]</td><td>Se recomienda reemplazarla cada 2 a 3 años [18]</td></tr>
+    </tbody>
+    <caption>La funda interior suele ser de algodón o fibra [17].</caption>
+  </table>
+
+  <h3>Ventajas y desventajas</h3>
+  <table>
+    <thead><tr><th>Ventajas</th><th>Desventajas y problemas detectados</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul>
+            <li>Alinea la columna y relaja la nuca al dormir [17].</li>
+            <li>Hay rellenos para distintas necesidades y presupuestos; la fibra es accesible [2].</li>
+            <li>La funda exterior se retira y se lava [17].</li>
+            <li>Existen modelos ortopédicos para prevenir y mejorar dolores cervicales [2].</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Acumula polvo y microbios entre el relleno; los ácaros anidan en las fibras sintéticas [17]. Una almohada vieja puede empeorar las alergias [18].</li>
+            <li>Pierde su forma: se recomienda cambiarla cada 2 a 4 años [17], o cada 1 a 2 años según otros especialistas [18].</li>
+            <li>Si ya no da el soporte adecuado, se despierta con el cuello adolorido [18].</li>
+            <li>Su reciclaje es caro; la mayoría acaba en vertederos [17].</li>
+            <li>Es un objeto pasivo: acompaña el sueño, pero no participa en el despertar (análisis del equipo).</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Lo que nadie ha innovado todavía</h3>
+  <p>Las almohadas han mejorado en comodidad y en medición del sueño, pero ninguna de las que encontramos se ocupa de cómo nos despierta. Esa tarea sigue a cargo de la alarma del celular. AuraSleep propone que la almohada, que ya está a centímetros de los ojos y de la nariz, sea la encargada de despertarnos de forma gradual.</p>
+  <div class="caja"><p><strong>Tipo de innovación: innova lo existente.</strong> No inventamos un objeto nuevo; integramos en la almohada dos tecnologías probadas en otros sectores (fibra óptica textil y microdifusión de aroma) para crear una experiencia nueva de despertar.</p></div>
+</section>
+
+<!-- ================= 2 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 2</p>
+  <h2>Problema y oportunidad de mejora</h2>
+  <p>La mayoría de las personas se despierta con una alarma sonora. El sonido corta el sueño de golpe, aunque estemos en una fase profunda, y el cuerpo responde como ante un sobresalto. El resultado es un despertar con cansancio, irritabilidad y una sensación de “cabeza pesada” que puede durar varios minutos.</p>
+
+  <h3>Tres efectos de la alarma ruidosa</h3>
+  <ul>
+    <li><strong>Despertar abrupto.</strong> El sonido interrumpe el sueño sin transición. Despertar desde el sueño profundo deja más torpeza y confusión, lo que se conoce como inercia del sueño; en su forma más marcada se llama despertar confusional.</li>
+    <li><strong>Pico de estrés.</strong> El sobresalto activa la respuesta de estrés justo al iniciar el día. La investigación sobre amanecer artificial ha estudiado su efecto en la inercia del sueño y en la respuesta del cortisol al despertar [15].</li>
+    <li><strong>Despierta a quien no lo necesita.</strong> En parejas o cuartos compartidos, la alarma de una persona interrumpe el sueño de la otra.</li>
+  </ul>
+
+  <h3>Evidencia de que hay una alternativa mejor</h3>
+  <table>
+    <thead><tr><th>Estímulo</th><th>Qué dice la evidencia</th><th>Fuente</th></tr></thead>
+    <tbody>
+      <tr><th>Luz que simula el amanecer</th><td>Philips reporta que el 92 % de los usuarios de su Wake-up Light encuentra más fácil levantarse (estudio Metrixlab 2011, 209 personas).</td><td>[6][7]</td></tr>
+      <tr><th>Aroma al despertar</th><td>En pruebas propias, SensorWake reportó que su alarma de aroma despertó al 99 % de las personas en dos minutos. Es un dato del fabricante; otros estudios sobre aromas como despertador han sido menos positivos.</td><td>[8][9]</td></tr>
+      <tr><th>Menta y estrés</th><td>Toda y Morimoto observaron reducciones significativas del cortisol en saliva al exponer a participantes al aroma de menta.</td><td>[10]</td></tr>
+    </tbody>
+  </table>
+  <p class="nota">Por eso AuraSleep combina ambos estímulos: la luz prepara al cuerpo para despertar y el aroma ayuda a completar la transición. La hipótesis que debemos comprobar con pruebas en personas es que juntos funcionan mejor que cada uno por separado.</p>
+
+  <h3>Oportunidades de mejora</h3>
+  <ul>
+    <li><strong>El despertar.</strong> La almohada no participa en él; hoy lo resuelve una alarma sonora.</li>
+    <li><strong>Integración.</strong> Las lámparas de amanecer y los despertadores de aroma son aparatos aparte que ocupan la mesita de noche; la almohada ya está junto a los ojos y la nariz.</li>
+    <li><strong>Mantenimiento.</strong> La almohada convencional se desecha completa; una funda lavable y módulos reemplazables alargan su uso.</li>
+  </ul>
+
+  <h3>¿A quién le afecta? Público objetivo</h3>
+  <table>
+    <thead><tr><th>Capa</th><th>Quiénes son</th><th>Por qué les sirve AuraSleep</th></tr></thead>
+    <tbody>
+      <tr><th>Usuario principal</th><td>Adultos de 22 a 45 años con vida urbana y trabajo o estudios exigentes que ya invierten en bienestar; parejas que comparten habitación.</td><td>Su rendimiento por la mañana depende de cómo despiertan; la alarma silenciosa no despierta a la pareja.</td></tr>
+      <tr><th>Segundo grupo</th><td>Personas con estrés matutino, cansancio al despertar o despertar confusional; usuarios de lámparas de amanecer.</td><td>No exige disciplina ni cambios de rutina: solo programar la hora. Integra la luz en la cama, sin ocupar la mesita.</td></tr>
+      <tr><th>Canales a mediano plazo</th><td>Hoteles boutique, clínicas del sueño, coworkings con zonas de descanso, programas de bienestar corporativo.</td><td>Experiencia diferenciadora para huéspedes, pacientes y empleados; compras por volumen.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 3 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 3</p>
+  <h2>Innovación</h2>
+  <p>AuraSleep es una almohada que funciona como un sistema: sustituye la alarma sonora por un despertar secuencial y multisensorial de 15 minutos. Trabaja de forma no invasiva sobre dos vías sensoriales: la vía visual indirecta (luz que atraviesa los párpados cerrados) y la vía olfativa (aroma dirigido a la nariz).</p>
+  <figure><img src="../public/img/hero_amanecer.webp" alt=""><figcaption>Figura 1. Modelo 3D de AuraSleep en perspectiva, con la luz de amanecer encendida.</figcaption></figure>
+
+  <h3>¿Cómo funciona?</h3>
+  <ul>
+    <li><strong>Luz.</strong> En el borde superior de la funda hay una cinta textil con fibras ópticas de 0.25 mm, alimentada por un pequeño LED de tono cálido. Unos 15 minutos antes de la hora programada, la luz sube despacio hasta un brillo tenue que atraviesa los párpados y le indica al cerebro que reduzca la melatonina.</li>
+    <li><strong>Aroma.</strong> En un lateral, a la altura de la nariz, un difusor del tamaño de una moneda con una microbomba silenciosa libera ráfagas cortas de menta o cítrico, dirigidas a la nariz y sin llenar la habitación.</li>
+    <li><strong>Control.</strong> Se programa la hora en una app por Bluetooth de bajo consumo. También hay un botón táctil capacitivo oculto bajo el textil.</li>
+    <li><strong>Ahorro de energía.</strong> Un sensor de presión en la espuma solo activa el sistema si hay una cabeza apoyada.</li>
+    <li><strong>Energía.</strong> Batería de 4 V y 1200-1500 mAh para varios despertares por carga, recargada por inducción: sin cables ni conectores expuestos.</li>
+    <li><strong>Mantenimiento.</strong> Funda exterior lavable; el cartucho de aroma y el módulo LED son reemplazables.</li>
+  </ul>
+
+  <h3>Secuencia del despertar</h3>
+  <table>
+    <thead><tr><th>Minuto</th><th>Luz (fibra óptica)</th><th>Aroma (difusor)</th></tr></thead>
+    <tbody>
+      <tr><th>−15</th><td>Empieza a encenderse, muy tenue</td><td>—</td></tr>
+      <tr><th>−10 a −5</th><td>Sube de intensidad de forma gradual</td><td>Primeras ráfagas cortas de menta o cítrico</td></tr>
+      <tr><th>−5 a 0</th><td>Brillo tenue tipo amanecer</td><td>Ráfagas más frecuentes</td></tr>
+      <tr><th>Hora</th><td>Luz estable</td><td>Última ráfaga; el usuario despierta</td></tr>
+    </tbody>
+    <caption>La calibración exacta (cuánta luz, cuánto aroma y cada cuánto) se ajusta según el perfil del usuario y debe definirse con pruebas en personas.</caption>
+  </table>
+
+  <h3>Modelo 3D: las vistas</h3>
+  <p>Construimos un modelo 3D digital interactivo que se puede girar, cambiar de color y en el que se puede simular el despertar. Muestra las vistas frontal, posterior, lateral derecha, lateral izquierda y superior, además de una vista interna y una vista en uso.</p>
+  <div class="dos">
+    <figure><img src="../public/img/vista_frontal.jpg" alt=""><figcaption>Figura 2. Vista frontal: ancho de 68 cm, alto de 13 cm al centro y la base de carga por inducción.</figcaption></figure>
+    <figure><img src="../public/img/vista_posterior.jpg" alt=""><figcaption>Figura 3. Vista posterior: el borde superior con la cinta de fibra óptica y el LED cálido que la alimenta.</figcaption></figure>
+    <figure><img src="../public/img/vista_lateral.webp" alt=""><figcaption>Figura 4. Vista lateral derecha: el difusor de aroma tamaño moneda y el perfil ergonómico de 13 cm al centro y unos 10 cm cerca de los bordes.</figcaption></figure>
+    <figure><img src="../public/img/vista_izquierda.jpg" alt=""><figcaption>Figura 5. Vista lateral izquierda: el lado opuesto al difusor y el fondo de 48 cm.</figcaption></figure>
+    <figure><img src="../public/img/vista_superior.webp" alt=""><figcaption>Figura 6. Vista superior: la cinta de fibra óptica en el borde superior (60-80 cm lineales, 3-4 cm de ancho) y las medidas de 68 × 48 cm.</figcaption></figure>
+    <figure><img src="../public/img/vista_interna.webp" alt=""><figcaption>Figura 7. Vista interna (rayos X): batería, placa BLE, bobina de inducción, sensor de presión, cartucho, microbomba y módulo LED dentro de una bolsita de malla acolchada.</figcaption></figure>
+  </div>
+  <div class="dos" style="margin-top:5mm">
+    <figure><img src="../public/img/vista_uso.jpg" alt=""><figcaption>Figura 8. En uso: la luz llega a los párpados cerrados y el difusor dirige el aroma hacia la nariz. La figura es genérica, solo de referencia.</figcaption></figure>
+    <figure><img src="../public/img/colores.webp" alt=""><figcaption>Figura 9. Paleta oficial: Blanco roto, Gris piedra y Beige cálido.</figcaption></figure>
+  </div>
+
+  <h3>Ficha técnica: materiales y medidas</h3>
+  <table>
+    <thead><tr><th>Elemento</th><th>Especificación</th></tr></thead>
+    <tbody>
+      <tr><th>Medidas y peso</th><td>48 × 68 cm · perfil de 13 cm al centro y 10 cm en los bordes · 0.9 a 1.1 kg</td></tr>
+      <tr><th>Funda</th><td>Algodón peinado o mezcla con bambú, lavable; colores Blanco roto, Gris piedra y Beige cálido</td></tr>
+      <tr><th>Núcleo</th><td>Espuma viscoelástica de densidad media con la electrónica protegida</td></tr>
+      <tr><th>Luz</th><td>Cinta textil de fibra óptica PMMA de 0.25 mm + LED cálido con disipador pasivo</td></tr>
+      <tr><th>Aroma</th><td>Microbomba de diafragma de menos de 100 mW + cartucho de 10-15 mL de aceite de grado cosmético</td></tr>
+      <tr><th>Electrónica</th><td>Bluetooth de bajo consumo, sensor de presión, gestión de batería, botón táctil capacitivo oculto</td></tr>
+      <tr><th>Energía</th><td>Batería de 4 V y 1200-1500 mAh · carga por inducción</td></tr>
+      <tr><th>Sin</th><td>Pantallas, altavoces ni cables expuestos</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Ventaja competitiva</h3>
+  <p>Las piezas de AuraSleep ya existen en otros sectores. Lo innovador es la unión híbrida: un sistema que despierta con luz y aroma en una secuencia calibrada, dentro de la propia almohada.</p>
+  <table>
+    <thead><tr><th>Solución actual</th><th>Qué hace</th><th>Qué le falta</th></tr></thead>
+    <tbody>
+      <tr><th>Lámparas de amanecer (Philips Wake-up Light, desde 2006)</th><td>Simulan el amanecer con luz [6]</td><td>Solo luz; ocupan la mesita de noche</td></tr>
+      <tr><th>Despertadores de aroma (SensorWake, 2014)</th><td>Liberan un aroma a la hora de la alarma [8]</td><td>Solo aroma; es un aparato aparte</td></tr>
+      <tr><th>Almohadas inteligentes actuales</th><td>Monitorean el sueño, reducen ronquidos o ajustan la altura [11]</td><td>No se encargan del despertar</td></tr>
+      <tr><th>AuraSleep</th><td>Luz de amanecer + aroma focalizado en la misma secuencia, dentro de la almohada</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><strong>Difícil de copiar:</strong> la ventaja real no está en comprar las piezas, sino en calibrar la secuencia (intensidad de luz, cantidad de aroma, frecuencia y distancia al rostro) según el perfil de cada usuario. Eso exige pruebas con personas y datos acumulados.</li>
+    <li><strong>Ingresos recurrentes:</strong> los cartuchos de aroma recargables generan ventas cada trimestre, no solo la venta única de la almohada.</li>
+    <li><strong>Integración:</strong> el usuario no compra ni acomoda otro aparato; solo programa la hora.</li>
+  </ul>
+  <p class="nota">En la búsqueda que realizamos no encontramos un producto comercial que combine luz de amanecer y aroma focalizado dentro de la almohada. Antes de lanzar habría que hacer una búsqueda formal de patentes, porque sí existen patentes de aromaterapia textil y de textiles con fibra óptica para fototerapia.</p>
+</section>
+
+<!-- ================= 4 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 4</p>
+  <h2>Viabilidad financiera</h2>
+  <h3>Estructura de costo unitario</h3>
+  <table>
+    <thead><tr><th>Componente</th><th>Especificación</th><th class="num">USD</th></tr></thead>
+    <tbody>
+      <tr><th>Núcleo de espuma viscoelástica</th><td>Densidad media, 48 × 68 × 13 cm</td><td class="num">8-12</td></tr>
+      <tr><th>Funda externa</th><td>Algodón 300 hilos con bolsillos técnicos y cierres</td><td class="num">6-9</td></tr>
+      <tr><th>Tejido de fibra óptica</th><td>60-80 cm lineales de fibra PMMA tratada, cosida</td><td class="num">7-10</td></tr>
+      <tr><th>Módulo LED + disipador pasivo</th><td>LED cálido de alta eficiencia, lente difusora</td><td class="num">3-5</td></tr>
+      <tr><th>Microbomba eléctrica + driver</th><td>Bomba de diafragma miniaturizada, menos de 100 mW</td><td class="num">12-18</td></tr>
+      <tr><th>Cartucho de aroma (primer llenado)</th><td>10-15 mL de aceite esencial de grado cosmético</td><td class="num">2-4</td></tr>
+      <tr><th>Electrónica de control</th><td>Sensor de presión, gestión de batería</td><td class="num">8-12</td></tr>
+      <tr><th>Batería 4 V / 1300 mAh</th><td>Con circuito de carga por inducción</td><td class="num">6-9</td></tr>
+      <tr><th>Base de carga por inducción</th><td>Bobina receptora y transmisora</td><td class="num">4-6</td></tr>
+      <tr><th>Empaque, manual y logística inversa inicial</th><td>Caja rígida, espuma de protección, insertos</td><td class="num">5-8</td></tr>
+      <tr class="total"><th>Costo unitario directo</th><td></td><td class="num">61-93</td></tr>
+    </tbody>
+  </table>
+  <p>A este costo directo se suman costos indirectos de fabricación, control de calidad y certificación, lo que lleva el costo total por unidad a unos 75-100 USD.</p>
+
+  <h3>Precio de venta y margen</h3>
+  <p>AuraSleep se posiciona en el segmento premium accesible: por encima de una almohada ergonómica convencional y por debajo de las almohadas inteligentes de gama alta. Las fuentes de mercado difieren en el precio de referencia: algunas ubican las almohadas inteligentes en Estados Unidos entre 200 y 600 USD [14] y otras reportan un precio medio cercano a 420 USD para las de monitoreo del sueño [13]. Un precio de lanzamiento de 149-179 USD queda claramente por debajo de esos rangos.</p>
+  <table>
+    <thead><tr><th>Escenario</th><th class="num">Costo total</th><th class="num">Precio</th><th class="num">Margen bruto</th></tr></thead>
+    <tbody>
+      <tr><th>Pesimista</th><td class="num">100 USD</td><td class="num">149 USD</td><td class="num">32.9 %</td></tr>
+      <tr><th>Medio</th><td class="num">87.5 USD</td><td class="num">164 USD</td><td class="num">46.6 %</td></tr>
+      <tr><th>Medio (solo costo directo)</th><td class="num">77 USD</td><td class="num">164 USD</td><td class="num">53.0 %</td></tr>
+      <tr><th>Optimista</th><td class="num">75 USD</td><td class="num">179 USD</td><td class="num">58.1 %</td></tr>
+    </tbody>
+    <caption>En el escenario medio el margen bruto queda entre 45 % y 55 %, suficiente para absorber distribución, marketing y garantía. Margen bruto = (precio − costo) ÷ precio.</caption>
+  </table>
+
+  <h3>Modelo de ingresos recurrentes: cartuchos de aroma</h3>
+  <p>Cada cliente necesita un cartucho nuevo de aroma cada tres meses, a 9-14 USD. Eso suma 36-56 USD por cliente al año sin subir el precio de entrada de la almohada. Con un costo de 2-4 USD por cartucho, el margen por recarga va de 56 % a 86 %. En dos años de uso, un cliente aporta entre 72 y 112 USD adicionales a la compra inicial.</p>
+
+  <h3>Escenario ilustrativo de ventas (primeros 3 años)</h3>
+  <p class="nota">Como se espera vender pocas unidades al lanzamiento y crecer cuando el producto se vuelva conocido, armamos un escenario de crecimiento gradual. Supuestos: precio de 164 USD, costo total de 87.5 USD, cartucho a 11.5 USD con costo de 3 USD, 70 % de los clientes compra recargas (4 al año; los clientes nuevos, 2 en su primer año).</p>
+  <table>
+    <thead><tr><th>Año</th><th class="num">Almohadas vendidas</th><th class="num">Cartuchos vendidos</th><th class="num">Ingreso almohadas</th><th class="num">Ingreso cartuchos</th><th class="num">Ingreso total</th><th class="num">Utilidad bruta</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td class="num">300</td><td class="num">420</td><td class="num">49,200</td><td class="num">4,830</td><td class="num">54,030</td><td class="num">26,520</td></tr>
+      <tr><th>2</th><td class="num">1,200</td><td class="num">2,520</td><td class="num">196,800</td><td class="num">28,980</td><td class="num">225,780</td><td class="num">113,220</td></tr>
+      <tr><th>3</th><td class="num">3,000</td><td class="num">8,400</td><td class="num">492,000</td><td class="num">96,600</td><td class="num">588,600</td><td class="num">300,900</td></tr>
+    </tbody>
+    <caption>Cifras en USD. Es un escenario de ejemplo, no un pronóstico. La parte de los cartuchos pasa de 9 % del ingreso en el año 1 a 16 % en el año 3: el modelo recurrente gana peso conforme crece la base de clientes.</caption>
+  </table>
+
+  <h3>Mercado</h3>
+  <p>El mercado de almohadas inteligentes crece a doble dígito, aunque los estudios difieren mucho en el tamaño: uno proyecta un aumento de 941.7 millones de USD entre 2024 y 2029 con un crecimiento anual de 21.1 % [11]; otro estima 591.5 millones de USD en 2025 y 1,900 millones en 2032, con 18 % anual [12]. Las cifras deben tomarse como orden de magnitud.</p>
+
+  <h3>Riesgos y próximos pasos</h3>
+  <ul>
+    <li>Calibración con personas: probar intensidades de luz y aroma con usuarios reales antes de producir.</li>
+    <li>Seguridad y certificación: batería y carga por inducción dentro de un textil, y aromas cerca del rostro (posibles alergias o sensibilidad).</li>
+    <li>Cotizaciones formales: validar con proveedores los costos de fibra óptica, microbomba y electrónica.</li>
+    <li>Propiedad intelectual: búsqueda formal de patentes de aromaterapia textil y fibra óptica para fototerapia.</li>
+  </ul>
+  <div class="caja"><p><strong>Conclusión: ¿es viable?</strong> Sí: usa componentes que ya existen y su costo total queda claramente debajo del precio de venta. <strong>¿Es comercial?</strong> Sí: precio competitivo frente al mercado, público definido y un ingreso recurrente por cartuchos.</p></div>
+</section>
+
+<!-- ================= 5 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 5</p>
+  <h2>Presentación, publicidad y ligas</h2>
+  <p>La presentación de venta y el material publicitario están en Canva. El sitio web reúne todo el proyecto: la presentación incrustada, el modelo 3D interactivo y este documento.</p>
+  <table class="ligas">
+    <thead><tr><th>Material</th><th>Liga</th></tr></thead>
+    <tbody>
+      <tr><td>Presentación de venta (Canva)</td><td><a href="https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view">https://www.canva.com/design/DAHZhJLSbZk/PKP8oiFlfbjpvsR61WyPbQ/view</a></td></tr>
+      <tr><td>Póster</td><td><a href="https://canva.link/e5r4d9yl2ud53j2">https://canva.link/e5r4d9yl2ud53j2</a></td></tr>
+      <tr><td>Volante</td><td><a href="https://canva.link/q6x62qflv76w5io">https://canva.link/q6x62qflv76w5io</a></td></tr>
+      <tr><td>Sitio web del proyecto</td><td><a href="https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/">https://dantealejandrolopezvazquez-bit.github.io/aurasleep/v2/</a></td></tr>
+      <tr><td>Modelo 3D interactivo</td><td><a href="https://dantealejandrolopezvazquez-bit.github.io/aurasleep/modelo-3d/aurasleep-3d.html">https://dantealejandrolopezvazquez-bit.github.io/aurasleep/modelo-3d/aurasleep-3d.html</a><br>Vistas frontal, posterior, laterales, superior, interna y en uso; tres colores y simulación del despertar.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Contenido de la presentación</h3>
+  <!--GUION-->
+  <table>
+    <thead><tr><th>#</th><th>Diapositiva</th><th>Mensaje clave</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td>Portada</td><td>AuraSleep: despierta con luz y aroma, no con ruido</td></tr>
+      <tr><th>2</th><td>El problema</td><td>La alarma sonora rompe el sueño, genera estrés y despierta a la pareja</td></tr>
+      <tr><th>3</th><td>La solución</td><td>Un despertar de 15 minutos con luz, aroma, app y sensor de presión</td></tr>
+      <tr><th>4</th><td>El producto</td><td>Modelo 3D en tres vistas, ficha técnica y tres colores</td></tr>
+      <tr><th>5</th><td>Innovación y ventaja competitiva</td><td>Única que une luz y aroma en la almohada; calibración difícil de copiar</td></tr>
+      <tr><th>6</th><td>A quién va dirigido</td><td>Tres capas: usuario principal, segundo grupo y canales institucionales</td></tr>
+      <tr><th>7</th><td>Viabilidad financiera</td><td>Costo 75-100, precio 149-179, margen 45-55 %, cartuchos 36-56 USD/año</td></tr>
+      <tr><th>8</th><td>Cierre</td><td>Innovadora, viable y comercial · preventa desde 149 USD</td></tr>
+    </tbody>
+  </table>
+  <!--/GUION-->
+
+  <h3>Material publicitario</h3>
+  <div class="anuncios">
+    <figure><img src="../public/img/poster.jpg" alt=""><figcaption>Figura 10. Póster: nombre del producto, imagen destacada, eslogan y beneficios principales.</figcaption></figure>
+    <figure><img src="../public/img/volante.jpg" alt=""><figcaption>Figura 11. Volante: imagen, cómo funciona, características, para quién es, qué incluye y precio propuesto.</figcaption></figure>
+  </div>
+  <p class="nota">El precio y las condiciones que aparecen en el póster y el volante son hipotéticos, igual que el resto de las cifras del proyecto. AuraSleep es un concepto escolar: no se vende ni se cobra.</p>
+</section>
+
+<!-- ================= 6 ================= -->
+<section class="cap">
+  <p class="cap__num">Capítulo 6</p>
+  <h2>Uso de inteligencia artificial</h2>
+  <p>En el proyecto usamos herramientas de inteligencia artificial como apoyo. Las decisiones y la revisión final fueron del equipo.</p>
+  <table>
+    <thead><tr><th>Herramienta</th><th>Para qué se usó</th><th>Cómo se revisó</th></tr></thead>
+    <tbody>
+      <tr><th>Claude (Anthropic), con Claude Code</th><td>Apoyo para ordenar la investigación y redactar este documento; programación del modelo 3D interactivo y del sitio web.</td><td>Se comprobó que las ligas de las fuentes abrieran y que las cifras del sitio y del documento coincidieran. El sitio se probó en computadora y en celular.</td></tr>
+      <tr><th>Canva, con su conector para asistentes de IA</th><td>Armado de la presentación, el póster y el volante a partir de los textos de la investigación.</td><td>El equipo ajustó los diseños y verificó que las ligas abrieran sin iniciar sesión.</td></tr>
+    </tbody>
+  </table>
+  <h3>Criterio propio</h3>
+  <ul>
+    <li>El equipo definió qué debía decir cada material y no permitió cambiar cifras ni agregar datos sin fuente.</li>
+    <li>Se pidieron correcciones a los resultados: imágenes que desentonaban, tipografía, colores y la posición del producto en la portada del sitio.</li>
+    <li>No se usaron testimonios ni reseñas inventadas, y no se hacen promesas médicas.</li>
+    <li>Las cifras de costos y precios siguen siendo hipotéticas y deben confirmarse con cotizaciones formales.</li>
+  </ul>
+</section>
+
+<!-- ================= Referencias ================= -->
+<section class="cap">
+  <p class="cap__num">Referencias</p>
+  <h2>Fuentes</h2>
+  <ol class="refs">
+    <li><span>[1]</span><span>Hispanopedia. “Almohada”. <a href="https://es.hispanopedia.com/wiki/Almohada">https://es.hispanopedia.com/wiki/Almohada</a></span></li>
+    <li><span>[2]</span><span>EcuRed. “Almohada”. <a href="https://www.ecured.cu/Almohada">https://www.ecured.cu/Almohada</a></span></li>
+    <li><span>[3]</span><span>NASA Tech Briefs. “Forty-Year-Old Foam Springs Back With New Benefits” (NASA Spinoff). <a href="https://www.techbriefs.com/component/content/article/1560-forty-year-old-foam-springs-back-with-new-benefits">https://www.techbriefs.com/component/content/article/1560-forty-year-old-foam-springs-back-with-new-benefits</a></span></li>
+    <li><span>[4]</span><span>Furniture Today (2015). “Hall of Fame adds memory foam pioneer Yost”. <a href="https://www.furnituretoday.com/business-news/hall-fame-adds-memory-foam-pioneer-yost">https://www.furnituretoday.com/business-news/hall-fame-adds-memory-foam-pioneer-yost</a></span></li>
+    <li><span>[5]</span><span>ISPF. Historia de la espuma viscoelástica (Yost y Kubokawa). <a href="https://ispf.co.in/?p=6063">https://ispf.co.in/?p=6063</a></span></li>
+    <li><span>[6]</span><span>New Atlas (2008). “Wake up to the (artificial) sun”, Philips Wake-up Light. La página original ya no existe; copia en Internet Archive: <a href="https://web.archive.org/web/20251117123743/https://newatlas.com/philips-wake-up-light-2nd-gen/9892/">https://web.archive.org/web/20251117123743/https://newatlas.com/philips-wake-up-light-2nd-gen/9892/</a></span></li>
+    <li><span>[7]</span><span>Philips. Ficha técnica Wake-up Light HF3521 (estudio Metrixlab 2011, N=209). <a href="https://www.documents.philips.com/assets/20211005/2b1411a818bf4508a820adb800e4816b.pdf">https://www.documents.philips.com/assets/20211005/2b1411a818bf4508a820adb800e4816b.pdf</a></span></li>
+    <li><span>[8]</span><span>CNBC (2015). “Teen entrepreneur kickstarts first aromatic alarm clock” (SensorWake). <a href="https://www.cnbc.com/2015/05/27/teen-entrepreneur-kickstarts-first-aromatic-alarm-clock.html">https://www.cnbc.com/2015/05/27/teen-entrepreneur-kickstarts-first-aromatic-alarm-clock.html</a></span></li>
+    <li><span>[9]</span><span>ScienceAlert. SensorWake, alarma por aroma. <a href="https://www.sciencealert.com/?p=29564">https://www.sciencealert.com/?p=29564</a></span></li>
+    <li><span>[10]</span><span>Gavin Publishers. Revisión sobre el aroma de menta y bienestar (Toda y Morimoto, cortisol salival). <a href="https://www.gavinpublishers.com/article/view/a-scent-sational-approach-to-patient-and-staff--well-being">https://www.gavinpublishers.com/article/view/a-scent-sational-approach-to-patient-and-staff--well-being</a></span></li>
+    <li><span>[11]</span><span>Technavio (2025). Smart Pillows Market Analysis 2025-2029. <a href="https://www.technavio.com/report/smart-pillows-market-analysis">https://www.technavio.com/report/smart-pillows-market-analysis</a></span></li>
+    <li><span>[12]</span><span>Research and Markets. Smart Pillows - Global Strategic Business Report. <a href="https://www.researchandmarkets.com/reports/6009518/smart-pillows-global-strategic-business-report">https://www.researchandmarkets.com/reports/6009518/smart-pillows-global-strategic-business-report</a></span></li>
+    <li><span>[13]</span><span>Intel Market Research. Smart Sleep Tracking Pillow Market. <a href="https://www.intelmarketresearch.com/smart-sleep-tracking-pillow-market-59948">https://www.intelmarketresearch.com/smart-sleep-tracking-pillow-market-59948</a></span></li>
+    <li><span>[14]</span><span>Market Intelo. Smart Pillow Market Research Report 2034. <a href="https://marketintelo.com/report/smart-pillow-market">https://marketintelo.com/report/smart-pillow-market</a></span></li>
+    <li><span>[15]</span><span>“Effects of artificial dawn on sleep inertia, skin temperature and the awakening cortisol response”. Journal of Sleep Research, 19(3), 425-435 (citado en material de Philips). <a href="https://kiwla.com/philips-smartsleep-wake-up-light-colored-sunrise-and-sunset-simulation-5-natural-sounds-fm-radio-reading-lamp-tap-snooze-hf3520-60/">https://kiwla.com/philips-smartsleep-wake-up-light-colored-sunrise-and-sunset-simulation-5-natural-sounds-fm-radio-reading-lamp-tap-snooze-hf3520-60/</a></span></li>
+    <li><span>[16]</span><span>Ejemplos de presentación de producto: CV Directo (Arrancador 4 en 1) y Sense-U (Smart Sock Shoe). <a href="https://shop.sense-u.com/es-mx/products/sense-u-smart-sock-shoe">https://shop.sense-u.com/es-mx/products/sense-u-smart-sock-shoe</a></span></li>
+    <li><span>[17]</span><span>Wikipedia en español. “Almohada” (consultada en noviembre de 2026). <a href="https://es.wikipedia.org/wiki/Almohada">https://es.wikipedia.org/wiki/Almohada</a></span></li>
+    <li><span>[18]</span><span>Klein, J. (2023). “How Often Should You Replace Your Pillows?”. Sleep Foundation. <a href="https://www.sleepfoundation.org/bedding-information/how-often-should-you-replace-your-pillows">https://www.sleepfoundation.org/bedding-information/how-often-should-you-replace-your-pillows</a></span></li>
+  </ol>
+</section>
+
+</body>
+</html>

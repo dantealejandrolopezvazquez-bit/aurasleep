@@ -381,4 +381,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .fuentes ol{list-style:decimal;padding-left:24px;display:grid;gap:6px;margin-top:12px;font-size:14px;color:var(--texto-2)}
 .fuentes a{color:var(--ambar-oscuro);overflow-wrap:anywhere}
 .fuentes li:target{background:#FBE9C8;border-radius:4px}
+.fuentes + .fuentes{margin-top:16px}
+.fuentes--ia ol{list-style:none;padding-left:0}
+.fuentes--ia strong{color:var(--tinta)}
 @media (max-width:760px){.pie__grid{grid-template-columns:1fr}}

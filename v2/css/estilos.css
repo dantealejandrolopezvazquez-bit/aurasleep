@@ -390,6 +390,9 @@ h2{font-size:clamp(2.05rem, 3.7vw, 3.55rem);line-height:1.06;max-width:20ch}
 .fuentes ol{list-style:decimal;padding-left:26px;display:grid;gap:6px;margin-top:10px;font-size:.92rem;color:var(--tinta-2)}
 .fuentes a{color:var(--tinta);overflow-wrap:anywhere}
 .fuentes li:target{background:rgba(233,162,59,.22)}
+.fuentes + .fuentes{margin-top:18px}
+.fuentes--ia ol{list-style:none;padding-left:0}
+.fuentes--ia strong{color:var(--tinta)}
 .creditos .letra-chica{margin:28px auto 0;color:var(--tinta-2);text-align:center}
 
 /* ---------- movimiento reducido: todo queda como una toma fija ---------- */
