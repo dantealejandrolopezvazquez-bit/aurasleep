@@ -189,4 +189,19 @@
     if (union) { uLuz.style.transform = ""; uAroma.style.transform = ""; uCentro.style.removeProperty("--u"); }
   });
   pedir();
+
+  /* ---------- la barra marca la sección visible ---------- */
+  const enlacesNav = Array.from(document.querySelectorAll('.barra__nav a[href^="#"]'));
+  if (enlacesNav.length && 'IntersectionObserver' in window) {
+    const porId = new Map(enlacesNav.map((a) => [a.getAttribute('href').slice(1), a]));
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        enlacesNav.forEach((a) => { a.classList.remove('aqui'); a.removeAttribute('aria-current'); });
+        const a = porId.get(e.target.id);
+        if (a) { a.classList.add('aqui'); a.setAttribute('aria-current', 'location'); }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main > section[id]').forEach((s) => io.observe(s));
+  }
 })();
