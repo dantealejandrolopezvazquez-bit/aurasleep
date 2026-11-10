@@ -105,7 +105,7 @@ El sitio principal es **v2** (https://dantealejandrolopezvazquez-bit.github.io/a
 
 ## Rediseño dinámico de v2 (2026-11-10)
 
-Trabajo local en la rama `v2-dinamico` (sin publicar; el usuario decide cuándo pasarlo a `main`). Agrega movimiento a v2: portada animada, apariciones al hacer scroll, comparador alarma vs AuraSleep, secuencia de 15 minutos que avanza con el scroll, cifras que cuentan, unión luz + aroma y selector vivo de color. El código de movimiento está en `v2/js/movimiento.js` (cargado con `?v=`, súbelo al cambiarlo) y sus reglas en la sección "Motion" de `DESIGN.md`.
+Hecho en la rama `v2-dinamico` y publicado en `main` el 2026-11-10 (junto con el rediseño de abajo). Agrega movimiento a v2: portada animada, apariciones al hacer scroll, comparador alarma vs AuraSleep, secuencia de 15 minutos que avanza con el scroll, cifras que cuentan, unión luz + aroma y selector vivo de color. El código de movimiento está en `v2/js/movimiento.js` (cargado con `?v=`, súbelo al cambiarlo) y sus reglas en la sección "Motion" de `DESIGN.md`.
 
 ## Rediseño visual «Línea del despertar» (2026-11-10)
 
