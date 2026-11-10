@@ -726,3 +726,8 @@ main{overflow-x:clip}
 }
 @keyframes pop{from{transform:scale(.6);opacity:0}}
 .lista__ok[hidden]{display:none}
+
+/* contraste y tamaños mínimos (revisión de diseño) */
+.union__c small{color:var(--tinta)}
+.cifras__n small{font-size:max(.45em, 1rem)}
+.precio__cifra span:not([data-cuenta]){font-size:max(.3em, 1.1rem)}
